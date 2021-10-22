@@ -1,0 +1,174 @@
+<h1 *ngIf="isAddMode">Add Grain</h1>
+<h1 *ngIf="!isAddMode">Edit Grain</h1>
+
+<div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Name</label>
+    <input 
+      [formControlName]="'name'" 
+      id="name"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      />
+    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+      <div *ngIf="f.name.errors.required">Name is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Supplier</label>
+    <input 
+    type="text" 
+    formControlName="supplier" 
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }"
+    />
+    <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
+      <div *ngIf="f.supplier.errors.required">Supplier is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Category</label>
+    <input 
+      type="text" 
+      formControlName="category" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.category.errors }"
+      />
+    <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+      <div *ngIf="f.category.errors.required">Category is required</div>
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <label>Sack Weight</label>
+    <input 
+      type="text" 
+      formControlName="sackWeight" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.sackWeight.errors }"
+      />
+    <div *ngIf="submitted && f.sackWeight.errors" class="invalid-feedback">
+      <div *ngIf="f.sackWeight.errors.required">Sack Weight is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Moisture Content</label>
+    <input 
+      type="text" 
+      formControlName="moistureContent" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.moistureContent.errors }"
+      />
+    <div *ngIf="submitted && f.moistureContent.errors" class="invalid-feedback">
+      <div *ngIf="f.moistureContent.errors.required">Moisture Content is required</div>
+    </div>
+  </div>
+
+ 
+  <div class="form-group">
+    <label>FGDB</label>
+    <input 
+      type="text" 
+      formControlName="fgdb" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.fgdb.errors }"
+      />
+    <div *ngIf="submitted && f.fgdb.errors" class="invalid-feedback">
+      <div *ngIf="f.fgdb.errors.required">FGDB is required</div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label>Protein Content</label>
+    <input 
+      type="text" 
+      formControlName="proteinContent" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.proteinContent.errors }"
+      />
+    <div *ngIf="submitted && f.proteinContent.errors" class="invalid-feedback">
+      <div *ngIf="f.proteinContent.errors.required">Protein Content is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Color</label>
+    <input 
+      type="text" 
+      formControlName="color" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.color.errors }"
+      />
+    <div *ngIf="submitted && f.color.errors" class="invalid-feedback">
+      <div *ngIf="f.color.errors.required">Color is required</div>
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <label>Diastatic Power</label>
+    <input 
+      type="text" 
+      formControlName="diastaticPower" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.diastaticPower.errors }"
+      />
+    <div *ngIf="submitted && f.diastaticPower.errors" class="invalid-feedback">
+      <div *ngIf="f.diastaticPower.errors.required">Diastatic Power is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Base Price</label>
+    <input 
+      type="text" 
+      formControlName="basePrice" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.basePrice.errors }"
+      />
+    <div *ngIf="submitted && f.basePrice.errors" class="invalid-feedback">
+      <div *ngIf="f.basePrice.errors.required">Base Price is required</div>
+      <div *ngIf="f.basePrice.errors.pattern">Base Price must be a valid price</div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label>Milling Price</label>
+    <input 
+    type="text" 
+    formControlName="millingPrice" 
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.millingPrice.errors }"
+    />
+    <div *ngIf="submitted && f.millingPrice.errors" class="invalid-feedback">
+      <div *ngIf="f.millingPrice.errors.required">Milling Price is required</div>
+      <div *ngIf="f.millingPrice.errors.pattern">Milling Price must be a valid price</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Shipping Price</label>
+    <input 
+    type="text" 
+    formControlName="shippingPrice" 
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.shippingPrice.errors }"
+    />
+    <div *ngIf="submitted && f.shippingPrice.errors" class="invalid-feedback">
+      <div *ngIf="f.shippingPrice.errors.required">Shipping Price is required</div>
+      <div *ngIf="f.shippingPrice.errors.pattern">Shipping Price must be a valid price</div>
+    </div>
+  </div>
+
+  <div class="btn-toolbar">
+    <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>
+    <button *ngIf="!isAddMode" type="submit" class="btn btn-primary">Update</button>
+  </div>  
+
+</form>
+
+
+</div>

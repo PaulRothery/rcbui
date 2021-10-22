@@ -1,0 +1,93 @@
+<h1 *ngIf="isAddMode">Add Hop</h1>
+<h1 *ngIf="!isAddMode">Edit Hop</h1>
+
+<div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Name</label>
+    <input 
+      [formControlName]="'name'" 
+      id="name"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      />
+    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+      <div *ngIf="f.name.errors.required">Name is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Supplier</label>
+    <input 
+    type="text" 
+    formControlName="supplier" 
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }"
+    />
+    <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
+      <div *ngIf="f.supplier.errors.required">Supplier is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Lot Number</label>
+    <input 
+      type="text" 
+      formControlName="lotNumber" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.lotNumber.errors }"
+      />
+    <div *ngIf="submitted && f.lotNumber.errors" class="invalid-feedback">
+      <div *ngIf="f.lotNumber.errors.required">Lot Number is required</div>
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <label>Crop Year</label>
+    <input 
+      type="text" 
+      formControlName="cropYear" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.cropYear.errors }"
+      />
+    <div *ngIf="submitted && f.cropYear.errors" class="invalid-feedback">
+      <div *ngIf="f.cropYear.errors.required">Crop Year is required</div>
+      <div *ngIf="f.cropYear.errors.pattern">Crop Year must be 4 digits</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Price</label>
+    <input 
+      type="text" 
+      formControlName="price" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
+      />
+    <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+      <div *ngIf="f.price.errors.required">Price is required</div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label>Alpha</label>
+    <input 
+    type="text" 
+    formControlName="alpha" 
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.alpha.errors }"
+    />
+    <div *ngIf="submitted && f.alpha.errors" class="invalid-feedback">
+      <div *ngIf="f.alpha.errors.required">Alpha is required</div>
+    </div>
+  </div>
+
+  <div class="btn-toolbar">
+    <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>
+    <button *ngIf="!isAddMode" type="submit" class="btn btn-primary">Update</button>
+  </div>  
+
+</form>
+
+
+</div>

@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+.table-condensed {
+  font-size: 15px;
+}
+
+.th-left {
+  text-align: left;
+}
+
+.th-right {
+  text-align: right;
+}

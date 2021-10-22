@@ -1,0 +1,74 @@
+
+
+<div>
+  <h1>
+    <table class="table table-sm table-bordered table-condensed">
+      <thead class="thead-dark bg-success th-left">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Supplier</th>
+          <th scope="col">      
+            <div>Sack</div>
+            <div>Weight</div>           
+       </th>
+          <th scope="col">
+            <div>Moisture</div>
+            <div>Content</div>           
+       </th>
+          <th scope="col">FGDB</th>
+          <th scope="col">
+            <div>Protein</div>
+            <div>Content</div>           
+          </th>
+          <th scope="col">Color</th>
+          <th scope="col">
+            <div>Diastatic</div>
+            <div>Power</div>  
+          </th>
+          <th scope="col">
+            <div>Base</div>
+            <div>Price</div>
+          </th>
+          <th scope="col">     
+            <div>Milling</div>
+            <div>Price</div>           
+       </th>
+          <th scope="col">     
+            <div>Shipping</div>
+            <div>Price</div>           
+       </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="th-left" mdbTableCol *ngFor="let grain of grains">
+          <td>{{ grain.name }}</td>
+          <td>{{ grain.date | date:'shortDate' }}</td>
+          <td>{{ grain.supplier }}</td>
+          <td>{{ grain.sackWeight }}</td>
+          <td>{{ grain.moistureContent }}</td>
+          <td>{{ grain.fgdb }}</td>
+          <td>{{ grain.proteinContent }}</td>
+          <td>{{ grain.color }}</td>
+          <td>{{ grain.diastaticPower }}</td>
+          <td class="th-right">{{ grain.basePrice | currency }}</td>
+          <td class="th-right">{{ grain.millingPrice | currency }}</td>
+          <td class="th-right">{{ grain.shippingPrice | currency }}</td>
+          <button class="btn button btn-primary" [routerLink]="['/grain-edit/' + grain.id]">Edit Grain</button> 
+       
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="btn-toolbar">
+      <button class="btn btn-primary pull-left" [routerLink]="'/grain-edit'">Add Grain</button> 
+
+    </div>
+    
+  </h1>
+</div>
+
+<div class="col-xs-12 col-sm-4">
+  <router-outlet></router-outlet>
+</div>

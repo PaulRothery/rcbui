@@ -1,0 +1,4 @@
+.navbar-nav > .active > a {
+  background-color: #c0c0c0;
+  color: green;
+}

@@ -1,0 +1,131 @@
+<h1 *ngIf="isAddMode">Add Yeast</h1>
+<h1 *ngIf="!isAddMode">Edit Yeast</h1>
+
+<div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Name</label>
+    <input 
+      [formControlName]="'name'" 
+      id="name"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      />
+    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+      <div *ngIf="f.name.errors.required">Name is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Supplier</label>
+    <input 
+    type="text" 
+    formControlName="supplier" 
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }"
+    />
+    <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
+      <div *ngIf="f.supplier.errors.required">Supplier is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Lot Number</label>
+    <input 
+      type="text" 
+      formControlName="lotNumber" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.lotNumber.errors }"
+      />
+    <div *ngIf="submitted && f.lotNumber.errors" class="invalid-feedback">
+      <div *ngIf="f.lotNumber.errors.required">Lot Number is required</div>
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <label>Brand</label>
+    <input 
+      type="text" 
+      formControlName="brand" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.brand.errors }"
+      />
+    <div *ngIf="submitted && f.brand.errors" class="invalid-feedback">
+      <div *ngIf="f.brand.errors.required">Brand is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Previous Batch Id</label>
+    <input 
+      type="text" 
+      formControlName="previousBatchId" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.previousBatchId.errors }"
+      />
+      <div *ngIf="submitted && f.previousBatchId.errors" class="invalid-feedback">
+        <div *ngIf="f.previousBatchId.errors.pattern">Previous Batch Id must be numeric</div>
+      </div>
+  </div>
+  
+  <div class="form-group">
+    <label>Previous Batch Brand</label>
+    <input 
+    type="text" 
+    formControlName="previousBatchBrand" 
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.previousBatchBrand.errors }"
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Generation</label>
+    <input 
+      type="text" 
+      formControlName="generation" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.generation.errors }"
+      />
+    <div *ngIf="submitted && f.generation.errors" class="invalid-feedback">
+      <div *ngIf="f.generation.errors.required">Generation is required</div>
+      <div *ngIf="f.generation.errors.pattern">Generation must be numeric</div>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label>Cell Count</label>
+    <input 
+      type="text" 
+      formControlName="cellCount" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.cellCount.errors }"
+      />
+    <div *ngIf="submitted && f.cellCount.errors" class="invalid-feedback">
+      <div *ngIf="f.cellCount.errors.required">Cell Count is required</div>
+      <div *ngIf="f.cellCount.errors.pattern">Cell Count must be numeric</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Viability</label>
+    <input 
+      type="text" 
+      formControlName="viability" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.viability.errors }"
+      />
+    <div *ngIf="submitted && f.viability.errors" class="invalid-feedback">
+      <div *ngIf="f.viability.errors.required">Viability is required</div>
+      <div *ngIf="f.viability.errors.pattern">Viability must be numeric</div>
+     </div>
+  </div>
+
+  <div class="btn-toolbar">
+    <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>
+    <button *ngIf="!isAddMode" type="submit" class="btn btn-primary">Update</button>
+  </div>  
+
+</form>
+
+
+</div>

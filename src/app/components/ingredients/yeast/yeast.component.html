@@ -1,0 +1,52 @@
+
+
+<div>
+  <h1>
+    <table class="table table-sm table-bordered table-condensed">
+      <thead class="thead-dark bg-success th-left">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Supplier</th>
+          <th scope="col">Lot #</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Prev Batch Id</th>
+          <th scope="col">Prev Batch Brand</th>
+          <th scope="col">Generation</th>
+          <th scope="col">Cell Count</th>
+          <th scope="col">Viability</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="th-left" mdbTableCol *ngFor="let yeast of yeasts">
+          <td>{{ yeast.name }}</td>
+          <td>{{ yeast.date | date:'shortDate' }}</td>
+          <td>{{ yeast.supplier }}</td>
+          <td>{{ yeast.lotNumber }}</td>
+          <td>{{ yeast.brand }}</td>
+          <td>{{ yeast.previousBatchId }}</td>
+          <td>{{ yeast.previousBatchBrand }}</td>
+          <td>{{ yeast.generation }}</td>
+          <td>{{ yeast.cellCount }}</td>
+          <td>{{ yeast.viability }}</td>
+         
+          
+          <button class="btn button btn-primary" [routerLink]="['/yeast-edit/' + yeast.id]">Edit Yeast</button> 
+       
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="btn-toolbar">
+      <button class="btn btn-primary pull-left" [routerLink]="'/yeast-edit'">Add Yeast</button> 
+
+    </div>
+    
+  </h1>
+</div>
+
+<div class="col-xs-12 col-sm-4">
+  <router-outlet></router-outlet>
+</div>
