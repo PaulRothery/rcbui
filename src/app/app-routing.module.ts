@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { HomeComponent } from './components/home/home.component';
 import { HopComponent } from './components/ingredients/hop/hop.component';
 import { HopEditComponent } from './components/ingredients/hop-edit/hop-edit.component';
 import { GrainComponent } from './components/ingredients/grain/grain.component';
-import { NoPageFoundComponent } from './nopagefound/nopagefound.component';
+import { NoPageFoundComponent } from './components/nopagefound/nopagefound.component';
 import { YeastComponent } from './components/ingredients/yeast/yeast.component';
 import { AdjunctComponent } from './components/ingredients/adjunct/adjunct.component';
 import { YeastEditComponent } from './components/ingredients/yeast-edit/yeast-edit.component';
@@ -15,8 +16,10 @@ import { AdjunctEditComponent } from './components/ingredients/adjunct-edit/adju
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'grains', component: GrainComponent },
-  {
-    path: 'hops', component: HopComponent },
+ 
+  { path: 'home', component: HomeComponent },
+ 
+  { path: 'hops', component: HopComponent },
   { path: 'hop-edit/:id', component: HopEditComponent },
   { path: 'hop-edit', component: HopEditComponent },
   

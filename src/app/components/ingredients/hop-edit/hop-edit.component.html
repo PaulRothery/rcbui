@@ -1,7 +1,9 @@
-<h1 *ngIf="isAddMode">Add Hop</h1>
-<h1 *ngIf="!isAddMode">Edit Hop</h1>
+<div class="spacer"></div>
+<h1 *ngIf="isAddMode" class="p-4">Add Hop</h1>
+<h1 *ngIf="!isAddMode" class="p-4">Edit Hop</h1>
 
-<div>
+
+<div class="p-4">
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label>Name</label>

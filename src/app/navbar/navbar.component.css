@@ -2,3 +2,27 @@
   background-color: #c0c0c0;
   color: green;
 }
+
+.navbar {
+  border-bottom: #008ed6 3px solid;
+  opacity: 0.8;
+}
+
+#home-section {
+  background: url(../../assets/home.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 700px;
+}
+
+#ingredients-section .fas {
+  color: #008ed6;
+  background: rgb(26, 134, 153);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#picture-size {
+  max-width: 10%;
+}
