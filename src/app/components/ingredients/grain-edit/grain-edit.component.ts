@@ -47,6 +47,8 @@ export class GrainEditComponent implements OnInit {
       basePrice: ['', [Validators.required, Validators.pattern(numberPattern)]],
       millingPrice: ['',[Validators.required, Validators.pattern(numberPattern)]],
       shippingPrice: ['', [Validators.required, Validators.pattern(numberPattern)]],
+      initialQuantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
+      currentQuantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
     });
 
     if (!this.isAddMode) {

@@ -12,11 +12,11 @@
           <th scope="col">      
             <div>Sack</div>
             <div>Weight</div>           
-       </th>
+          </th>
           <th scope="col">
             <div>Moisture</div>
             <div>Content</div>           
-       </th>
+          </th>
           <th scope="col">FGDB</th>
           <th scope="col">
             <div>Protein</div>
@@ -34,12 +34,20 @@
           <th scope="col">     
             <div>Milling</div>
             <div>Price</div>           
-       </th>
+          </th>
           <th scope="col">     
             <div>Shipping</div>
             <div>Price</div>           
-       </th>
-        </tr>
+          </th>
+          <th scope="col">
+            <div>Initial</div>
+            <div>Quantity</div>           
+          </th>
+          <th scope="col">
+            <div>Current</div>
+            <div>Quantity</div>           
+          </th>
+   </tr>
       </thead>
       <tbody>
         <tr class="th-left" mdbTableCol *ngFor="let grain of grains">
@@ -55,6 +63,8 @@
           <td class="th-right">{{ grain.basePrice | currency }}</td>
           <td class="th-right">{{ grain.millingPrice | currency }}</td>
           <td class="th-right">{{ grain.shippingPrice | currency }}</td>
+          <td>{{ grain.initialQuantity }}</td>
+          <td>{{ grain.currentQuantity }}</td>
           <button class="btn button btn-primary" [routerLink]="['/grain-edit/' + grain.id]">Edit Grain</button> 
        
         </tr>

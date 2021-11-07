@@ -6,4 +6,6 @@ export class Hop {
   cropYear!: number;
   price!: number;
   alpha!: number;
+  initialQuantity!: number;
+  currentQuantity!: number;
 }

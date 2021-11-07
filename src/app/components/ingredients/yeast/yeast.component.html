@@ -11,11 +11,25 @@
           <th scope="col">Supplier</th>
           <th scope="col">Lot #</th>
           <th scope="col">Brand</th>
-          <th scope="col">Prev Batch Id</th>
-          <th scope="col">Prev Batch Brand</th>
+          <th scope="col">
+            <div>Previous</div>
+            <div>Batch Id</div>           
+          </th>
+          <th scope="col">
+            <div>Previous</div>
+            <div>Batch Brand</div>           
+          </th>
           <th scope="col">Generation</th>
           <th scope="col">Cell Count</th>
           <th scope="col">Viability</th>
+          <th scope="col">
+            <div>Initial</div>
+            <div>Quantity</div>           
+          </th>
+          <th scope="col">
+            <div>Current</div>
+            <div>Quantity</div>           
+          </th>
           
         </tr>
       </thead>
@@ -31,8 +45,9 @@
           <td>{{ yeast.generation }}</td>
           <td>{{ yeast.cellCount }}</td>
           <td>{{ yeast.viability }}</td>
-         
-          
+          <td>{{ yeast.initialQuantity }}</td>
+          <td>{{ yeast.currentQuantity }}</td>
+               
           <button class="btn button btn-primary" [routerLink]="['/yeast-edit/' + yeast.id]">Edit Yeast</button> 
        
         </tr>

@@ -13,6 +13,14 @@
           <th scope="col">Crop year</th>
           <th scope="col">Price</th>
           <th scope="col">Alpha</th>
+          <th scope="col">
+            <div>Initial</div>
+            <div>Quantity</div>           
+          </th>
+          <th scope="col">
+            <div>Current</div>
+            <div>Quantity</div>           
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +32,8 @@
           <td>{{ hop.cropYear }}</td>
           <td class="th-right">{{ hop.price | currency }}</td>
           <td class="th-right">{{ hop.alpha / 100 | percent:'1.2-2' }}</td>
+          <td>{{ hop.initialQuantity }}</td>
+          <td>{{ hop.currentQuantity }}</td>
           <button class="btn button btn-primary" [routerLink]="['/hop-edit/' + hop.id]">Edit Hop</button> 
        
         </tr>

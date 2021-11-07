@@ -16,7 +16,15 @@
           <th scope="col">PPG</th>
           <th scope="col">Color LOV</th>
           <th scope="col">Price</th>
-       </tr>
+          <th scope="col">
+            <div>Initial</div>
+            <div>Quantity</div>           
+          </th>
+          <th scope="col">
+            <div>Current</div>
+            <div>Quantity</div>           
+          </th>
+     </tr>
       </thead>
       <tbody>
         <tr class="th-left" mdbTableCol *ngFor="let adjunct of adjuncts">
@@ -28,6 +36,8 @@
           <td>{{ adjunct.ppg }}</td>
           <td>{{ adjunct.colorLov }}</td>
           <td class="th-right">{{ adjunct.price | currency }}</td>
+          <td>{{ adjunct.initialQuantity }}</td>
+          <td>{{ adjunct.currentQuantity }}</td>
           <button class="btn button btn-primary" [routerLink]="['/adjunct-edit/' + adjunct.id]">Edit Adjunct</button> 
        
         </tr>

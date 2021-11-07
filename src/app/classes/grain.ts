@@ -12,4 +12,6 @@ export class Grain {
   basePrice!: number;
   millingPrice!: number;
   shippingPrice!: number;
+  initialQuantity!: number;
+  currentQuantity!: number;
 }

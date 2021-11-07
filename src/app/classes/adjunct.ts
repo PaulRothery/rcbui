@@ -8,4 +8,6 @@ export class Adjunct {
   ppg!: number;      
   color_lov!: number;
   price!: number;    
+  initialQuantity!: number;
+  currentQuantity!: number;
 }

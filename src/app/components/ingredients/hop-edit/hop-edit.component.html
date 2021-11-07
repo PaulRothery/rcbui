@@ -83,6 +83,33 @@
       <div *ngIf="f.alpha.errors.required">Alpha is required</div>
     </div>
   </div>
+ 
+  <div class="form-group">
+    <label>Initial Quantity</label>
+    <input 
+      type="text" 
+      formControlName="initialQuantity" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.initialQuantity.errors }"
+      />
+      <div *ngIf="submitted && f.initialQuantity.errors" class="invalid-feedback">
+        <div *ngIf="f.initialQuantity.errors.pattern">Initial Quantity must be numeric</div>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label>Current Quantity</label>
+    <input 
+      type="text" 
+      formControlName="currentQuantity" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.currentQuantity.errors }"
+      />
+      <div *ngIf="submitted && f.currentQuantity.errors" class="invalid-feedback">
+        <div *ngIf="f.currentQuantity.errors.pattern">Current Quantity must be numeric</div>
+      </div>
+  </div>
+
 
   <div class="btn-toolbar">
     <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>

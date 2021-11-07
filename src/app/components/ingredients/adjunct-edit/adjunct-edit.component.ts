@@ -43,7 +43,9 @@ export class AdjunctEditComponent implements OnInit {
       ppg: ['',[Validators.required, Validators.pattern(numberPattern)]],
       colorLov: ['', [Validators.required, Validators.pattern(numberPattern)]],
       price: ['', [Validators.required, Validators.pattern(numberPattern)]],
-    });
+      initialQuantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
+      currentQuantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
+   });
 
     if (!this.isAddMode) {
       this.service.getById(this.id)

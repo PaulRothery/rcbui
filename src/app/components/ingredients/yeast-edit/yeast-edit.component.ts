@@ -51,6 +51,8 @@ export class YeastEditComponent implements OnInit {
       generation: ['', [Validators.required,Validators.pattern(numberPattern)]],
       cellCount : ['', [Validators.required,Validators.pattern(numberPattern)]],
       viability: ['', [Validators.required,Validators.pattern(numberPattern)]],
+      initialQuantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
+      currentQuantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
      });
 
     if (!this.isAddMode) {
@@ -81,7 +83,7 @@ export class YeastEditComponent implements OnInit {
       return;
     }
 
-    console.log(JSON.stringify(this.form.value, null, 2));
+    console.log('form ' + JSON.stringify(this.form.value, null, 2));
  
     this.loading = true;
     if (this.isAddMode) {
@@ -94,7 +96,7 @@ export class YeastEditComponent implements OnInit {
   
   updateYeast() {
   
-    console.log('update ' + this.form.value);
+    console.log('update ' + this.yeast.initialQuantity);
     this.service.update(this.yeast.id, this.form.value)
     .pipe(first())
     .subscribe({
@@ -114,6 +116,8 @@ export class YeastEditComponent implements OnInit {
 
   createYeast() {
 
+    console.log('yeast create : ' + this.form.value.viability);
+    console.log('yeast create : ' + this.form.value.currentQuantity);
     this.service.create(this.form.value)
     .pipe(first())
     .subscribe({

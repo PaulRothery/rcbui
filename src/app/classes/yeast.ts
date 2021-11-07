@@ -9,4 +9,6 @@ export class Yeast {
   generation!: number;
   cellCount!: number;
   viability!: number;
+  initialQuantity!: number;
+  currentQuantity!: number;
 }

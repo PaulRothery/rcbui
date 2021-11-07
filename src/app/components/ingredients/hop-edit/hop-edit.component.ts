@@ -42,6 +42,8 @@ export class HopEditComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
+    let numberPattern = /\-?\d*\.?\d{1,2}/;
+
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       supplier: ['', Validators.required],
@@ -49,6 +51,8 @@ export class HopEditComponent implements OnInit {
       cropYear: ['', [ Validators.required, Validators.pattern('^[0-9]{4}$')]],
       price: ['', Validators.required],
       alpha: ['', Validators.required],
+      initialQuantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
+      currentQuantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
      });
 
     if (!this.isAddMode) {
