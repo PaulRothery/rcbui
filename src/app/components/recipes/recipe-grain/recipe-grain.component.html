@@ -1,0 +1,58 @@
+<div class="spacer"></div>
+
+<div class="p-2">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group row p-2">
+   
+    <label class="col-sm-3 col-form-label">Name</label>
+    <div class="col-sm-9">
+      <input 
+      [formControlName]="'name'" 
+      id="name"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      />
+    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+      <div *ngIf="f.name.errors.required">Name is required</div>
+    </div>
+    </div>
+  
+    <label class="col-sm-3 col-form-label">Quantity</label>
+    <div class="col-sm-9">
+      <input 
+      type="text" 
+      formControlName="quantity" 
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }"
+      />
+      <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+        <div *ngIf="f.quantity.errors.pattern">Quantity must be numeric</div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+ 
+
+
+  <div class="p-4">
+    <h4>Grain</h4>
+      <table class="table table-sm table-bordered table-condensed p-4">
+        <thead class="thead-dark bg-success th-left">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">%</th>
+          </tr>
+        </thead>
+        <tbody>        
+          <tr class="th-left" mdbTableCol *ngFor="let recipeGrain of recipeGrains">
+            <td>{{ recipeGrain.name }}</td>
+            <td>{{ recipeGrain.quantity }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+<div>
+

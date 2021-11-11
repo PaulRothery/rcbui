@@ -17,6 +17,9 @@ import { YeastEditComponent } from './components/ingredients/yeast-edit/yeast-ed
 import { GrainEditComponent } from './components/ingredients/grain-edit/grain-edit.component';
 import { AdjunctEditComponent } from './components/ingredients/adjunct-edit/adjunct-edit.component';
 import { HomeComponent } from './components/home/home.component';
+import { RecipeComponent } from './components/recipes/recipe/recipe.component';
+import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
+import { RecipeGrainComponent } from './components/recipes/recipe-grain/recipe-grain.component';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { HomeComponent } from './components/home/home.component';
     YeastEditComponent,
     GrainEditComponent,
     AdjunctEditComponent,
-    HomeComponent
+    HomeComponent,
+    RecipeComponent,
+    RecipeEditComponent,
+    RecipeGrainComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,8 @@ import { AdjunctComponent } from './components/ingredients/adjunct/adjunct.compo
 import { YeastEditComponent } from './components/ingredients/yeast-edit/yeast-edit.component';
 import { GrainEditComponent } from './components/ingredients/grain-edit/grain-edit.component';
 import { AdjunctEditComponent } from './components/ingredients/adjunct-edit/adjunct-edit.component';
+import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
+import { RecipeComponent } from './components/recipes/recipe/recipe.component';
 
 
 const routes: Routes = [
@@ -34,6 +36,10 @@ const routes: Routes = [
   { path: 'adjuncts', component: AdjunctComponent },
   { path: 'adjunct-edit/:id', component: AdjunctEditComponent },
   { path: 'adjunct-edit', component: AdjunctEditComponent },
+  
+  { path: 'recipes', component: RecipeComponent },
+  { path: 'recipe-edit/:id', component: RecipeEditComponent },
+  { path: 'recipe-edit', component: RecipeEditComponent },
 
   { path: '**', component: NoPageFoundComponent },
 ];

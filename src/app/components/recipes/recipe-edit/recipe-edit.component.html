@@ -1,0 +1,236 @@
+<div class="spacer"></div>
+<h1 *ngIf="isAddMode" class="p-4">Add Recipe</h1>
+<h1 *ngIf="!isAddMode" class="p-4">Edit Recipe</h1>
+
+
+<div class="p-4">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Name</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'name'" 
+        id="name"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+        />
+
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Name is required</div>
+      </div>
+      </div>
+      </div>
+
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Status</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'status'" 
+        id="status"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.status.errors }"
+        />
+      <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+        <div *ngIf="f.status.errors.required">Status is required</div>
+      </div>
+    </div>
+  </div>
+          
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Batch Number</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'batchNo'" 
+        id="batchNo"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.batchNo.errors }"
+        />
+      <div *ngIf="submitted && f.batchNo.errors" class="invalid-feedback">
+        <div *ngIf="f.batchNo.errors.required">Batch Number is required</div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Previous Batch Number</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'previousBatchNo'" 
+        id="previousBatchNo"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.previousBatchNo.errors }"
+        />
+      <div *ngIf="submitted && f.previousBatchNo.errors" class="invalid-feedback">
+        <div *ngIf="f.previousBatchNo.errors.required">Previous Batch Number is required</div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Date</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'date'" 
+        id="date"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.date.errors }"
+        />
+      <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+        <div *ngIf="f.date.errors.required">Date is required</div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Type</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'type'" 
+        id="type"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.type.errors }"
+        />
+      <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+        <div *ngIf="f.type.errors.required">Type is required</div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Batch Yield</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'batchYield'" 
+        id="batchYield"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.batchYield.errors }"
+        />
+      <div *ngIf="submitted && f.batchYield.errors" class="invalid-feedback">
+        <div *ngIf="f.batchYield.errors.required">Batch Yield is required</div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Target Original Gravity</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'targetOG'" 
+        id="targetOG"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.targetOG.errors }"
+        />
+      <div *ngIf="submitted && f.targetOG.errors" class="invalid-feedback">
+        <div *ngIf="f.targetOG.errors.required">Target Original Gravity is required</div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Target Efficiency</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'targetEff'" 
+        id="targetEff"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.targetEff.errors }"
+        />
+      <div *ngIf="submitted && f.targetEff.errors" class="invalid-feedback">
+        <div *ngIf="f.targetEff.errors.required">Target Efficiency is required</div>
+      </div>
+    </div>
+  </div>
+   
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Target IBUs</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'targetIbus'" 
+        id="targetIbus"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.targetIbus.errors }"
+        />
+      <div *ngIf="submitted && f.targetIbus.errors" class="invalid-feedback">
+        <div *ngIf="f.targetIbus.errors.required">Target IBUs are required</div>
+      </div>
+    </div>
+  </div>
+   
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Target Color</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'targetColor'" 
+        id="targetColor"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.targetColor.errors }"
+        />
+      <div *ngIf="submitted && f.targetColor.errors" class="invalid-feedback">
+        <div *ngIf="f.targetColor.errors.required">Target Color is required</div>
+      </div>
+    </div>
+  </div>
+   
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Yeast Vessel</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'yeastVessel'" 
+        id="yeastVessel"
+        class="form-control"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Fermentor Vessel</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'fermentorVessel'" 
+        id="fermentorVessel"
+        class="form-control"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Pitch Volume</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'pitchVolume'" 
+        id="pitchVolume"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.pitchVolume.errors }"
+        />
+      <div *ngIf="submitted && f.pitchVolume.errors" class="invalid-feedback">
+        <div *ngIf="f.pitchVolume.errors.required">Pitch Volume is required</div>
+      </div>
+    </div>
+  </div>
+    
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Description</label>
+      <div class="col-sm-9">
+      <input 
+        [formControlName]="'description'" 
+        id="description"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+        />
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required">Description is required</div>
+      </div>
+    </div>
+  </div>
+    
+  <recipe-grain [recipeGrains]="r.recipeGrains"></recipe-grain>
+
+  <div class="btn-toolbar">  
+    <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>
+    <button *ngIf="!isAddMode" type="submit" class="btn btn-primary">Update</button>
+  </div>  
+
+</form>
+
+
+</div>
