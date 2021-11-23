@@ -1,0 +1,57 @@
+<div class="p-4">
+  <h1>
+    <table class="table table-sm table-bordered table-condensed">
+      <thead class="thead-dark bg-success th-left">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="th-left" mdbTableCol *ngFor="let recipeHop of recipeHops">
+
+          <div *ngIf="!nameIsEmpty(recipeHop.name)">
+            <p> {{ recipeHop.name }}</p>
+          </div>
+
+          <div *ngIf="nameIsEmpty(recipeHop.name)">
+
+            <div ngbDropdown class="d-inline-block">
+              <button type="button" class="btn btn-outline-dark" id="dropdownName" ngbDropdownToggle>Name</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownName">
+                <button type="bitton" class="dropdown-item" *ngFor="let hop of hops"
+                  (click)="nameChange(hop.name)">{{hop.name}}</button>
+              </div>
+            </div>
+          </div>
+
+          <td>
+            <input [(ngModel)]="recipeHop.quantity" type="number" class="form-control th-right" id="valueId"
+              (change)="quantityChange(recipeHop.quantity)">
+          </td>
+
+          <td>
+            <input [(ngModel)]="recipeHop.time" type="number" class="form-control" id="valueId"
+              (change)="timeChange(recipeHop.time)">
+          </td>
+
+
+          <td>
+            <button type="button" class="btn btn-primary" (click)=addRow()>+</button>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)=removeRow(recipeHop)>-</button>
+          </td>
+        </tr>
+
+        <tr class="border-2 border-dark">
+          <td scope="col">Total Hops</td>
+          <td class="th-right" style="padding-right:30px;">{{ calculateTotalHops() }}</td>
+
+        </tr>
+
+      </tbody>
+    </table>
+  </h1>
+</div>

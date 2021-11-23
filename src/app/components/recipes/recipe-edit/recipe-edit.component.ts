@@ -22,6 +22,13 @@ export class RecipeEditComponent implements OnInit {
 
   rtmp!: string;
 
+
+  public isShowGrain:boolean = false;
+
+  public isShowHop:boolean = false;
+
+ 
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -39,21 +46,25 @@ export class RecipeEditComponent implements OnInit {
     let numberPattern = /\-?\d*\.?\d{1,2}/;
 
     this.form = this.formBuilder.group({
+      id: [''],
       name: ['', Validators.required],
       status: ['', Validators.required],
       batchNo: ['', Validators.required],
       previousBatchNo: ['', Validators.required],
       date: ['', Validators.required],
       type: ['', Validators.required],
-      batchYield: ['', [Validators.required, Validators.pattern(numberPattern)]],
-      targetOG: ['',[Validators.required, Validators.pattern(numberPattern)]],
-      targetEff: ['', [Validators.required, Validators.pattern(numberPattern)]],
-      targetIbus: ['', [Validators.required, Validators.pattern(numberPattern)]],
-      targetColor: ['', [Validators.required, Validators.pattern(numberPattern)]],
+      batchYield: ['', [Validators.pattern(numberPattern)]],
+      targetOG: ['',[Validators.pattern(numberPattern)]],
+      targetEff: ['', [Validators.pattern(numberPattern)]],
+      targetIbus: ['', [Validators.pattern(numberPattern)]],
+      targetColor: ['', [Validators.pattern(numberPattern)]],
       yeastVessel: [''],
       fermentorVessel: [''],
-      pitchVolume: ['', [Validators.required, Validators.pattern(numberPattern)]],
-    });
+      pitchVolume: ['', [Validators.pattern(numberPattern)]],
+      description: [''],
+      recipeGrains: [''],
+      recipeHops: [''],
+     });
 
 
     if (!this.isAddMode) {
@@ -71,6 +82,13 @@ export class RecipeEditComponent implements OnInit {
 
     }
   }
+
+   
+  toggleDisplayHop() {
+    this.isShowHop = !this.isShowHop;
+
+  }
+
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;

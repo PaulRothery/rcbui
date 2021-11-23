@@ -29,7 +29,7 @@
           <td>{{ recipe.type }}</td>
           <td>{{ recipe.description }}</td>
           
-          <button class="btn button btn-primary" [routerLink]="['/recipe-edit']">Edit</button> 
+          <button class="btn button btn-primary" [routerLink]="['/recipe-edit/' + recipe.id]">Edit</button> 
        
         </tr>
 

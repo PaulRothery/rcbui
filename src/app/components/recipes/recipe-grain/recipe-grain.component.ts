@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ɵbypassSanitizationTrustStyle } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -22,20 +22,23 @@ export class RecipeGrainComponent implements OnInit {
   submitted = false;
   loading = false;
   grain!: Grain;
+  grains?: any[];
   
-
   @Input() recipeGrains! : RecipeGrain[];
-  @Input() tmp!: string;
+  pct!: number;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private service: RecipeService
+    private service: RecipeService,
+    private grainService: GrainService
   ) {}
 
   ngOnInit(): void {
 
+    this.grainService.getAll().subscribe((grains) => (this.grains = grains));
+    console.log('getting grains' + this.grains);
 
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
@@ -49,6 +52,55 @@ export class RecipeGrainComponent implements OnInit {
 
 
   }
+
+  calculatePercentage(quantity: number)  {
+
+    let totalQuantity = 0;
+    for(let i=0;i<this.recipeGrains.length ;i++){  
+      totalQuantity = totalQuantity + this.recipeGrains[i].quantity;
+    }
+      
+    return quantity / totalQuantity * 100;
+  }
+
+  calculateTotalGrist()  {
+
+    let totalGrist = 0;
+    for(let i=0;i<this.recipeGrains.length ;i++){  
+      totalGrist = totalGrist + this.recipeGrains[i].quantity;
+    }
+      
+    return totalGrist;
+  }
+  
+  addRow() {
+    console.log('adding row for recipe id = ' + this.id);
+    let recipeGrain = new RecipeGrain;
+    recipeGrain.name = '';
+    recipeGrain.recipeId = this.id;
+    recipeGrain.quantity = 0;
+    this.recipeGrains.push(recipeGrain);
+  }
+
+  removeRow(recipeGrain: RecipeGrain) {
+    let index: any = this.recipeGrains?.indexOf(recipeGrain);
+    this.recipeGrains?.splice(index, 1);
+  }
+
+  nameChange(name: string) {
+    this.recipeGrains[this.recipeGrains.length - 1].name = name;  
+  }  
+
+  quantityChange(newValue: number) {
+    console.log(newValue);
+    this.calculatePercentage(newValue);
+  }    
+
+  nameIsEmpty(name: string): boolean {
+
+    if (name) return false;
+    return true;
+  }  
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
