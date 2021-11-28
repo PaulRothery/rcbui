@@ -24,9 +24,8 @@ export class RecipeEditComponent implements OnInit {
 
 
   public isShowGrain:boolean = false;
-
   public isShowHop:boolean = false;
-
+  public isShowBrewer:boolean = false;
  
 
   constructor(
@@ -49,8 +48,8 @@ export class RecipeEditComponent implements OnInit {
       id: [''],
       name: ['', Validators.required],
       status: ['', Validators.required],
-      batchNo: ['', Validators.required],
-      previousBatchNo: ['', Validators.required],
+      batchId: ['', Validators.required],
+      previousBatchId: ['', Validators.required],
       date: ['', Validators.required],
       type: ['', Validators.required],
       batchYield: ['', [Validators.pattern(numberPattern)]],
@@ -64,6 +63,7 @@ export class RecipeEditComponent implements OnInit {
       description: [''],
       recipeGrains: [''],
       recipeHops: [''],
+      recipeBrewers: [''],
      });
 
 

@@ -1,7 +1,9 @@
 export class Grain {
   id!: string;
   name!: string;
+  date!: Date;
   supplier!: string;
+  maltster!: string;
   category!: string;
   sackWeight!: 22;
   moistureContent!: number;

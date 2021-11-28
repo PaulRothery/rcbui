@@ -1,0 +1,40 @@
+<div class="p-4">
+  <h1>
+    <table class="table table-sm table-bordered table-condensed">
+      <thead class="thead-dark bg-success th-left">
+        <tr>
+          <th scope="col">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ checkElements() }}
+
+        <tr class="th-left" mdbTableCol *ngFor="let recipeBrewer of recipeBrewers">
+
+          <div *ngIf="!nameIsEmpty(recipeBrewer.name)">
+            <p> {{ recipeBrewer.name }}</p>
+          </div>
+
+          <div *ngIf="nameIsEmpty(recipeBrewer.name)">
+
+            <div ngbDropdown class="d-inline-block">
+              <button type="button" class="btn btn-outline-dark" id="dropdownName" ngbDropdownToggle>Name</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownName">
+                <button type="button" class="dropdown-item" *ngFor="let brewer of brewers"
+                  (click)="nameChange(brewer.name)">{{brewer.name}}</button>
+              </div>
+            </div>
+          </div>
+
+          <td>
+            <button type="button" class="btn btn-primary" (click)=addRow()>+</button>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)=removeRow(recipeBrewer)>-</button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </h1>
+</div>

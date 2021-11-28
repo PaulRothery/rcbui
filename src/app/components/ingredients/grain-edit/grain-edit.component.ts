@@ -36,7 +36,9 @@ export class GrainEditComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
+      date: [''],
       supplier: ['', Validators.required],
+      maltster: ['', Validators.required],
       category: ['', Validators.required],
       sackWeight: ['', Validators.required],
       moistureContent: ['', Validators.required],
@@ -63,7 +65,7 @@ export class GrainEditComponent implements OnInit {
             },
             error => console.log('err ' + error),
           );
-
+      
     }
 
   }

@@ -9,6 +9,8 @@
         </tr>
       </thead>
       <tbody>
+        {{ checkElements() }}
+
         <tr class="th-left" mdbTableCol *ngFor="let recipeGrain of recipeGrains">
 
           <div *ngIf="!nameIsEmpty(recipeGrain.name)">
@@ -20,7 +22,7 @@
             <div ngbDropdown class="d-inline-block">
               <button type="button" class="btn btn-outline-dark" id="dropdownName" ngbDropdownToggle>Name</button>
               <div ngbDropdownMenu aria-labelledby="dropdownName">
-                <button type="bitton" class="dropdown-item" *ngFor="let grain of grains"
+                <button type="button" class="dropdown-item" *ngFor="let grain of grains"
                   (click)="nameChange(grain.name)">{{grain.name}}</button>
               </div>
             </div>
@@ -30,7 +32,7 @@
             <input [(ngModel)]="recipeGrain.quantity" type="number" class="form-control th-right" id="valueId"
               (change)="quantityChange(recipeGrain.quantity)">
           </td>
-          <td>{{ calculatePercentage(recipeGrain.quantity) | number : '1.0-0'}}</td>
+          <td>{{ calculatePercentage(recipeGrain.quantity) | number : '1.1-1'}}</td>
           <td>
             <button type="button" class="btn btn-primary" (click)=addRow()>+</button>
           </td>

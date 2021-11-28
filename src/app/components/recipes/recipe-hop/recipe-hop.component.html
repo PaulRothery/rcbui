@@ -9,6 +9,7 @@
         </tr>
       </thead>
       <tbody>
+        {{ checkElements() }}
         <tr class="th-left" mdbTableCol *ngFor="let recipeHop of recipeHops">
 
           <div *ngIf="!nameIsEmpty(recipeHop.name)">
@@ -20,7 +21,7 @@
             <div ngbDropdown class="d-inline-block">
               <button type="button" class="btn btn-outline-dark" id="dropdownName" ngbDropdownToggle>Name</button>
               <div ngbDropdownMenu aria-labelledby="dropdownName">
-                <button type="bitton" class="dropdown-item" *ngFor="let hop of hops"
+                <button type="button" class="dropdown-item" *ngFor="let hop of hops"
                   (click)="nameChange(hop.name)">{{hop.name}}</button>
               </div>
             </div>

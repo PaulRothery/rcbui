@@ -32,6 +32,9 @@ import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edi
 import { RecipeGrainComponent } from './components/recipes/recipe-grain/recipe-grain.component';
 import { RecipeHopComponent } from './components/recipes/recipe-hop/recipe-hop.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RecipeBrewerComponent } from './components/recipes/recipe-brewer/recipe-brewer.component';
+import { BrewdayComponent } from './components/recipes/brewday/brewday.component';
+import { BrewlogComponent } from './components/recipes/brewlog/brewlog.component';
 
 
 @NgModule({
@@ -51,7 +54,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RecipeComponent,
     RecipeEditComponent,
     RecipeGrainComponent,
-    RecipeHopComponent
+    RecipeHopComponent,
+    RecipeBrewerComponent,
+    BrewdayComponent,
+    BrewlogComponent
   ],
   imports: [
     BrowserModule,

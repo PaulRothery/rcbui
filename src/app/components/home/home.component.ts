@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BrewerService } from 'src/app/services/brewer.service';
 
 @Component({
   selector: 'home',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  brewers?: any[];
+  public isShowBrewer:boolean = false;
+ 
+  
+  constructor(
+    private brewerService: BrewerService
+ 
+  ) { }
 
   ngOnInit(): void {
+    this.brewerService.getAll().subscribe((brewers) => (this.brewers = brewers));
+
   }
 
   onSave() {

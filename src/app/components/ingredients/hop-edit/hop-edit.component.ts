@@ -46,6 +46,7 @@ export class HopEditComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
+      date: [''],
       supplier: ['', Validators.required],
       lotNumber: ['', Validators.required],
       cropYear: ['', [ Validators.required, Validators.pattern('^[0-9]{4}$')]],

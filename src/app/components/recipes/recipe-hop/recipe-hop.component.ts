@@ -1,10 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Hop } from 'src/app/classes/hop';
 import { RecipeHop } from 'src/app/classes/recipe-hop';
 import { HopService } from 'src/app/services/hop.service';
-import { RecipeService } from 'src/app/services/recipe.service';
 
 
 @Component({
@@ -14,39 +10,18 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class RecipeHopComponent implements OnInit {
 
-  form!: FormGroup;
-  id!: string;
-  isAddMode!: boolean;
-  submitted = false;
-  loading = false;
-  hop!: Hop;
   hops?: any[];
 
   @Input() recipeHops! : RecipeHop[];
+  @Input() id!: string;
+ 
   
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private service: RecipeService,
     private hopService: HopService
   ) {}
 
   ngOnInit(): void {
-
     this.hopService.getAll().subscribe((hops) => (this.hops = hops));
-    
-    this.id = this.route.snapshot.params['id'];
-    this.isAddMode = !this.id;
-
-    let numberPattern = /\-?\d*\.?\d{1,2}/;
-
-    this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      quantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
-    });
-
-
   }
 
   addRow() {
@@ -73,8 +48,8 @@ export class RecipeHopComponent implements OnInit {
   } 
 
   timeChange(newValue: number) {
-    this.recipeHops[this.recipeHops.length - 1].time = newValue;  
-  }    
+   this.recipeHops.sort(function(a, b) { return b.time - a.time; })
+ }    
 
   nameIsEmpty(name: string): boolean {
 
@@ -92,22 +67,18 @@ export class RecipeHopComponent implements OnInit {
     return totalHops;
   }
 
-  get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
-  }
-
-  onSubmit() {
-    this.submitted = true;
-
-    if (this.form.invalid) {
-      return;
-    }
-
-    console.log(JSON.stringify(this.form.value, null, 2));
- 
-
-   
-  }
   
+  // if there are no records to display add an empty row
+  // so that one can be added
+  // if there are rows ensure that they are listed in time descending order
+  checkElements() {
+
+  if (this.recipeHops?.length === 0) {
+     this.addRow();
+   } else {
+    this.recipeHops.sort(function(a, b) { return b.time - a.time; })
+   }
+
+ }
   
 }

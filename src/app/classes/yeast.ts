@@ -1,7 +1,9 @@
 export class Yeast {
   id!: string;
-  name!: string;
+  strain!: string;
+  date!: Date;
   supplier!: string;
+  maltster!: string;
   lotNumber!: string;
   brand!: string;
   previousBatchId!: number;

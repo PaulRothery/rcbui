@@ -1,4 +1,5 @@
 import { RecipeHopComponent } from "../components/recipes/recipe-hop/recipe-hop.component";
+import { RecipeBrewer } from "./recipe-brewer";
 import { RecipeGrain } from "./recipe-grain";
 import { RecipeHop } from "./recipe-hop";
 
@@ -6,8 +7,8 @@ export class Recipe {
   id!: string;
   name!: string;
   status!: string;
-  batchNo!: string;
-  previousBatchNo!: string;
+  batchId!: string;
+  previousBatchId!: string;
   date!: Date;
   type!: string;
   batchYield!: number;
@@ -21,5 +22,6 @@ export class Recipe {
   description!: string;
   recipeGrains!: RecipeGrain[];
   recipeHops!: RecipeHop[];
+  recipeBrewers!: RecipeBrewer[];
  
 }

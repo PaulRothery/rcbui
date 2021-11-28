@@ -42,8 +42,10 @@ export class YeastEditComponent implements OnInit {
     let numberPattern = /\-?\d*\.?\d{1,2}/;
 
     this.form = this.formBuilder.group({
-      name: ['', Validators.required],
+      strain: ['', Validators.required],
+      date: [''],
       supplier: ['', Validators.required],
+      maltster: ['', Validators.required],
       lotNumber: ['', Validators.required],
       brand: ['', Validators.required],
       previousBatchId: ['', Validators.pattern(numberPattern)],

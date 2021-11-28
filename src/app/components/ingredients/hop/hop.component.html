@@ -15,18 +15,18 @@
           <th scope="col">Alpha</th>
           <th scope="col">
             <div>Initial</div>
-            <div>Quantity</div>           
+            <div>Quantity</div>
           </th>
           <th scope="col">
             <div>Current</div>
-            <div>Quantity</div>           
+            <div>Quantity</div>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr class="th-left" mdbTableCol *ngFor="let hop of hops">
           <td>{{ hop.name }}</td>
-          <td>{{ hop.date | date:'shortDate' }}</td>
+          <td>{{ hop.date | date:'yyyy-MM-dd' }}</td>
           <td>{{ hop.supplier }}</td>
           <td>{{ hop.lotNumber }}</td>
           <td>{{ hop.cropYear }}</td>
@@ -34,18 +34,18 @@
           <td class="th-right">{{ hop.alpha / 100 | percent:'1.2-2' }}</td>
           <td>{{ hop.initialQuantity }}</td>
           <td>{{ hop.currentQuantity }}</td>
-          <button class="btn button btn-primary" [routerLink]="['/hop-edit/' + hop.id]">Edit Hop</button> 
-       
+          <button class="btn button btn-primary" [routerLink]="['/hop-edit/' + hop.id]">Edit Hop</button>
+
         </tr>
 
       </tbody>
     </table>
 
     <div class="btn-toolbar">
-      <button class="btn btn-primary pull-left" [routerLink]="'/hop-edit'">Add Hop</button> 
+      <button class="btn btn-primary pull-left" [routerLink]="'/hop-edit'">Add Hop</button>
 
     </div>
-    
+
   </h1>
 </div>
 

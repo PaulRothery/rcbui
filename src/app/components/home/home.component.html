@@ -1,18 +1,17 @@
 <div class="spacer"></div>
 
- <!-- HOME SECTION-->
- <header id="home-section">
+<!-- HOME SECTION-->
+<header id="home-section">
   <div class="dark-overlay">
     <div class="fill">
-        <img
-          src="../assets/home.jpg"
-          alt=""
-          class="img-fluid"
-        />
+      <img
+        src="../assets/home.jpg"
+        alt=""
+        class="img-fluid" />
     </div>
   </div>
 </header>
-  
+
 <!-- INGREDIENTS HEAD SECTION-->
 <section id="ingredients-head-section" class="bg-dark text-light py-5">
   <div class="container">
@@ -36,9 +35,7 @@
           title="Grain"
           class="img-fluid mb-3 rounded-circle"
           style="width: 200px; height: 200px;"
-          routerLinkActive="active" routerLink="/grains"
-    
-        />
+          routerLinkActive="active" routerLink="/grains" />
 
       </div>
 
@@ -49,9 +46,7 @@
           title="Hop"
           class="img-fluid mb-3 rounded-circle"
           style="width: 200px; height: 200px;"
-          routerLinkActive="active" routerLink="/hops"
-    
-          />
+          routerLinkActive="active" routerLink="/hops" />
       </div>
 
       <div class="col">
@@ -61,12 +56,10 @@
           title="Adjunct"
           class="img-fluid mb-3 rounded-circle"
           style="width: 200px; height: 200px;"
-          routerLinkActive="active" routerLink="/adjuncts"
- 
-          />
+          routerLinkActive="active" routerLink="/adjuncts" />
 
-         </div>
-     
+      </div>
+
       <div class="col">
         <img
           src="../../assets/yeast.jpg"
@@ -74,16 +67,15 @@
           title="Yeast"
           class="img-fluid mb-3 rounded-circle"
           style="width: 200px; height: 200px;"
-          routerLinkActive="active" routerLink="/yeasts"
-        />
-      
+          routerLinkActive="active" routerLink="/yeasts" />
+
       </div>
 
 
-   
+
     </div>
 
-  </div>      
+  </div>
 
 </section>
 
@@ -105,43 +97,43 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <button class="btn button btn-primary" [routerLink]="['/recipes']">List</button> 
-        <button (click)="onSave()">Filtered List</button> 
-   
+        <button class="btn button btn-primary" [routerLink]="['/recipes']">List</button>
+        <button (click)="onSave()">Filtered List</button>
+
       </div>
     </div>
   </div>
 </section>
 
 
- 
-  <!-- INVENTORY HEAD SECTION-->
-  <section id="inventory-head-section" class="bg-dark text-light py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col text-center py-5">
-          <h1 class="display-4">Inventory</h1>
-        </div>
+
+<!-- INVENTORY HEAD SECTION-->
+<section id="inventory-head-section" class="bg-dark text-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center py-5">
+        <h1 class="display-4">Inventory</h1>
       </div>
     </div>
-  </section>
-  
-  <!-- INVENTORY SECTION -->
+  </div>
+</section>
+
+<!-- INVENTORY SECTION -->
 <section id="inventory-section" class="bg-light text-muted py-5">
 </section>
 
-  <!-- SCHEDULE HEAD SECTION-->
-  <section id="schedule-head-section" class="bg-dark text-light py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col text-center py-5">
-          <h1 class="display-4">Schedule</h1>
-        </div>
+<!-- SCHEDULE HEAD SECTION-->
+<section id="schedule-head-section" class="bg-dark text-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center py-5">
+        <h1 class="display-4">Schedule</h1>
       </div>
     </div>
-  </section>
-  
-  <!-- SCHEDULE SECTION -->
+  </div>
+</section>
+
+<!-- SCHEDULE SECTION -->
 <section id="schedule-section" class="bg-light text-muted py-5">
 </section>
 
@@ -158,4 +150,54 @@
 
 <!-- VESSELS SECTION -->
 <section id="vessels-section" class="bg-light text-muted py-5">
+</section>
+
+<!-- BREWERS HEAD SECTION-->
+<section id="brewers-head-section" class="bg-dark text-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center py-5">
+        <h1 class="display-4">Brewers</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BREWERS SECTION -->
+<section id="brewers-section" class="bg-light text-muted p-5">
+
+  <button type="button" class="btn btn-outline-primary" (click)="isShowBrewer = !isShowBrewer"
+    [attr.aria-expanded]="!isShowBrewer" aria-controls="collapseExample">
+    <div *ngIf="isShowBrewer">
+      <h5>Hide
+        <i class="fa fa-solid fa-angle-up"></i>
+      </h5>
+    </div>
+    <div *ngIf="!isShowBrewer">
+      <h5>Show
+        <i class="fa fa-solid fa-angle-down"></i>
+      </h5>
+    </div>
+  </button>
+
+  <div id="collapseExample" [ngbCollapse]="!isShowBrewer">
+    <div class="row justify-content-center">
+      <table class="table table-responsive table-sm table-bordered table-condensed">
+        <thead class="thead-dark bg-success th-left">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="th-left" mdbTableCol *ngFor="let brewer of brewers">
+            <td>{{ brewer.name }}</td>
+            <td>{{ brewer.email }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </section>

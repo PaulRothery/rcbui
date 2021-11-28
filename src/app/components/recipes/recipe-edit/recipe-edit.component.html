@@ -2,7 +2,7 @@
 <h1 *ngIf="isAddMode" class="p-4">Add Recipe</h1>
 <h1 *ngIf="!isAddMode" class="p-4">Edit Recipe</h1>
 
-
+<!-- main recipe fields -->
 <div class="p-4">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group row p-2">
@@ -35,29 +35,29 @@
     </div>
 
     <div class="form-group row p-2">
-      <label class="col-sm-3 col-form-label">Batch Number</label>
+      <label class="col-sm-3 col-form-label">Batch ID</label>
       <div class="col-sm-9">
         <input
-          [formControlName]="'batchNo'"
-          id="batchNo"
+          [formControlName]="'batchId'"
+          id="batchId"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.batchNo.errors }" />
-        <div *ngIf="submitted && f.batchNo.errors" class="invalid-feedback">
-          <div *ngIf="f.batchNo.errors.required">Batch Number is required</div>
+          [ngClass]="{ 'is-invalid': submitted && f.batchId.errors }" />
+        <div *ngIf="submitted && f.batchId.errors" class="invalid-feedback">
+          <div *ngIf="f.batchId.errors.required">Batch Number is required</div>
         </div>
       </div>
     </div>
 
     <div class="form-group row p-2">
-      <label class="col-sm-3 col-form-label">Previous Batch Number</label>
+      <label class="col-sm-3 col-form-label">Previous Batch ID</label>
       <div class="col-sm-9">
         <input
-          [formControlName]="'previousBatchNo'"
-          id="previousBatchNo"
+          [formControlName]="'previousBatchId'"
+          id="previousBatchId"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.previousBatchNo.errors }" />
-        <div *ngIf="submitted && f.previousBatchNo.errors" class="invalid-feedback">
-          <div *ngIf="f.previousBatchNo.errors.required">Previous Batch Number is required</div>
+          [ngClass]="{ 'is-invalid': submitted && f.previousBatchId.errors }" />
+        <div *ngIf="submitted && f.previousBatchId.errors" class="invalid-feedback">
+          <div *ngIf="f.previousBatchId.errors.required">Previous Batch Number is required</div>
         </div>
       </div>
     </div>
@@ -100,48 +100,6 @@
           [ngClass]="{ 'is-invalid': submitted && f.batchYield.errors }" />
         <div *ngIf="submitted && f.batchYield.errors" class="invalid-feedback">
           <div *ngIf="f.batchYield.errors.required">Batch Yield is required</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row p-2">
-      <label class="col-sm-3 col-form-label">Target Original Gravity</label>
-      <div class="col-sm-9">
-        <input
-          [formControlName]="'targetOG'"
-          id="targetOG"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.targetOG.errors }" />
-        <div *ngIf="submitted && f.targetOG.errors" class="invalid-feedback">
-          <div *ngIf="f.targetOG.errors.required">Target Original Gravity is required</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row p-2">
-      <label class="col-sm-3 col-form-label">Target Efficiency</label>
-      <div class="col-sm-9">
-        <input
-          [formControlName]="'targetEff'"
-          id="targetEff"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.targetEff.errors }" />
-        <div *ngIf="submitted && f.targetEff.errors" class="invalid-feedback">
-          <div *ngIf="f.targetEff.errors.required">Target Efficiency is required</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row p-2">
-      <label class="col-sm-3 col-form-label">Target IBUs</label>
-      <div class="col-sm-9">
-        <input
-          [formControlName]="'targetIbus'"
-          id="targetIbus"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.targetIbus.errors }" />
-        <div *ngIf="submitted && f.targetIbus.errors" class="invalid-feedback">
-          <div *ngIf="f.targetIbus.errors.required">Target IBUs are required</div>
         </div>
       </div>
     </div>
@@ -208,8 +166,52 @@
       </div>
     </div>
 
+    <!-- calculated fields -->
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Target Original Gravity</label>
+      <div class="col-sm-9">
+        <input
+          [formControlName]="'targetOG'"
+          id="targetOG"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.targetOG.errors }" />
+        <div *ngIf="submitted && f.targetOG.errors" class="invalid-feedback">
+          <div *ngIf="f.targetOG.errors.required">Target Original Gravity is required</div>
+        </div>
+      </div>
+    </div>
 
 
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Target Efficiency</label>
+      <div class="col-sm-9">
+        <input
+          [formControlName]="'targetEff'"
+          id="targetEff"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.targetEff.errors }" />
+        <div *ngIf="submitted && f.targetEff.errors" class="invalid-feedback">
+          <div *ngIf="f.targetEff.errors.required">Target Efficiency is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Target IBUs</label>
+      <div class="col-sm-9">
+        <input
+          [formControlName]="'targetIbus'"
+          id="targetIbus"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.targetIbus.errors }" />
+        <div *ngIf="submitted && f.targetIbus.errors" class="invalid-feedback">
+          <div *ngIf="f.targetIbus.errors.required">Target IBUs are required</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- associated records -->
     <p>
     <div class="container border border-primary p-2">
 
@@ -231,7 +233,7 @@
       <div id="collapseExample" [ngbCollapse]="!isShowGrain">
         <div class="card">
           <div class="card-body">
-            <recipe-grain [recipeGrains]="r.recipeGrains"></recipe-grain>
+            <recipe-grain [recipeGrains]="r.recipeGrains" [id]="r.id"></recipe-grain>
           </div>
         </div>
       </div>
@@ -259,7 +261,7 @@
       <div id="collapseExample" [ngbCollapse]="!isShowHop">
         <div class="card">
           <div class="card-body">
-            <recipe-hop [recipeHops]="r.recipeHops"></recipe-hop>
+            <recipe-hop [recipeHops]="r.recipeHops" [id]="r.id"></recipe-hop>
           </div>
         </div>
       </div>
@@ -267,27 +269,35 @@
     </div>
 
 
-    <!--
-    <mat-card class="border border-primary">
-      <mat-card-title>Hops
-        <span>
-          <button mat-button class="mat-btn " (click)=toggleDisplayHop()>
-            <mat-icon class="material-icons md-16 md-red inline-icon">{{isShowHop ? 'expand_less' : 'expand_more'}}
-            </mat-icon>
-          </button>
-        </span>
-      </mat-card-title>
+    <p>
+    <div class="container border border-primary p-2">
 
-      <div *ngIf="isShowHop" #focus>
-        <recipe-hop [recipeHops]="r.recipeHops"></recipe-hop>
+      <p>
+        <button type="button" class="btn btn-outline-primary" (click)="isShowBrewer = !isShowBrewer"
+          [attr.aria-expanded]="!isShowBrewer" aria-controls="collapseExample">
+          <div *ngIf="isShowBrewer">
+            <h5>Brewers
+              <i class="fa fa-solid fa-angle-up"></i>
+            </h5>
+          </div>
+          <div *ngIf="!isShowBrewer">
+            <h5>Brewers
+              <i class="fa fa-solid fa-angle-down"></i>
+            </h5>
+          </div>
+        </button>
+      </p>
+      <div id="collapseExample" [ngbCollapse]="!isShowBrewer">
+        <div class="card">
+          <div class="card-body">
+            <recipe-brewer [recipeBrewers]="r.recipeBrewers" [id]="r.id"></recipe-brewer>
+          </div>
+        </div>
       </div>
 
-    </mat-card>
+    </div>
 
-    <p>
-    <p>
-    <p>
-    -->
+
 
     <div class="btn-toolbar p-4">
       <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>

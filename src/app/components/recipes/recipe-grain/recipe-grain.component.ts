@@ -1,13 +1,6 @@
-import { Component, Input, OnInit, ɵbypassSanitizationTrustStyle } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
-import { Grain } from 'src/app/classes/grain';
+import { Component, Input, OnInit } from '@angular/core';
 import { RecipeGrain } from 'src/app/classes/recipe-grain';
-import { AppError } from 'src/app/common/app-error';
-import { BadInput } from 'src/app/common/bad-input';
 import { GrainService } from 'src/app/services/grain.service';
-import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'recipe-grain',
@@ -16,40 +9,24 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class RecipeGrainComponent implements OnInit {
 
-  form!: FormGroup;
-  id!: string;
-  isAddMode!: boolean;
-  submitted = false;
-  loading = false;
-  grain!: Grain;
   grains?: any[];
   
   @Input() recipeGrains! : RecipeGrain[];
+  @Input() id!: string;
+ 
+
   pct!: number;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private service: RecipeService,
     private grainService: GrainService
   ) {}
 
   ngOnInit(): void {
 
+    console.log('getting grains');
     this.grainService.getAll().subscribe((grains) => (this.grains = grains));
-    console.log('getting grains' + this.grains);
-
-    this.id = this.route.snapshot.params['id'];
-    this.isAddMode = !this.id;
-
-    let numberPattern = /\-?\d*\.?\d{1,2}/;
-
-    this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      quantity: ['', [Validators.required, Validators.pattern(numberPattern)]],
-    });
-
+   
+  
 
   }
 
@@ -80,6 +57,8 @@ export class RecipeGrainComponent implements OnInit {
     recipeGrain.recipeId = this.id;
     recipeGrain.quantity = 0;
     this.recipeGrains.push(recipeGrain);
+    console.log('existing grains = ' + this.grains?.length);
+  
   }
 
   removeRow(recipeGrain: RecipeGrain) {
@@ -102,22 +81,15 @@ export class RecipeGrainComponent implements OnInit {
     return true;
   }  
 
-  get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
-  }
-
-  onSubmit() {
-    this.submitted = true;
-
-    if (this.form.invalid) {
-      return;
-    }
-
-    console.log(JSON.stringify(this.form.value, null, 2));
- 
-
-   
-  }
   
+  // if there are no records to display add an empty row
+  // so that one can be added
+  checkElements() {
+
+    if (this.recipeGrains?.length === 0) {
+     this.addRow();
+   }
+
+ }
   
 }
