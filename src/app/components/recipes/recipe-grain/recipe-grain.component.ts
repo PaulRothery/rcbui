@@ -11,7 +11,7 @@ export class RecipeGrainComponent implements OnInit {
 
   grains?: any[];
   
-  @Input() recipeGrains! : RecipeGrain[];
+  @Input() recipeGrains!: RecipeGrain[];
   @Input() id!: string;
  
 
@@ -23,7 +23,7 @@ export class RecipeGrainComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('getting grains');
+    console.log('getting grains ' + this.id);
     this.grainService.getAll().subscribe((grains) => (this.grains = grains));
    
   

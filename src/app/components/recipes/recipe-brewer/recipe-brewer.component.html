@@ -21,7 +21,7 @@
               <button type="button" class="btn btn-outline-dark" id="dropdownName" ngbDropdownToggle>Name</button>
               <div ngbDropdownMenu aria-labelledby="dropdownName">
                 <button type="button" class="dropdown-item" *ngFor="let brewer of brewers"
-                  (click)="nameChange(brewer.name)">{{brewer.name}}</button>
+                  (click)="nameChange(brewer.name)">{{ brewer.name }}</button>
               </div>
             </div>
           </div>

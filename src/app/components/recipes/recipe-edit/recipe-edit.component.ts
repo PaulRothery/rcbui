@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ConditionalExpr } from '@angular/compiler';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { Recipe } from 'src/app/classes/recipe';
 import { RecipeGrain } from 'src/app/classes/recipe-grain';
@@ -20,14 +22,17 @@ export class RecipeEditComponent implements OnInit {
   loading = false;
   recipe!: Recipe;
 
+  enteredDate!: NgbDate;
+  newDate!: Date;
   rtmp!: string;
 
 
   public isShowGrain:boolean = false;
   public isShowHop:boolean = false;
   public isShowBrewer:boolean = false;
+  public isShowBrewDay:boolean = false;
+  public isShowBrewLog:boolean = false;
  
-
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -37,7 +42,8 @@ export class RecipeEditComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.rtmp = 'testit';
+ 
+
 
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
@@ -50,20 +56,20 @@ export class RecipeEditComponent implements OnInit {
       status: ['', Validators.required],
       batchId: ['', Validators.required],
       previousBatchId: ['', Validators.required],
-      date: ['', Validators.required],
+      subBatchId: [''],
+      date: [''],
+      estimatedDuration: ['', Validators.required],
       type: ['', Validators.required],
       batchYield: ['', [Validators.pattern(numberPattern)]],
-      targetOG: ['',[Validators.pattern(numberPattern)]],
       targetEff: ['', [Validators.pattern(numberPattern)]],
-      targetIbus: ['', [Validators.pattern(numberPattern)]],
-      targetColor: ['', [Validators.pattern(numberPattern)]],
-      yeastVessel: [''],
-      fermentorVessel: [''],
-      pitchVolume: ['', [Validators.pattern(numberPattern)]],
-      description: [''],
+      targetOG: [''],
+      targetIbus: [''],
+      targetColor: [''],
       recipeGrains: [''],
       recipeHops: [''],
       recipeBrewers: [''],
+      brewDays: [''],
+      brewLogs: [''],
      });
 
 
@@ -117,8 +123,15 @@ export class RecipeEditComponent implements OnInit {
   }
   
   updateRecipe() {
+   
+    // if the date has changed then it will be set otherwise just ignore
+    if (this.enteredDate) {
+      this.newDate = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
+      this.form.controls['date'].setValue(this.newDate);
+    }
   
-    console.log('update ' + this.form.value);
+
+    console.log('brewlog date ' + this.form.controls['brewLogs.date'])
     this.service.update(this.recipe.id, this.form.value)
     .pipe(first())
     .subscribe({

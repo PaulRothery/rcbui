@@ -1,15 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { BrewDay } from 'src/app/classes/brewday';
 
 @Component({
-  selector: 'app-brewday',
+  selector: 'brewday',
   templateUrl: './brewday.component.html',
   styleUrls: ['./brewday.component.css']
 })
 export class BrewdayComponent implements OnInit {
+
+
+
+  @Input() brewDays! : BrewDay[];
+  @Input() id!: string;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+
+  mashRestTimeTargetChange(newValue: string) {
+    console.log(newValue);
+   
+  }    
+
+  mashInTimeChange(newValue: number) {
+    console.log(newValue);
+  
+  }
 }
+
+

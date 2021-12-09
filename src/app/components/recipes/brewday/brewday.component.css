@@ -1,0 +1,11 @@
+.form-control {
+  border-color: blue;
+}
+
+.card-border {
+  border-color: black;
+}
+
+.pull-right {
+float:right;
+}
