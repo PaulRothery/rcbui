@@ -1,7 +1,8 @@
 export class BrewLog {
   id!: string;
   recipeId!: string;
-  dateTime!: Date;
+  date!: Date;
+  time!: Date;
   temp!: number;
   gravity!: number;
   ph!: number;

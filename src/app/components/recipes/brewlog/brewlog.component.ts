@@ -28,8 +28,11 @@ export class BrewlogComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    console.log('getting brewer logs ' + this.id);
     this.brewerService.getAll().subscribe((brewers) => (this.brewers = brewers));
+    this.newDate = new Date("2015-02-01T12:00:00Z" ); 
+
+    console.log('getyear ' + this.id);
+    
 
   }
 
@@ -65,23 +68,33 @@ export class BrewlogComponent implements OnInit {
    
   }
 
-  // dateChange() {
+  dateChange() {
 
-  //   console.log('brewlog entered date ' + this.enteredDate.year)
-  //      // if the date has changed then it will be set otherwise just ignore
-  //      if (this.enteredDate) {
-  //       this.newDate = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
-  //       this.brewLogs[0].date = this.newDate;
-  //     }
-  // }
+    console.log('brewlog entered date ' + this.enteredDate.year)
+    
+
+    // if the date has changed then it will be set otherwise just ignore
+    if (this.enteredDate) {
+        this.newDate = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
+        this.brewLogs[0].date = this.newDate;
+    }
+   }
 
   timeChange() {
 
-    console.log('brewlog entered time ' + this.enteredTime)
-    this.brewLogs[0].dateTime = this.enteredTime ;
+    console.log('brewlog entered time ' + this.enteredTime.getHours)
+   // this.brewLogs[0].dateTime = this.enteredTime ;
     console.log('size ' + this.brewLogs.length)
-    console.log('brewlog updated time ' + this.brewLogs[0].dateTime)
+  //  console.log('brewlog updated time ' + this.brewLogs[0].dateTime)
       
+  if (this.enteredTime) {
+  //  this.newDate = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
+    this.brewLogs[0].date = this.newDate;
+}
   }
   
+  timetestIt() {
+
+    console.log('testit called')
+  }
  }
