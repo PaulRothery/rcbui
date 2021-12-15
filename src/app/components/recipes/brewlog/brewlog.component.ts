@@ -21,7 +21,6 @@ export class BrewlogComponent implements OnInit {
   enteredDate!: NgbDate;
   newDate!: Date;
 
-  enteredTime!: Date;
 
   constructor(
     private brewerService: BrewerService
@@ -68,31 +67,23 @@ export class BrewlogComponent implements OnInit {
    
   }
 
-  dateChange() {
+  dateChange(index: number) {
 
-    console.log('brewlog entered date ' + this.enteredDate.year)
-    
-
+    console.log('brewlog entered for element ' + index)
+   
     // if the date has changed then it will be set otherwise just ignore
     if (this.enteredDate) {
         this.newDate = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
-        this.brewLogs[0].date = this.newDate;
+        this.brewLogs[index].date = this.newDate;
+        console.log('brewlog date 0 ' + this.brewLogs[0].date)
+        console.log('brewlog date 1 ' + this.brewLogs[1].date)
+        console.log('brewlog date 2 ' + this.brewLogs[2].date)
+        this.enteredDate.year = 0;
+        this.enteredDate.month = 0;
+        this.enteredDate.day = 0;
     }
    }
 
-  timeChange() {
-
-    console.log('brewlog entered time ' + this.enteredTime.getHours)
-   // this.brewLogs[0].dateTime = this.enteredTime ;
-    console.log('size ' + this.brewLogs.length)
-  //  console.log('brewlog updated time ' + this.brewLogs[0].dateTime)
-      
-  if (this.enteredTime) {
-  //  this.newDate = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
-    this.brewLogs[0].date = this.newDate;
-}
-  }
-  
   timetestIt() {
 
     console.log('testit called')

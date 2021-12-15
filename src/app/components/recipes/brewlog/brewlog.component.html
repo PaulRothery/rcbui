@@ -4,7 +4,7 @@
       <thead class="thead-dark bg-success th-left">
         <tr>
           <th scope="col">Date</th>
-          <!--     <th scope="col">Time</th>-->
+          <th scope="col">Time</th>
           <th scope="col">Temp</th>
           <th scope="col">Gravity</th>
           <th scope="col">pH</th>
@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         {{ checkElements() }}
-        <tr class="th-left" mdbTableCol *ngFor="let brewLog of brewLogs">
+        <tr class="th-left" mdbTableCol *ngFor="let brewLog of brewLogs;let i = index">
 
           <!--     <div class="input-group">
             <input class="form-control" placeholder="{{ brewLog.date | date: 'yyyy-MM-dd'}}"
@@ -34,7 +34,7 @@
               [(ngModel)]="enteredDate"
               [ngModelOptions]="{standalone: true}"
               ngbDatepicker #d="ngbDatepicker"
-              (ngModelChange)="dateChange()">
+              (ngModelChange)="dateChange(i)">
 
             <button
               class="btn btn-sm calendar"
@@ -49,16 +49,16 @@
 
 
           <td>
-            <input [(ngModel)]=" brewLog.temp" type="number" class="form-control th-right" id="temp">
+            <input [(ngModel)]=" brewLog.temp" type="number" class="th-right" id="temp">
           </td>
 
 
           <td>
-            <input [(ngModel)]="brewLog.gravity" type="number" class="form-control th-right" id="gravity">
+            <input [(ngModel)]="brewLog.gravity" type="number" class="th-right" id="gravity">
           </td>
 
           <td>
-            <input [(ngModel)]="brewLog.ph" type="number" class="form-control th-right" id="ph">
+            <input [(ngModel)]="brewLog.ph" type="number" class="th-right" id="ph">
           </td>
 
           <div *ngIf="!brewerIsEmpty(brewLog.brewer)">
@@ -70,14 +70,14 @@
             <div ngbDropdown class="d-inline-block">
               <button type="button" class="btn btn-outline-dark" id="dropdownName" ngbDropdownToggle>Name</button>
               <div ngbDropdownMenu aria-labelledby="dropdownName">
-                <button type="button" class="dropdown-item" *ngFor="let brewer of brewers"
+                <button type="button btn-sm" class="dropdown-item" *ngFor="let brewer of brewers"
                   (click)="nameChange(brewer.name)">{{brewer.name}}</button>
               </div>
             </div>
           </div>
 
           <td>
-            <textarea [(ngModel)]="brewLog.note" class="form-control" id="note"
+            <textarea [(ngModel)]="brewLog.note" id="note"
               rows="1" maxlength="50"></textarea>
           </td>
 
