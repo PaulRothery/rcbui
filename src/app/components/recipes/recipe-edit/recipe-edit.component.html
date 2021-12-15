@@ -131,6 +131,7 @@
         <div *ngIf="submitted && f.targetEff.errors" class="invalid-feedback">
           <div *ngIf="f.targetEff.errors.required">Target Efficiency is required</div>
         </div>
+
       </div>
     </div>
 
@@ -139,41 +140,25 @@
     <div class="form-group row p-2">
       <label class="col-sm-3 col-form-label">Target Original Gravity</label>
       <div class="col-sm-9">
-        <input
-          [formControlName]="'targetOG'"
-          id="targetOG"
-          [ngClass]="{ 'is-invalid': submitted && f.targetOG.errors }" />
-        <div *ngIf="submitted && f.targetOG.errors" class="invalid-feedback">
-          <div *ngIf="f.targetOG.errors.required">Target Original Gravity is required</div>
-        </div>
+        <output class="borderexample">{{ calculateOriginalGravity() }}</output>
       </div>
     </div>
 
     <div class="form-group row p-2">
       <label class="col-sm-3 col-form-label">Target Color</label>
       <div class="col-sm-9">
-        <input
-          [formControlName]="'targetColor'"
-          id="targetColor"
-          [ngClass]="{ 'is-invalid': submitted && f.targetColor.errors }" />
-        <div *ngIf="submitted && f.targetColor.errors" class="invalid-feedback">
-          <div *ngIf="f.targetColor.errors.required">Target Color is required</div>
-        </div>
+        <output class="borderexample">{{ calculateOriginalGravity() }}</output>
       </div>
     </div>
 
     <div class="form-group row p-2">
       <label class="col-sm-3 col-form-label">Target IBUs</label>
       <div class="col-sm-9">
-        <input
-          [formControlName]="'targetIbus'"
-          id="targetIbus"
-          [ngClass]="{ 'is-invalid': submitted && f.targetIbus.errors }" />
-        <div *ngIf="submitted && f.targetIbus.errors" class="invalid-feedback">
-          <div *ngIf="f.targetIbus.errors.required">Target IBUs are required</div>
-        </div>
+        <output class="borderexample">{{ calculateOriginalGravity() }}</output>
       </div>
     </div>
+
+
 
 
     <!-- associated records -->

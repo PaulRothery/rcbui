@@ -1,12 +1,12 @@
-import { ConditionalExpr } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { Recipe } from 'src/app/classes/recipe';
-import { RecipeGrain } from 'src/app/classes/recipe-grain';
 import { RecipeService } from 'src/app/services/recipe.service';
+
+
 
 @Component({
   selector: 'recipe-edit',
@@ -26,6 +26,7 @@ export class RecipeEditComponent implements OnInit {
   newDate!: Date;
   rtmp!: string;
 
+  tog!: number;
 
   public isShowGrain:boolean = false;
   public isShowHop:boolean = false;
@@ -170,8 +171,19 @@ export class RecipeEditComponent implements OnInit {
     this.submitted = false;
     this.form.reset();
   }
+
+  calculateOriginalGravity () : number  {
+      console.log('targetEff = ' + this.f.targetEff.value)
+       return this.f.targetEff.value * 2;
+    
+      
+  }
+
 }
 function Output() {
   throw new Error('Function not implemented.');
 }
+
+
+
 

@@ -17,9 +17,6 @@ export class Recipe {
   type!: string;
   batchYield!: number;
   targetEff!: number;
-  targetOG!: number;
-  targetIbus!: number;
-  targetColor!: number;
   recipeGrains!: RecipeGrain[];
   recipeHops!: RecipeHop[];
   recipeBrewers!: RecipeBrewer[];
