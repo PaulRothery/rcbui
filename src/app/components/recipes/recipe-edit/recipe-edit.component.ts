@@ -30,6 +30,7 @@ export class RecipeEditComponent implements OnInit {
 
   public isShowGrain:boolean = false;
   public isShowHop:boolean = false;
+  public isShowSalt:boolean = false;
   public isShowBrewer:boolean = false;
   public isShowBrewDay:boolean = false;
   public isShowBrewLog:boolean = false;
@@ -68,11 +69,11 @@ export class RecipeEditComponent implements OnInit {
       targetColor: [''],
       recipeGrains: [''],
       recipeHops: [''],
+      recipeSalts: [''],
       recipeBrewers: [''],
       brewDays: [''],
       brewLogs: [''],
      });
-
 
     if (!this.isAddMode) {
       this.service.getById(this.id)
@@ -173,7 +174,6 @@ export class RecipeEditComponent implements OnInit {
   }
 
   calculateOriginalGravity () : number  {
-      console.log('targetEff = ' + this.f.targetEff.value)
        return this.f.targetEff.value * 2;
     
       

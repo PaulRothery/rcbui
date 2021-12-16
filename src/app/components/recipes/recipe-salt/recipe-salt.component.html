@@ -1,0 +1,57 @@
+<div class="p-4">
+  <h1>
+    <table class="table table-sm table-bordered table-condensed">
+      <thead class="thead-dark bg-success th-left">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Mash</th>
+          <th scope="col">Lauter</th>
+          <th scope="col">Kettle</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="th-left" mdbTableCol *ngFor="let recipeSalt of recipeSalts">
+
+          <div *ngIf="!nameIsEmpty(recipeSalt.name)">
+            <p> {{ recipeSalt.name }}</p>
+          </div>
+
+          <div *ngIf="nameIsEmpty(recipeSalt.name)">
+
+            <div ngbDropdown class="d-inline-block">
+              <button type="button" class="btn btn-outline-dark" id="dropdownName" ngbDropdownToggle>Name</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownName">
+                <button type="button" class="dropdown-item" *ngFor="let salt of salts"
+                  (click)="nameChange(salt)">{{salt}}</button>
+              </div>
+            </div>
+          </div>
+
+          <td>
+            <input [(ngModel)]="recipeSalt.mashQuantity" type="number" class="form-control th-right" id="mashQuantity">
+          </td>
+
+          <td>
+            <input [(ngModel)]="recipeSalt.lauterQuantity" type="number" class="form-control th-right"
+              id="lauterQuantity">
+          </td>
+
+          <td>
+            <input [(ngModel)]="recipeSalt.kettleQuantity" type="number" class="form-control th-right"
+              id="kettleQuantity">
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-primary" (click)=addRow()>+</button>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)=removeRow(recipeSalt)>-</button>
+          </td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </h1>
+</div>

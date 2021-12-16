@@ -35,6 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeBrewerComponent } from './components/recipes/recipe-brewer/recipe-brewer.component';
 import { BrewdayComponent } from './components/recipes/brewday/brewday.component';
 import { BrewlogComponent } from './components/recipes/brewlog/brewlog.component';
+import { RecipeSaltComponent } from './components/recipes/recipe-salt/recipe-salt.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { BrewlogComponent } from './components/recipes/brewlog/brewlog.component
     RecipeHopComponent,
     RecipeBrewerComponent,
     BrewdayComponent,
-    BrewlogComponent
+    BrewlogComponent,
+    RecipeSaltComponent
   ],
   imports: [
     BrowserModule,
