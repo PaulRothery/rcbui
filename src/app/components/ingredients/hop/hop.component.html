@@ -34,7 +34,8 @@
           <td class="th-right">{{ hop.alpha / 100 | percent:'1.2-2' }}</td>
           <td>{{ hop.initialQuantity }}</td>
           <td>{{ hop.currentQuantity }}</td>
-          <button class="btn button btn-primary" [routerLink]="['/hop-edit/' + hop.id]">Edit Hop</button>
+          <button class="btn btn-sm btn-outline-primary table-button"
+            [routerLink]="['/hop-edit/' + hop.id]">Edit</button>
 
         </tr>
 

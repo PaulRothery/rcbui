@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RecipeSalt } from 'src/app/classes/recipe-salt';
-import { SaltService } from 'src/app/services/salt.service';
+import { SaltService } from 'src/app/services/enums/salt.service';
 
 @Component({
   selector: 'recipe-salt',
@@ -49,7 +49,7 @@ export class RecipeSaltComponent implements OnInit {
 
   nameChange(name: string) {
 
-    console.groupCollapsed('salt name change select -> ' + name)
+    console.log('salt name change select -> ' + name)
     this.recipeSalts[this.recipeSalts.length - 1].name = name;  
   }  
 

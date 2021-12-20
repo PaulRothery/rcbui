@@ -33,12 +33,12 @@
               (change)="quantityChange(recipeGrain.quantity)">
           </td>
           <td>{{ calculatePercentage(recipeGrain.quantity) | number : '1.1-1'}}</td>
+
           <td>
-            <button type="button" class="btn btn-primary" (click)=addRow()>+</button>
+            <button class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
+            <button class="btn btn-sm btn-primary table-button" (click)=removeRow(recipeGrain)>-</button>
           </td>
-          <td>
-            <button class="btn btn-primary" (click)=removeRow(recipeGrain)>-</button>
-          </td>
+
         </tr>
         <tr class="border-2 border-dark">
           <td scope="col">Total Grist</td>

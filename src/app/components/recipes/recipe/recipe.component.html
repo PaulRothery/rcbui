@@ -28,7 +28,11 @@
           <td>{{ recipe.type }}</td>
           <td>{{ recipe.description }}</td>
 
-          <button class="btn button btn-primary" [routerLink]="['/recipe-edit/' + recipe.id]">Edit</button>
+          <button class="btn btn-sm btn-outline-primary table-button"
+            [routerLink]="['/recipe-edit/' + recipe.id]">Edit</button>
+
+          <button class="btn btn-sm btn-outline-primary table-button"
+            [routerLink]="['/recipe-edit/' + recipe.id]">Clone</button>
 
         </tr>
 

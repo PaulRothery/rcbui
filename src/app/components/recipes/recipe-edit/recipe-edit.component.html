@@ -19,17 +19,21 @@
       </div>
     </div>
 
+
     <div class="form-group row p-2">
-      <label class="col-sm-3 col-form-label">Status</label>
-      <div class="col-sm-9">
-        <input
-          [formControlName]="'status'"
-          id="status"
-          [ngClass]="{ 'is-invalid': submitted && f.status.errors }" />
-        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-          <div *ngIf="f.status.errors.required">Status is required</div>
+      <tr class="th-left">
+
+        <label class="col-sm-3 col-form-label" for="recipeStatus">Status</label>
+
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-sm btn-outline-dark" id="dropdownName"
+            ngbDropdownToggle>{{ f.status.value }}</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownName">
+            <button type="button" class="dropdown-item" *ngFor="let recipeStatus of recipeStatuses"
+              (click)="statusChange(recipeStatus)">{{recipeStatus}}</button>
+          </div>
         </div>
-      </div>
+      </tr>
     </div>
 
     <div class="form-group row p-2">

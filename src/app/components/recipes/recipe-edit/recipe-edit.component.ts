@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { Recipe } from 'src/app/classes/recipe';
+import { RecipeStatusService } from 'src/app/services/enums/recipe-status.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 
@@ -14,6 +15,8 @@ import { RecipeService } from 'src/app/services/recipe.service';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit {
+
+  recipeStatuses!: any[];
 
   form!: FormGroup;
   id!: string;
@@ -39,13 +42,14 @@ export class RecipeEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private service: RecipeService
+    private service: RecipeService,
+    private recipeStatusService: RecipeStatusService
   ) {}
 
   ngOnInit(): void {
 
  
-
+    this.recipeStatusService.getAll().subscribe((recipeStatuses) => (this.recipeStatuses = recipeStatuses));
 
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
@@ -55,7 +59,7 @@ export class RecipeEditComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
-      status: ['', Validators.required],
+      status: [''],
       batchId: ['', Validators.required],
       previousBatchId: ['', Validators.required],
       subBatchId: [''],
@@ -179,6 +183,11 @@ export class RecipeEditComponent implements OnInit {
       
   }
 
+  statusChange(name: string) {
+
+    console.log('salt name change select -> ' + name)
+    this.f.status.setValue(name);  
+  }
 }
 function Output() {
   throw new Error('Function not implemented.');
