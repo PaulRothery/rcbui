@@ -29,14 +29,15 @@
           </div>
 
           <td>
-            <input [(ngModel)]="recipeGrain.quantity" type="number" class="form-control th-right" id="valueId"
+            <input [(ngModel)]="recipeGrain.quantity" type="number" step="0.1" class="form-control th-right"
+              id="valueId"
               (change)="quantityChange(recipeGrain.quantity)">
           </td>
           <td>{{ calculatePercentage(recipeGrain.quantity) | number : '1.1-1'}}</td>
 
           <td>
-            <button class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
-            <button class="btn btn-sm btn-primary table-button" (click)=removeRow(recipeGrain)>-</button>
+            <button type="button" class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
+            <button type="button" class="btn btn-sm btn-primary table-button" (click)=removeRow(recipeGrain)>-</button>
           </td>
 
         </tr>

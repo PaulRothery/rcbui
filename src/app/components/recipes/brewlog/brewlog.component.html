@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         {{ checkElements() }}
-        <tr class="th-left" mdbTableCol *ngFor="let brewLog of brewLogs;let i = index">
+        <tr class="th-left" mdbTableCol *ngFor="let brewLog of brewLogs">
 
           <!--     <div class="input-group">
             <input class="form-control" placeholder="{{ brewLog.date | date: 'yyyy-MM-dd'}}"
@@ -25,22 +25,80 @@
               (ngModelChange)="dateChange()">
             <button class="fa fa-calendar" (click)="d.toggle()" type="button"></button>
           </div>
--->
 
-          <div class="flexContainer">
-            <input
+          <td>
+            {{ brewLog.date }}
+          </td>
+
+ -->
+          {{ brewLog.date | date: 'short'}}
+
+          <td><input type="text" ngbDatepicker #d="ngbDatepicker" ng-model="enteredDate"
+              (click)="d.toggle()" /></td>
+          <!--
+          <input
+            class=" form-control"
               placeholder="{{ brewLog.date | date: 'yyyy-MM-dd'}}"
-              type="text"
-              [(ngModel)]="enteredDate"
-              [ngModelOptions]="{standalone: true}"
-              ngbDatepicker #d="ngbDatepicker"
-              (ngModelChange)="dateChange(i)">
 
+              type="text" ngbDatepicker
+              #d="ngbDatepicker"
+              [(ngModel)]="brewLog.date">
             <button
               class="btn btn-sm calendar"
               (click)="d.toggle()"
               type="button"><i class="fa fa-calendar"></i></button>
+
+
+
+
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="date" [(ngModel)]="brewLog.date"
+                ngbDatepicker
+                #date="ngbDatepicker"
+                (blur)="onDateSelected()"
+                (change)="onDateSelected()">
+              <div class=" input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="date.toggle()"
+                  type="button"
+                  (change)="onDateSelected()"><i class=" fa fa-calendar"></i></button>
+              </div>
+            </div>
+
+            -->
+
+          <!--      <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              [(ngModel)]="brewLog.date"
+              ngbDatepicker #d="ngbDatepicker">
+
+            <button
+              class=" btn btn-sm calendar"
+              (click)="dateChange(1, brewLog)"
+              type="button"></button>
+          </div> -->
+
+          <!--
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                name="dp" [(ngModel)]="brewLog.date" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-addon" (click)="d.open()">
+                <img (click)="show(d)" src="img/calendar-icon.svg"
+                  style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+              </div>
+            </div>
           </div>
+
+-->
+
+
+
+
 
           <td>
             <input type="time" id="default-picker"
@@ -49,16 +107,16 @@
 
 
           <td>
-            <input [(ngModel)]=" brewLog.temp" type="number" class="th-right" id="temp">
+            <input [(ngModel)]="brewLog.temp" type="number" step="0.1" class="th-right" id="temp">
           </td>
 
 
           <td>
-            <input [(ngModel)]="brewLog.gravity" type="number" class="th-right" id="gravity">
+            <input [(ngModel)]="brewLog.gravity" type="number" step="0.1" class="th-right" id="gravity">
           </td>
 
           <td>
-            <input [(ngModel)]="brewLog.ph" type="number" class="th-right" id="ph">
+            <input [(ngModel)]="brewLog.ph" type="number" step="0.1" class="th-right" id="ph">
           </td>
 
           <div *ngIf="!brewerIsEmpty(brewLog.brewer)">
@@ -70,8 +128,8 @@
             <div ngbDropdown class="d-inline-block">
               <button type="button" class="btn btn-outline-dark" id="dropdownName" ngbDropdownToggle>Name</button>
               <div ngbDropdownMenu aria-labelledby="dropdownName">
-                <button type="button btn-sm" class="dropdown-item" *ngFor="let brewer of brewers"
-                  (click)="nameChange(brewer.name)">{{brewer.name}}</button>
+                <button type="button" class="dropdown-item" *ngFor="let brewer of brewers"
+                  (click)="nameChange(brewer.name)">{{ brewer.name }}</button>
               </div>
             </div>
           </div>
@@ -82,8 +140,8 @@
           </td>
 
           <td>
-            <button class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
-            <button class="btn btn-sm btn-primary table-button" (click)=removeRow(brewLog)>-</button>
+            <button type="button" class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
+            <button type="button" class="btn btn-sm btn-primary table-button" (click)=removeRow(brewLog)>-</button>
           </td>
         </tr>
 

@@ -27,12 +27,11 @@ export class RecipeBrewerComponent implements OnInit {
   }
 
   addRow() {
-    console.log('adding row for recipe id = ' + this.id);
+  console.log('adding brewer for recipe id = ' + this.id);
     let recipeBrewer = new RecipeBrewer;
     recipeBrewer.name = '';
     recipeBrewer.recipeId = this.id;
     this.recipeBrewers.push(recipeBrewer);
-    console.log('existing brewers = ' + this.brewers?.length);
    
   }
 

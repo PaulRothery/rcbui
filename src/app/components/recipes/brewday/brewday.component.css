@@ -9,3 +9,8 @@
 .pull-right {
 float:right;
 }
+
+.dotted-divider {
+border-bottom-style: dotted;
+padding: 5px;
+}

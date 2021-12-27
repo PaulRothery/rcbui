@@ -30,13 +30,17 @@ export class BrewlogComponent implements OnInit {
     this.brewerService.getAll().subscribe((brewers) => (this.brewers = brewers));
     this.newDate = new Date("2015-02-01T12:00:00Z" ); 
 
-    console.log('getyear ' + this.id);
+    this.enteredDate.year = 2021;
+    this.enteredDate.month = 11;
+    this.enteredDate.day = 11;
+
+    console.log('enteredDate ' + this.enteredDate);
     
 
   }
 
   addRow() {
-    console.log('adding row for recipe id = ' + this.id);
+    console.log('adding brewlog for recipe id = ' + this.id);
     let brewLog = new BrewLog;
     brewLog.recipeId = this.id;
     this.brewLogs.push(brewLog);
@@ -54,6 +58,7 @@ export class BrewlogComponent implements OnInit {
   } 
 
   nameChange(brewer: string) {
+    console.log('brewlog brewer change ' + brewer)
     this.brewLogs[this.brewLogs.length - 1].brewer = brewer;  
   } 
 
@@ -67,14 +72,15 @@ export class BrewlogComponent implements OnInit {
    
   }
 
-  dateChange(index: number) {
+  dateChange(index: number, brewLog: BrewLog) {
 
     console.log('brewlog entered for element ' + index)
+    console.log('date ' + brewLog.date)
    
     // if the date has changed then it will be set otherwise just ignore
     if (this.enteredDate) {
         this.newDate = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
-        this.brewLogs[index].date = this.newDate;
+      //  this.brewLogs[index].date = this.newDate;
         console.log('brewlog date 0 ' + this.brewLogs[0].date)
         console.log('brewlog date 1 ' + this.brewLogs[1].date)
         console.log('brewlog date 2 ' + this.brewLogs[2].date)
@@ -84,7 +90,12 @@ export class BrewlogComponent implements OnInit {
     }
    }
 
-  timetestIt() {
+   onDateSelected(){
+    console.log(' changing date ')
+    
+}
+
+  testIt() {
 
     console.log('testit called')
   }
