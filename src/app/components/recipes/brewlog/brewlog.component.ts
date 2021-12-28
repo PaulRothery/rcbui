@@ -28,13 +28,6 @@ export class BrewlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.brewerService.getAll().subscribe((brewers) => (this.brewers = brewers));
-    this.newDate = new Date("2015-02-01T12:00:00Z" ); 
-
-    this.enteredDate.year = 2021;
-    this.enteredDate.month = 11;
-    this.enteredDate.day = 11;
-
-    console.log('enteredDate ' + this.enteredDate);
     
 
   }
@@ -72,31 +65,19 @@ export class BrewlogComponent implements OnInit {
    
   }
 
-  dateChange(index: number, brewLog: BrewLog) {
+updateSelectedDate(date: NgbDate, index: number): NgbDate {
 
-    console.log('brewlog entered for element ' + index)
-    console.log('date ' + brewLog.date)
-   
-    // if the date has changed then it will be set otherwise just ignore
-    if (this.enteredDate) {
-        this.newDate = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
-      //  this.brewLogs[index].date = this.newDate;
-        console.log('brewlog date 0 ' + this.brewLogs[0].date)
-        console.log('brewlog date 1 ' + this.brewLogs[1].date)
-        console.log('brewlog date 2 ' + this.brewLogs[2].date)
-        this.enteredDate.year = 0;
-        this.enteredDate.month = 0;
-        this.enteredDate.day = 0;
-    }
-   }
-
-   onDateSelected(){
-    console.log(' changing date ')
+    console.log('selected date = ' + date)
+    console.log('occurence = ' + index)
+    this.newDate = new Date(
+      date.year,
+      date.month - 1,
+      date.day);
     
-}
+      console.log('new date = ' + this.newDate)
+   
+    this.brewLogs[index].date = this.newDate;
 
-  testIt() {
-
-    console.log('testit called')
+    return date;
   }
  }
