@@ -4,10 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { Recipe } from 'src/app/classes/recipe';
+import { RecipeGrain } from 'src/app/classes/recipe-grain';
 import { RecipeStatusService } from 'src/app/services/enums/recipe-status.service';
 import { RecipeService } from 'src/app/services/recipe.service';
-
-
 
 @Component({
   selector: 'recipe-edit',
@@ -34,6 +33,7 @@ export class RecipeEditComponent implements OnInit {
   public isShowGrain:boolean = false;
   public isShowHop:boolean = false;
   public isShowSalt:boolean = false;
+  public isShowAdjunct:boolean = false;
   public isShowBrewer:boolean = false;
   public isShowBrewDay:boolean = false;
   public isShowBrewLog:boolean = false;
@@ -177,15 +177,54 @@ export class RecipeEditComponent implements OnInit {
     this.form.reset();
   }
 
-  calculateOriginalGravity () : number  {
+  calculateCompletionDate(): Date {
+
+    let completionDate = new Date(this.r.date);
+    completionDate.setDate(completionDate.getDate() + (this.r.estimatedDuration))
+  // console.log('month ' + this.r.date.getMonth);
+
+    return completionDate
+ 
+  } 
+
+  calculateOriginalGravity(): number  {
        return this.f.targetEff.value * 2;
     
       
   }
 
-  statusChange(name: string) {
+  // The overall color is determined by the color and quantity
+  // of each grain in the recipe
+  calculateColor(): number  {
+   
+   // first sum the color and quantity of each grain
+    const rgs: RecipeGrain[] = [];
+    this.f.recipeGrains.value.forEach((val: RecipeGrain) => rgs.push(Object.assign({}, val)));
+   
+    let totalColor: number = 0;
+    rgs.forEach( (element) => {
+      console.log('elem Quantity ' + element.quantity);
+      let grainColor = element.quantity * element.color;
+      totalColor += grainColor;
+    });
 
-    console.log('salt name change select -> ' + name)
+   console.log('totalColor after summing grains ' + totalColor);  
+
+   // next adjust the color based on the quantity being brewed
+   totalColor = totalColor / (this.f.batchYield.value * 31);
+   console.log('totalColor after yield adjustment ' + totalColor);  
+
+   // and a couple of adjustments to finalze the color
+   totalColor = totalColor * 1.4922;
+   console.log('totalColor after x1.4922 adjustment ' + totalColor);  
+
+   totalColor = totalColor ** 0.6859;
+   console.log('totalColor after exponential adjustment ' + totalColor);  
+ 
+   return totalColor;  
+  }
+
+  statusChange(name: string) {
     this.f.status.setValue(name);  
   }
 }

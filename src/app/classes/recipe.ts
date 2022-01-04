@@ -5,6 +5,7 @@ import { BrewLog } from "./brewlog";
 import { RecipeGrain } from "./recipe-grain";
 import { RecipeHop } from "./recipe-hop";
 import { RecipeSalt } from "./recipe-salt";
+import { RecipeAdjunct } from "./recipe-adjunct";
 
 export class Recipe {
   id!: string;
@@ -21,6 +22,7 @@ export class Recipe {
   recipeGrains!: RecipeGrain[];
   recipeHops!: RecipeHop[];
   recipeSalts!: RecipeSalt[];
+  recipeAdjuncts!: RecipeAdjunct[]; 
   recipeBrewers!: RecipeBrewer[];
   brewDays!: BrewDay[];
   brewLogs!: BrewLog[];

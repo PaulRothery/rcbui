@@ -1,6 +1,6 @@
 <div class="spacer"></div>
-<h1 *ngIf="isAddMode" class="p-4">Add Recipe</h1>
-<h1 *ngIf="!isAddMode" class="p-4">Edit Recipe</h1>
+<h2 *ngIf="isAddMode" class="p-4">Add Recipe</h2>
+<h2 *ngIf="!isAddMode" class="p-4">Edit Recipe</h2>
 
 <!-- main recipe fields -->
 <div class="p-4">
@@ -21,7 +21,7 @@
 
 
     <div class="form-group row p-2">
-      <tr class="th-left">
+      <tr>
 
         <label class="col-sm-3 col-form-label" for="recipeStatus">Status</label>
 
@@ -100,6 +100,13 @@
     </div>
 
     <div class="form-group row p-2">
+      <label class="col-sm-3 col-form-label">Target Completion Date</label>
+      <div class="col-sm-9">
+        <output class="borderexample">{{ calculateCompletionDate() | date: 'yyyy-MM-dd' }}</output>
+      </div>
+    </div>
+
+    <div class="form-group row p-2">
       <label class="col-sm-3 col-form-label">Type</label>
       <div class="col-sm-9">
         <input
@@ -151,7 +158,7 @@
     <div class="form-group row p-2">
       <label class="col-sm-3 col-form-label">Target Color</label>
       <div class="col-sm-9">
-        <output class="borderexample">{{ calculateOriginalGravity() }}</output>
+        <output class="borderexample">{{ calculateColor() }}</output>
       </div>
     </div>
 
@@ -171,17 +178,17 @@
     <div class="container border border-primary p-2">
 
       <p>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="isShowGrain = !isShowGrain"
+        <button type="button" class="btn btn-primary pb-0" (click)="isShowGrain = !isShowGrain"
           [attr.aria-expanded]="!isShowGrain" aria-controls="collapseExample">
           <div *ngIf="isShowGrain">
-            <h5>Grains
+            <h6>Grains
               <i class="fa fa-solid fa-angle-up"></i>
-            </h5>
+            </h6>
           </div>
           <div *ngIf="!isShowGrain">
-            <h5>Grains
+            <h6>Grains
               <i class="fa fa-solid fa-angle-down"></i>
-            </h5>
+            </h6>
           </div>
         </button>
       </p>
@@ -199,17 +206,17 @@
     <p>
     <div class="container border border-primary p-2">
       <p>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="isShowHop = !isShowHop"
+        <button type="button" class="btn btn-primary pb-0" (click)="isShowHop = !isShowHop"
           [attr.aria-expanded]="!isShowHop" aria-controls="collapseExample">
           <div *ngIf="isShowHop">
-            <h5>Hops
+            <h6>Hops
               <i class="fa fa-solid fa-angle-up"></i>
-            </h5>
+            </h6>
           </div>
           <div *ngIf="!isShowHop">
-            <h5>Hops
+            <h6>Hops
               <i class="fa fa-solid fa-angle-down"></i>
-            </h5>
+            </h6>
           </div>
         </button>
       </p>
@@ -227,17 +234,17 @@
     <p>
     <div class="container border border-primary p-2">
       <p>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="isShowSalt = !isShowSalt"
+        <button type="button" class="btn btn-primary pb-0" (click)="isShowSalt = !isShowSalt"
           [attr.aria-expanded]="!isShowSalt" aria-controls="collapseExample">
           <div *ngIf="isShowSalt">
-            <h5>Salts
+            <h6>Salts
               <i class="fa fa-solid fa-angle-up"></i>
-            </h5>
+            </h6>
           </div>
           <div *ngIf="!isShowSalt">
-            <h5>Salts
+            <h6>Salts
               <i class="fa fa-solid fa-angle-down"></i>
-            </h5>
+            </h6>
           </div>
         </button>
       </p>
@@ -251,21 +258,50 @@
 
     </div>
 
+    <!-- ADJUNCTS -->
+    <p>
+    <div class="container border border-primary p-2">
+      <p>
+        <button type="button" class="btn btn-primary pb-0" (click)="isShowAdjunct = !isShowAdjunct"
+          [attr.aria-expanded]="!isShowAdjunct" aria-controls="collapseExample">
+          <div *ngIf="isShowAdjunct">
+            <h6>Adjuncts
+              <i class="fa fa-solid fa-angle-up"></i>
+            </h6>
+          </div>
+          <div *ngIf="!isShowAdjunct">
+            <h6>Adjuncts
+              <i class="fa fa-solid fa-angle-down"></i>
+            </h6>
+          </div>
+        </button>
+      </p>
+      <div id="collapseExample" [ngbCollapse]="!isShowAdjunct">
+        <div class="card">
+          <div class="card-body">
+            <recipe-adjunct [recipeAdjuncts]="r.recipeAdjuncts" [id]="r.id"></recipe-adjunct>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
     <!-- BREWER -->
     <p>
     <div class="container border border-primary p-2">
       <p>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="isShowBrewer = !isShowBrewer"
+        <button type="button" class="btn btn-primary pb-0" (click)="isShowBrewer = !isShowBrewer"
           [attr.aria-expanded]="!isShowBrewer" aria-controls="collapseExample">
           <div *ngIf="isShowBrewer">
-            <h5>Brewers
+            <h6>Brewers
               <i class="fa fa-solid fa-angle-up"></i>
-            </h5>
+            </h6>
           </div>
           <div *ngIf="!isShowBrewer">
-            <h5>Brewers
+            <h6>Brewers
               <i class="fa fa-solid fa-angle-down"></i>
-            </h5>
+            </h6>
           </div>
         </button>
       </p>
@@ -283,17 +319,17 @@
     <p>
     <div class="container border border-primary p-2">
       <p>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="isShowBrewDay = !isShowBrewDay"
+        <button type="button" class="btn btn-primary pb-0" (click)="isShowBrewDay = !isShowBrewDay"
           [attr.aria-expanded]="!isShowBrewDay" aria-controls="collapseExample">
           <div *ngIf="isShowBrewDay">
-            <h5>BrewDay
+            <h6>BrewDay
               <i class="fa fa-solid fa-angle-up"></i>
-            </h5>
+            </h6>
           </div>
           <div *ngIf="!isShowBrewDay">
-            <h5>BrewDay
+            <h6>BrewDay
               <i class="fa fa-solid fa-angle-down"></i>
-            </h5>
+            </h6>
           </div>
         </button>
       </p>
@@ -311,17 +347,17 @@
     <p>
     <div class="container border border-primary p-2">
       <p>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="isShowBrewLog = !isShowBrewLog"
+        <button type="button" class="btn btn-primary pb-0" (click)="isShowBrewLog = !isShowBrewLog"
           [attr.aria-expanded]="!isShowBrewLog" aria-controls="collapseExample">
           <div *ngIf="isShowBrewLog">
-            <h5>BrewLog
+            <h6>BrewLog
               <i class="fa fa-solid fa-angle-up"></i>
-            </h5>
+            </h6>
           </div>
           <div *ngIf="!isShowBrewLog">
-            <h5>BrewLog
+            <h6>BrewLog
               <i class="fa fa-solid fa-angle-down"></i>
-            </h5>
+            </h6>
           </div>
         </button>
       </p>

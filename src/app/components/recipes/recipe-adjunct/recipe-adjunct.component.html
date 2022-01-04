@@ -3,34 +3,43 @@
     <thead class="thead-dark bg-success th-left">
       <tr>
         <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+
       </tr>
     </thead>
     <tbody>
       {{ checkElements() }}
 
-      <tr class="th-left" mdbTableCol *ngFor="let recipeBrewer of recipeBrewers">
+      <tr class="th-left" mdbTableCol *ngFor="let recipeAdjunct of recipeAdjuncts">
 
-        <div *ngIf="!nameIsEmpty(recipeBrewer.name)">
-          <p> {{ recipeBrewer.name }}</p>
+        <div *ngIf="!nameIsEmpty(recipeAdjunct.name)">
+          <p> {{ recipeAdjunct.name }}</p>
         </div>
 
-        <div *ngIf="nameIsEmpty(recipeBrewer.name)">
+        <div *ngIf="nameIsEmpty(recipeAdjunct.name)">
 
           <div ngbDropdown class="d-inline-block">
             <button type="button" class="btn btn-sm btn-outline-dark" id="dropdownName"
               ngbDropdownToggle>Name</button>
             <div ngbDropdownMenu aria-labelledby="dropdownName">
-              <button type="button" class="dropdown-item" *ngFor="let brewer of brewers"
-                (click)="nameChange(brewer.name)">{{ brewer.name }}</button>
+              <button type="button" class="dropdown-item" *ngFor="let adjunct of adjuncts"
+                (click)="nameChange(adjunct)">{{adjunct}}</button>
             </div>
           </div>
         </div>
 
         <td>
+          <input [(ngModel)]="recipeAdjunct.quantity" type="number" step="0.1" class="form-control th-right"
+            id="quantity">
+        </td>
+
+        <td>
           <button type="button" class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
-          <button type="button" class="btn btn-sm btn-primary table-button" (click)=removeRow(recipeBrewer)>-</button>
+          <button type="button" class="btn btn-sm btn-primary table-button"
+            (click)=removeRow(recipeAdjunct)>-</button>
         </td>
       </tr>
+
 
     </tbody>
   </table>

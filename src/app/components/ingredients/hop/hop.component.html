@@ -1,53 +1,51 @@
 <div class="spacer"></div>
 
 <div class="p-4">
-  <h1>Hop</h1>
-  <h1>
-    <table class="table table-sm table-bordered table-condensed">
-      <thead class="thead-dark bg-success th-left">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Date</th>
-          <th scope="col">Supplier</th>
-          <th scope="col">Lot #</th>
-          <th scope="col">Crop year</th>
-          <th scope="col">Price</th>
-          <th scope="col">Alpha</th>
-          <th scope="col">
-            <div>Initial</div>
-            <div>Quantity</div>
-          </th>
-          <th scope="col">
-            <div>Current</div>
-            <div>Quantity</div>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="th-left" mdbTableCol *ngFor="let hop of hops">
-          <td>{{ hop.name }}</td>
-          <td>{{ hop.date | date:'yyyy-MM-dd' }}</td>
-          <td>{{ hop.supplier }}</td>
-          <td>{{ hop.lotNumber }}</td>
-          <td>{{ hop.cropYear }}</td>
-          <td class="th-right">{{ hop.price | currency }}</td>
-          <td class="th-right">{{ hop.alpha / 100 | percent:'1.2-2' }}</td>
-          <td>{{ hop.initialQuantity }}</td>
-          <td>{{ hop.currentQuantity }}</td>
-          <button class="btn btn-sm btn-outline-primary table-button"
-            [routerLink]="['/hop-edit/' + hop.id]">Edit</button>
+  <h2>Hop</h2>
+  <table class="table table-sm table-bordered table-condensed">
+    <thead class="thead-dark bg-success th-left">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Supplier</th>
+        <th scope="col">Lot #</th>
+        <th scope="col">Crop year</th>
+        <th scope="col">Price</th>
+        <th scope="col">Alpha</th>
+        <th scope="col">
+          <div>Initial</div>
+          <div>Quantity</div>
+        </th>
+        <th scope="col">
+          <div>Current</div>
+          <div>Quantity</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="th-left" mdbTableCol *ngFor="let hop of hops">
+        <td>{{ hop.name }}</td>
+        <td>{{ hop.date | date:'yyyy-MM-dd' }}</td>
+        <td>{{ hop.supplier }}</td>
+        <td>{{ hop.lotNumber }}</td>
+        <td>{{ hop.cropYear }}</td>
+        <td class="th-right">{{ hop.price | currency }}</td>
+        <td class="th-right">{{ hop.alpha / 100 | percent:'1.2-2' }}</td>
+        <td>{{ hop.initialQuantity }}</td>
+        <td>{{ hop.currentQuantity }}</td>
+        <button class="btn btn-sm btn-outline-primary table-button"
+          [routerLink]="['/hop-edit/' + hop.id]">Edit</button>
 
-        </tr>
+      </tr>
 
-      </tbody>
-    </table>
+    </tbody>
+  </table>
 
-    <div class="btn-toolbar">
-      <button class="btn btn-primary pull-left" [routerLink]="'/hop-edit'">Add Hop</button>
+  <div class="btn-toolbar">
+    <button class="btn btn-primary pull-left" [routerLink]="'/hop-edit'">Add Hop</button>
 
-    </div>
+  </div>
 
-  </h1>
 </div>
 
 <div class="col-xs-12 col-sm-4">

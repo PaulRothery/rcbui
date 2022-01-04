@@ -1,76 +1,75 @@
 <div class="p-4">
-  <h1>
-    <table class="table table-sm table-bordered table-condensed">
-      <thead class="thead-dark bg-success th-left">
-        <tr>
-          <th scope="col">Date</th>
-          <th scope="col">Time</th>
-          <th scope="col">Temp</th>
-          <th scope="col">Gravity</th>
-          <th scope="col">pH</th>
-          <th scope="col">Brewer</th>
-          <th scope="col">Note</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{ checkElements() }}
-        <tr class="th-left" mdbTableCol *ngFor="let brewLog of brewLogs; let i = index">
+  <table class="table table-sm table-bordered table-condensed">
+    <thead class="thead-dark bg-success th-left">
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Temp</th>
+        <th scope="col">Gravity</th>
+        <th scope="col">pH</th>
+        <th scope="col">Brewer</th>
+        <th scope="col">Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ checkElements() }}
+      <tr class="th-left" mdbTableCol *ngFor="let brewLog of brewLogs; let i = index">
 
-          <div class="input-group">
-            <input
-              type="text"
+        <div class="input-group">
+          <input
+            type="text"
 
-              placeholder="{{ brewLog.date | date: 'yyyy-MM-dd' }}"
-              [ngModel]="enteredDate"
-              ngbDatepicker #d="ngbDatepicker"
-              (click)="d.toggle()"
-              (dateSelect)="updateSelectedDate($event, i)">
-          </div>
+            placeholder="{{ brewLog.date | date: 'yyyy-MM-dd' }}"
+            [ngModel]="enteredDate"
+            ngbDatepicker #d="ngbDatepicker"
+            (click)="d.toggle()"
+            (dateSelect)="updateSelectedDate($event, i)">
+        </div>
 
-          <td>
-            <input type="time" id="default-picker"
-              [(ngModel)]="brewLog.time">
-          </td>
+        <td>
+          <input type="time" id="default-picker"
+            [(ngModel)]="brewLog.time">
+        </td>
 
-          <td>
-            <input [(ngModel)]="brewLog.temp" type="number" step="0.1" class="th-right" id="temp">
-          </td>
+        <td>
+          <input [(ngModel)]="brewLog.temp" type="number" step="0.1" class="th-right" id="temp">
+        </td>
 
-          <td>
-            <input [(ngModel)]="brewLog.gravity" type="number" step="0.1" class="th-right" id="gravity">
-          </td>
+        <td>
+          <input [(ngModel)]="brewLog.gravity" type="number" step="0.1" class="th-right" id="gravity">
+        </td>
 
-          <td>
-            <input [(ngModel)]="brewLog.ph" type="number" step="0.1" class="th-right" id="ph">
-          </td>
+        <td>
+          <input [(ngModel)]="brewLog.ph" type="number" step="0.1" class="th-right" id="ph">
+        </td>
 
-          <div *ngIf="!brewerIsEmpty(brewLog.brewer)">
-            <p> {{ brewLog.brewer }}</p>
-          </div>
+        <div *ngIf="!brewerIsEmpty(brewLog.brewer)">
+          <p> {{ brewLog.brewer }}</p>
+        </div>
 
-          <div *ngIf="brewerIsEmpty(brewLog.brewer)">
+        <div *ngIf="brewerIsEmpty(brewLog.brewer)">
 
-            <div ngbDropdown class="d-inline-block">
-              <button type="button" class="btn btn-outline-dark" id="dropdownName" ngbDropdownToggle>Name</button>
-              <div ngbDropdownMenu aria-labelledby="dropdownName">
-                <button type="button" class="dropdown-item" *ngFor="let brewer of brewers"
-                  (click)="nameChange(brewer.name)">{{ brewer.name }}</button>
-              </div>
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-sm btn-outline-dark" id="dropdownName"
+              ngbDropdownToggle>Name</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownName">
+              <button type="button" class="dropdown-item" *ngFor="let brewer of brewers"
+                (click)="nameChange(brewer.name)">{{ brewer.name }}</button>
             </div>
           </div>
+        </div>
 
-          <td>
-            <textarea [(ngModel)]="brewLog.note" id="note"
-              rows="1" maxlength="50"></textarea>
-          </td>
+        <td>
+          <textarea [(ngModel)]="brewLog.note" id="note"
+            rows="1" maxlength="50"></textarea>
+        </td>
 
-          <td>
-            <button type="button" class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
-            <button type="button" class="btn btn-sm btn-primary table-button" (click)=removeRow(brewLog)>-</button>
-          </td>
-        </tr>
+        <td>
+          <button type="button" class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
+          <button type="button" class="btn btn-sm btn-primary table-button" (click)=removeRow(brewLog)>-</button>
+        </td>
+      </tr>
 
-      </tbody>
-    </table>
-  </h1>
+    </tbody>
+  </table>
 </div>

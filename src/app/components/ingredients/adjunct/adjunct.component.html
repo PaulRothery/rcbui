@@ -1,56 +1,54 @@
-
-
 <div class="spacer"></div>
 
 <div class="p-4">
-  <h1>Adjunct</h1>
-  <h1>
-    <table class="table table-sm table-bordered table-condensed">
-      <thead class="thead-dark bg-success th-left">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Supplier</th>
-          <th scope="col">Type</th>
-          <th scope="col">Category</th>
-          <th scope="col">Extract</th>
-          <th scope="col">PPG</th>
-          <th scope="col">Color LOV</th>
-          <th scope="col">Price</th>
-          <th scope="col">
-            <div>Initial</div>
-            <div>Quantity</div>           
-          </th>
-          <th scope="col">
-            <div>Current</div>
-            <div>Quantity</div>           
-          </th>
-     </tr>
-      </thead>
-      <tbody>
-        <tr class="th-left" mdbTableCol *ngFor="let adjunct of adjuncts">
-          <td>{{ adjunct.name }}</td>
-          <td>{{ adjunct.supplier }}</td>
-          <td>{{ adjunct.type }}</td>
-          <td>{{ adjunct.category }}</td>
-          <td>{{ adjunct.extract }}</td>
-          <td>{{ adjunct.ppg }}</td>
-          <td>{{ adjunct.colorLov }}</td>
-          <td class="th-right">{{ adjunct.price | currency }}</td>
-          <td>{{ adjunct.initialQuantity }}</td>
-          <td>{{ adjunct.currentQuantity }}</td>
-          <button class="btn button btn-primary" [routerLink]="['/adjunct-edit/' + adjunct.id]">Edit Adjunct</button> 
-       
-        </tr>
+  <h2>Adjunct</h2>
 
-      </tbody>
-    </table>
+  <table class="table table-sm table-bordered table-condensed">
+    <thead class="thead-dark bg-success th-left">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Supplier</th>
+        <th scope="col">Type</th>
+        <th scope="col">Category</th>
+        <th scope="col">Extract</th>
+        <th scope="col">PPG</th>
+        <th scope="col">Color LOV</th>
+        <th scope="col">Price</th>
+        <th scope="col">
+          <div>Initial</div>
+          <div>Quantity</div>
+        </th>
+        <th scope="col">
+          <div>Current</div>
+          <div>Quantity</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="th-left" mdbTableCol *ngFor="let adjunct of adjuncts">
+        <td>{{ adjunct.name }}</td>
+        <td>{{ adjunct.supplier }}</td>
+        <td>{{ adjunct.type }}</td>
+        <td>{{ adjunct.category }}</td>
+        <td>{{ adjunct.extract }}</td>
+        <td>{{ adjunct.ppg }}</td>
+        <td>{{ adjunct.colorLov }}</td>
+        <td class="th-right">{{ adjunct.price | currency }}</td>
+        <td>{{ adjunct.initialQuantity }}</td>
+        <td>{{ adjunct.currentQuantity }}</td>
+        <button class="btn button btn-primary" [routerLink]="['/adjunct-edit/' + adjunct.id]">Edit Adjunct</button>
 
-    <div class="btn-toolbar">
-      <button class="btn btn-primary pull-left" [routerLink]="'/adjunct-edit'">Add Adjunct</button> 
+      </tr>
 
-    </div>
-    
-  </h1>
+    </tbody>
+  </table>
+
+  <div class="btn-toolbar">
+    <button class="btn btn-primary pull-left" [routerLink]="'/adjunct-edit'">Add Adjunct</button>
+
+  </div>
+
+
 </div>
 
 <div class="col-xs-12 col-sm-4">

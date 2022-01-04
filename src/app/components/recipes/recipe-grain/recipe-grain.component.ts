@@ -1,3 +1,4 @@
+import { ConditionalExpr } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { RecipeGrain } from 'src/app/classes/recipe-grain';
 import { GrainService } from 'src/app/services/grain.service';
@@ -66,8 +67,11 @@ export class RecipeGrainComponent implements OnInit {
     this.recipeGrains?.splice(index, 1);
   }
 
-  nameChange(name: string) {
-    this.recipeGrains[this.recipeGrains.length - 1].name = name;  
+  nameChange(name: string, color: number) {
+    console.log('adding new name, color = ' + color)
+    this.recipeGrains[this.recipeGrains.length - 1].name = name; 
+    this.recipeGrains[this.recipeGrains.length - 1].color = color; 
+     
   }  
 
   quantityChange(newValue: number) {

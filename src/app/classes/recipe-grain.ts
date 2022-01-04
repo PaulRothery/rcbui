@@ -3,5 +3,6 @@ export class RecipeGrain {
   recipeId!: string;
   name!: string;
   quantity!: number;
+  color!: number;
 
 }
