@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeAdjunct } from 'src/app/classes/recipe-adjunct';
 import { AdjunctService } from 'src/app/services/adjunct.service';
 
@@ -14,7 +15,9 @@ export class RecipeAdjunctComponent implements OnInit {
   @Input() recipeAdjuncts!: RecipeAdjunct[];
   @Input() id!: string;
  
-
+  enteredDate!: NgbDate;
+  newDate!: Date;
+  
   constructor(
     private adjunctService: AdjunctService
   ) {}
@@ -66,4 +69,19 @@ export class RecipeAdjunctComponent implements OnInit {
 
  }
   
+ updateSelectedDate(date: NgbDate, index: number): NgbDate {
+
+  console.log('selected date = ' + date)
+  console.log('occurence = ' + index)
+  this.newDate = new Date(
+    date.year,
+    date.month - 1,
+    date.day);
+  
+    console.log('new date = ' + this.newDate)
+ 
+  this.recipeAdjuncts[index].date = this.newDate;
+
+  return date;
+}
 }

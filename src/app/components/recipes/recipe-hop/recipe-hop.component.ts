@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeHop } from 'src/app/classes/recipe-hop';
 import { HopService } from 'src/app/services/hop.service';
 
@@ -15,6 +16,8 @@ export class RecipeHopComponent implements OnInit {
   @Input() recipeHops! : RecipeHop[];
   @Input() id!: string;
  
+  enteredDate!: NgbDate;
+  newDate!: Date;
   
   constructor(
     private hopService: HopService
@@ -79,6 +82,23 @@ export class RecipeHopComponent implements OnInit {
     this.recipeHops.sort(function(a, b) { return b.time - a.time; })
    }
 
+
  }
+
+ updateSelectedDate(date: NgbDate, index: number): NgbDate {
+
+  console.log('selected date = ' + date)
+  console.log('occurence = ' + index)
+  this.newDate = new Date(
+    date.year,
+    date.month - 1,
+    date.day);
+  
+    console.log('new date = ' + this.newDate)
+ 
+  this.recipeHops[index].date = this.newDate;
+
+  return date;
+}
   
 }

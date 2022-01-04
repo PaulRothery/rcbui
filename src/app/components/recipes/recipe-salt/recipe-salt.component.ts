@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeSalt } from 'src/app/classes/recipe-salt';
 import { SaltService } from 'src/app/services/enums/salt.service';
 
@@ -14,7 +15,9 @@ export class RecipeSaltComponent implements OnInit {
   @Input() recipeSalts!: RecipeSalt[];
   @Input() id!: string;
  
-
+  enteredDate!: NgbDate;
+  newDate!: Date;
+  
   constructor(
     private saltService: SaltService
   ) {}
@@ -71,4 +74,21 @@ export class RecipeSaltComponent implements OnInit {
 
  }
   
+
+ updateSelectedDate(date: NgbDate, index: number): NgbDate {
+
+  console.log('selected date = ' + date)
+  console.log('occurence = ' + index)
+  this.newDate = new Date(
+    date.year,
+    date.month - 1,
+    date.day);
+  
+    console.log('new date = ' + this.newDate)
+ 
+  this.recipeSalts[index].date = this.newDate;
+
+  return date;
+}
+
 }
