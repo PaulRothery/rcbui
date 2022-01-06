@@ -7,6 +7,10 @@
         <th scope="col">Temp</th>
         <th scope="col">Gravity</th>
         <th scope="col">pH</th>
+        <th scope="col">
+          <div>Current</div>
+          <div>ABV</div>
+        </th>
         <th scope="col">Brewer</th>
         <th scope="col">Note</th>
       </tr>
@@ -41,6 +45,10 @@
 
         <td>
           <input [(ngModel)]="fermentationLog.ph" type="number" step="0.1" class="th-right" id="ph">
+        </td>
+
+        <td>
+          <input [(ngModel)]="fermentationLog.currentABV" type="number" step="0.1" class="th-right" id="currentABV">
         </td>
 
         <div *ngIf="!brewerIsEmpty(fermentationLog.brewer)">

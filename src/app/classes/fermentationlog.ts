@@ -9,6 +9,7 @@ export class FermentationLog {
   gravity!: number;
   ph!: number;
   brewer!: string;
+  currentABV!: number;
   note!: string;
 
 }
