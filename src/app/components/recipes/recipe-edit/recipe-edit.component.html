@@ -343,28 +343,28 @@
 
     </div>
 
-    <!-- BREW LOG -->
+    <!-- FERMENTATION LOG -->
     <p>
     <div class="container border border-primary p-2">
       <p>
-        <button type="button" class="btn btn-primary pb-0" (click)="isShowBrewLog = !isShowBrewLog"
-          [attr.aria-expanded]="!isShowBrewLog" aria-controls="collapseExample">
-          <div *ngIf="isShowBrewLog">
-            <h6>BrewLog
+        <button type="button" class="btn btn-primary pb-0" (click)="isShowFermentationLog = !isShowFermentationLog"
+          [attr.aria-expanded]="!isShowFermentationLog" aria-controls="collapseExample">
+          <div *ngIf="isShowFermentationLog">
+            <h6>FermentationLog
               <i class="fa fa-solid fa-angle-up"></i>
             </h6>
           </div>
-          <div *ngIf="!isShowBrewLog">
-            <h6>BrewLog
+          <div *ngIf="!isShowFermentationLog">
+            <h6>FermentationLog
               <i class="fa fa-solid fa-angle-down"></i>
             </h6>
           </div>
         </button>
       </p>
-      <div id="collapseExample" [ngbCollapse]="!isShowBrewLog">
+      <div id="collapseExample" [ngbCollapse]="!isShowFermentationLog">
         <div class="card">
           <div class="card-body">
-            <brewlog [brewLogs]="r.brewLogs" [id]="r.id"></brewlog>
+            <fermentationlog [fermentationLogs]="r.fermentationLogs" [id]="r.id"></fermentationlog>
           </div>
         </div>
       </div>

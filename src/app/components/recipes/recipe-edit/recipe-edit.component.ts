@@ -36,7 +36,7 @@ export class RecipeEditComponent implements OnInit {
   public isShowAdjunct:boolean = false;
   public isShowBrewer:boolean = false;
   public isShowBrewDay:boolean = false;
-  public isShowBrewLog:boolean = false;
+  public isShowFermentationLog:boolean = false;
  
   constructor(
     private formBuilder: FormBuilder,
@@ -76,7 +76,7 @@ export class RecipeEditComponent implements OnInit {
       recipeSalts: [''],
       recipeBrewers: [''],
       brewDays: [''],
-      brewLogs: [''],
+      fermentationLogs: [''],
      });
 
     if (!this.isAddMode) {
@@ -137,7 +137,7 @@ export class RecipeEditComponent implements OnInit {
     }
   
 
-    console.log('brewlog date ' + this.form.controls['brewLogs.date'])
+    console.log('fermentationlog date ' + this.form.controls['FermentationLogs.date'])
     this.service.update(this.recipe.id, this.form.value)
     .pipe(first())
     .subscribe({

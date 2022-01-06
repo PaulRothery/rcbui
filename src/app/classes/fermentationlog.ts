@@ -1,6 +1,6 @@
 import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
 
-export class BrewLog {
+export class FermentationLog {
   id!: string;
   recipeId!: string;
   date!: Date;

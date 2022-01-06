@@ -1,7 +1,7 @@
 import { RecipeHopComponent } from "../components/recipes/recipe-hop/recipe-hop.component";
 import { BrewDay } from "./brewday";
 import { RecipeBrewer } from "./recipe-brewer";
-import { BrewLog } from "./brewlog";
+import { FermentationLog } from "./fermentationlog";
 import { RecipeGrain } from "./recipe-grain";
 import { RecipeHop } from "./recipe-hop";
 import { RecipeSalt } from "./recipe-salt";
@@ -25,6 +25,6 @@ export class Recipe {
   recipeAdjuncts!: RecipeAdjunct[]; 
   recipeBrewers!: RecipeBrewer[];
   brewDays!: BrewDay[];
-  brewLogs!: BrewLog[];
+  fermentationLogs!: FermentationLog[];
  
 }

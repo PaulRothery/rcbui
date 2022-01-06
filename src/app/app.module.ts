@@ -34,7 +34,7 @@ import { RecipeHopComponent } from './components/recipes/recipe-hop/recipe-hop.c
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeBrewerComponent } from './components/recipes/recipe-brewer/recipe-brewer.component';
 import { BrewdayComponent } from './components/recipes/brewday/brewday.component';
-import { BrewlogComponent } from './components/recipes/brewlog/brewlog.component';
+import { FermentationlogComponent } from './components/recipes/fermentationlog/fermentationlog.component';
 import { RecipeSaltComponent } from './components/recipes/recipe-salt/recipe-salt.component';
 import { RecipeAdjunctComponent } from './components/recipes/recipe-adjunct/recipe-adjunct.component';
 
@@ -59,7 +59,7 @@ import { RecipeAdjunctComponent } from './components/recipes/recipe-adjunct/reci
     RecipeHopComponent,
     RecipeBrewerComponent,
     BrewdayComponent,
-    BrewlogComponent,
+    FermentationlogComponent,
     RecipeSaltComponent,
     RecipeAdjunctComponent
   ],

@@ -1,21 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { BrewLog } from 'src/app/classes/brewlog';
+import { FermentationLog } from 'src/app/classes/fermentationlog';
 import { BrewerService } from 'src/app/services/brewer.service';
 
 @Component({
-  selector: 'brewlog',
-  templateUrl: './brewlog.component.html',
-  styleUrls: ['./brewlog.component.css']
+  selector: 'fermentationlog',
+  templateUrl: './fermentationlog.component.html',
+  styleUrls: ['./fermentationlog.component.css']
 })
 
 
 
-export class BrewlogComponent implements OnInit {
+export class FermentationlogComponent implements OnInit {
 
   brewers?: any[];
 
-  @Input() brewLogs! : BrewLog[];
+  @Input() fermentationLogs! : FermentationLog[];
   @Input() id!: string;
 
   enteredDate!: NgbDate;
@@ -33,15 +33,19 @@ export class BrewlogComponent implements OnInit {
   }
 
   addRow() {
-    console.log('adding brewlog for recipe id = ' + this.id);
-    let brewLog = new BrewLog;
-    brewLog.recipeId = this.id;
-    this.brewLogs.push(brewLog);
+    console.log('adding fermentationlog for recipe id = ' + this.id);
+
+    if (!this.fermentationLogs) {
+      this.fermentationLogs = [];
+    }
+    let fermentationLog = new FermentationLog;
+    fermentationLog.recipeId = this.id;
+    this.fermentationLogs.push(fermentationLog);
   }
 
-  removeRow(brewLog: BrewLog) {
-    let index: any = this.brewLogs?.indexOf(brewLog);
-    this.brewLogs?.splice(index, 1);
+  removeRow(fermentationLog: FermentationLog) {
+    let index: any = this.fermentationLogs?.indexOf(fermentationLog);
+    this.fermentationLogs?.splice(index, 1);
   } 
 
   brewerIsEmpty(brewer: string): boolean {
@@ -51,15 +55,16 @@ export class BrewlogComponent implements OnInit {
   } 
 
   nameChange(brewer: string) {
-    console.log('brewlog brewer change ' + brewer)
-    this.brewLogs[this.brewLogs.length - 1].brewer = brewer;  
+    console.log('fermentationlog brewer change ' + brewer)
+    this.fermentationLogs[this.fermentationLogs.length - 1].brewer = brewer;  
   } 
 
   // if there are no records to display add an empty row
   // so that one can be added
   checkElements() {
 
-  if (this.brewLogs?.length === 0) {
+    console.log('fermentation log check elements ' + this.fermentationLogs?.length )
+  if (this.fermentationLogs.length === 0) {
      this.addRow();
    } 
    
@@ -76,7 +81,7 @@ updateSelectedDate(date: NgbDate, index: number): NgbDate {
     
       console.log('new date = ' + this.newDate)
    
-    this.brewLogs[index].date = this.newDate;
+    this.fermentationLogs[index].date = this.newDate;
 
     return date;
   }
