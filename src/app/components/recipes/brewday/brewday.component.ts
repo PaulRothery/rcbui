@@ -29,6 +29,32 @@ export class BrewdayComponent implements OnInit {
     console.log(newValue);
   
   }
+
+
+  // Boil calculations
+  calculateBoilKettleVolTarget()  {
+
+      
+    return 27;
+  
+  }
+
+    // Flame Out calculations
+    calculateFLameOutKettleVolTarget()  {
+
+      
+      return 36;
+    }
+
+  // Yeast calculations
+  calculatePitchVol()  {
+
+    let pitchVolume = 0;
+
+    pitchVolume = this.brewDays[0].cellCount * 2;
+      
+    return pitchVolume;
+  }
 }
 
 

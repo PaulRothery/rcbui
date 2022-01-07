@@ -49,6 +49,7 @@ export class BrewDay {
   pitchTime!: Date;
   pitchVolume!: number;
   yeastStrain!: string;
+  generation!: number;
   previousBatchId!: string;
   previousBatchBrand!: string;
   yeastVessel!: string;
