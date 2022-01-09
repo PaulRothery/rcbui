@@ -36,8 +36,9 @@
         <td>{{ calculatePercentage(recipeGrain.quantity) | number : '1.1-1'}}</td>
 
         <td>
-          <button type="button" class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
-          <button type="button" class="btn btn-sm btn-primary table-button" (click)=removeRow(recipeGrain)>-</button>
+          <button type="button" class="btn btn-sm btn-primary table-button p-1" (click)=addRow()>+</button>
+          <button type="button" class="btn btn-sm btn-primary table-button p-1"
+            (click)=removeRow(recipeGrain)>-</button>
         </td>
 
       </tr>

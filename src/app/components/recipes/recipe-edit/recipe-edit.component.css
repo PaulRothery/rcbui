@@ -1,6 +1,11 @@
-.borderexample {
+.out-border {
   border-style:solid;
   border-width: thin;
   border-color: black;
-  pad:
+  pad: 2
  }
+
+ ::placeholder { 
+  color: black;
+
+}

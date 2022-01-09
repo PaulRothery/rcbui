@@ -1,6 +1,6 @@
-<div class="p-4">
+<div class="p-0">
   <table class="table table-sm table-bordered table-condensed">
-    <thead class="thead-dark bg-success th-left">
+    <thead class="thead-dark bg-success">
       <tr>
         <th scope="col">Date</th>
         <th scope="col">Time</th>
@@ -17,12 +17,12 @@
     </thead>
     <tbody>
       {{ checkElements() }}
-      <tr class="th-left" mdbTableCol *ngFor="let fermentationLog of fermentationLogs; let i = index">
+      <tr *ngFor="let fermentationLog of fermentationLogs; let i = index">
 
         <div class="input-group">
           <input
             type="text"
-
+            style="width:90px; color:black"
             placeholder="{{ fermentationLog.date | date: 'yyyy-MM-dd' }}"
             [ngModel]="enteredDate"
             ngbDatepicker #d="ngbDatepicker"
@@ -36,19 +36,23 @@
         </td>
 
         <td>
-          <input [(ngModel)]="fermentationLog.temp" type="number" step="0.1" class="th-right" id="temp">
+          <input [(ngModel)]="fermentationLog.temp" style="width:60px;"
+            type="number" step="0.1" class="th-right" id="temp">
         </td>
 
         <td>
-          <input [(ngModel)]="fermentationLog.gravity" type="number" step="0.1" class="th-right" id="gravity">
+          <input [(ngModel)]="fermentationLog.gravity" style="width:60px;" type="number" step="0.1" class="th-right"
+            id="gravity">
         </td>
 
         <td>
-          <input [(ngModel)]="fermentationLog.ph" type="number" step="0.1" class="th-right" id="ph">
+          <input [(ngModel)]="fermentationLog.ph" style="width:60px;" type="number" step="0.1" class="th-right"
+            id="ph">
         </td>
 
         <td>
-          <input [(ngModel)]="fermentationLog.currentABV" type="number" step="0.1" class="th-right" id="currentABV">
+          <input [(ngModel)]="fermentationLog.currentABV" style="width:60px;" type="number" step="0.1" class="th-right"
+            id="currentABV">
         </td>
 
         <div *ngIf="!brewerIsEmpty(fermentationLog.brewer)">
@@ -68,13 +72,16 @@
         </div>
 
         <td>
-          <textarea [(ngModel)]="fermentationLog.note" id="note"
-            rows="1" maxlength="50"></textarea>
+          <textarea [(ngModel)]="fermentationLog.note"
+
+            style="width:300px;"
+            id="note"
+            rows="1" maxlength="100" placeholder="add note..."></textarea>
         </td>
 
         <td>
-          <button type="button" class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
-          <button type="button" class="btn btn-sm btn-primary table-button"
+          <button type="button" class="btn btn-sm btn-primary table-button p-1" (click)=addRow()>+</button>
+          <button type="button" class="btn btn-sm btn-primary table-button p-1"
             (click)=removeRow(fermentationLog)>-</button>
         </td>
       </tr>

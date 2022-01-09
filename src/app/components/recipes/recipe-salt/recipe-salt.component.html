@@ -34,7 +34,7 @@
           <div class="input-group">
             <input
               type="text"
-
+              style="width:100px; color:black"
               placeholder="{{ recipeSalt.date | date: 'yyyy-MM-dd' }}"
               [ngModel]="enteredDate"
               ngbDatepicker #d="ngbDatepicker"
@@ -59,8 +59,8 @@
         </td>
 
         <td>
-          <button type="button" class="btn btn-sm btn-primary table-button" (click)=addRow()>+</button>
-          <button type="button" class="btn btn-sm btn-primary table-button" (click)=removeRow(recipeSalt)>-</button>
+          <button type="button" class="btn btn-sm btn-primary table-button p-1" (click)=addRow()>+</button>
+          <button type="button" class="btn btn-sm btn-primary table-button p-1" (click)=removeRow(recipeSalt)>-</button>
         </td>
       </tr>
 
