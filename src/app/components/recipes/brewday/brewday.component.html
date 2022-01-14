@@ -221,7 +221,7 @@
             <div class="col-sm-3">Boil Time</div>
             <input type="time" id="default-picker"
               [(ngModel)]="brewDays[0].boilTime"
-              class="border border-primary col-sm-4 th-right"
+              class="border border-primary col-sm-4 p-1"
               id="boilTime">
             <!--    <div class="col-sm-2">Target</div>
             <div class="fas fa-bullseye col-sm-2"></div>  -->
@@ -298,9 +298,9 @@
 
           <div class="row pb-1">
             <div class="col-sm-3">Kettle Vol</div>
-            <input [(ngModel)]="brewDays[0].boilKettleVolume" type="number" step="0.1"
+            <input [(ngModel)]="brewDays[0].flameKettleVolume" type="number" step="0.1"
               class="border border-primary col-sm-3 th-right"
-              id="boilKettleVolume">
+              id="flameKettleVolume">
             <i class="fa fa-2x fa-bullseye col-sm-3 th-right"></i>
             <div class="col-3 th-right">{{ calculateFLameOutKettleVolTarget() | number : '1.1-1'}}</div>
 
@@ -312,9 +312,9 @@
               class="border border-primary col-sm-3 th-right"
               id="originalGravity">
             <i class="fa fa-2x fa-bullseye col-sm-3 th-right"></i>
-            <input [(ngModel)]="brewDays[0].preBoilGravityTarget" type="number" step="0.1"
+            <input [(ngModel)]="brewDays[0].originalGravityTarget" type="number" step="0.1"
               class="border border-primary col-sm-3 th-right"
-              id="preBoilGravityTarget">
+              id="originalGravityTarget">
           </div>
 
           <div class="row pb-1">
@@ -338,15 +338,20 @@
           <h6 class="card-title">Whirlpool</h6>
           <p class="card-text">
           <div class="row pb-1">
-            <div class="col-sm-3">Time</div>
+            <div class="col-sm-6">Start</div>
             <input type="time" id="default-picker"
               [(ngModel)]="brewDays[0].whirlpoolStartTime"
-              class="border border-primary col-sm-4 th-right"
+              class="border border-primary col-sm-6 th-right"
               id="whirlpoolStartTime">
-            &nbsp; - &nbsp;
+          </div>
+
+          <div class="row pb-1">
+
+            <div class="col-sm-6">End</div>
+
             <input type="time" id="default-picker"
               [(ngModel)]="brewDays[0].whirlpoolEndTime"
-              class="border border-primary col-sm-4 th-right"
+              class="border border-primary col-sm-6 th-right"
               id="whirlpoolEndTime">
           </div>
         </div>
@@ -366,24 +371,30 @@
 
 
           <div class="row pb-1">
-            <div class="col-sm-3">Time</div>
+            <div class="col-sm-6">Start</div>
             <input type="time" id="default-picker"
               [(ngModel)]="brewDays[0].knockoutStartTime"
-              class="border border-primary col-sm-4 th-right"
+              class="border border-primary col-sm-6 th-right"
               id="knockoutStartTime">
-            &nbsp;-&nbsp;
+          </div>
+
+          <div class="row pb-1">
+
+            <div class="col-sm-6">End</div>
+
             <input type="time" id="default-picker"
               [(ngModel)]="brewDays[0].knockoutEndTime"
-              class="border border-primary col-sm-4 th-right"
+              class="border border-primary col-sm-6 th-right"
               id="knockoutEndTime">
+
           </div>
 
           <div class="row pb-1">
             <div class="col-sm-3">KO Temp</div>
             <input [(ngModel)]="brewDays[0].knockoutTemp" type="number" step="0.1"
-              class="border border-primary col-sm-3 th-right"
+              class="border border-primary col-sm-4 th-right"
               id="knockoutTemp">
-            <i class="fa fa-2x fa-bullseye col-sm-3 th-right"></i>
+            <i class="fa fa-2x fa-bullseye col-sm-2 th-right"></i>
             <input [(ngModel)]="brewDays[0].knockoutTempTarget" type="number" step="0.1"
               class="border border-primary col-sm-3 th-right"
               id="knockoutTempTarget">

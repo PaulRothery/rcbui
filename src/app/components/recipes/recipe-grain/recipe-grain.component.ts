@@ -24,7 +24,7 @@ export class RecipeGrainComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('getting grains ' + this.id);
+    console.log('recipe grains init ' + this.recipeGrains.length);
     this.grainService.getAll().subscribe((grains) => (this.grains = grains));
    
   
@@ -43,12 +43,19 @@ export class RecipeGrainComponent implements OnInit {
 
   calculateTotalGrist()  {
 
+    if (! this.recipeGrains) {
+      return 0
+    }
+    console.log('calculating total grist ' + this.recipeGrains)
     let totalGrist = 0;
     for(let i=0;i<this.recipeGrains.length ;i++){  
-      totalGrist = totalGrist + this.recipeGrains[i].quantity;
+      totalGrist = (totalGrist + this.recipeGrains[i].quantity);
     }
-      
-    return totalGrist;
+    
+    // requires toPrecision to counter the screwy way addition works
+   // return parseFloat(totalGrist.toPrecision(3));
+   return Math.round(totalGrist * 100) / 100;
+
   }
   
   addRow() {
@@ -57,6 +64,7 @@ export class RecipeGrainComponent implements OnInit {
     recipeGrain.name = '';
     recipeGrain.recipeId = this.id;
     recipeGrain.quantity = 0;
+    recipeGrain.color = 0;
     this.recipeGrains.push(recipeGrain);
     console.log('existing grains = ' + this.grains?.length);
   
@@ -75,7 +83,7 @@ export class RecipeGrainComponent implements OnInit {
   }  
 
   quantityChange(newValue: number) {
-    console.log(newValue);
+    console.log('grain qty change ' + newValue);
     this.calculatePercentage(newValue);
   }    
 
@@ -94,6 +102,8 @@ export class RecipeGrainComponent implements OnInit {
      this.addRow();
    }
 
+   
  }
+
   
 }

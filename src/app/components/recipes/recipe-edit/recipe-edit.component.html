@@ -3,8 +3,8 @@
 <h2 *ngIf="!isAddMode" class="p-1">Edit Recipe</h2>
 
 <!-- main recipe fields -->
-<div class="container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<div class="container-fluid m-0 pe-4">
+  <form [formGroup]="form" (ngSubmit)="onSubmit() ">
 
     <div class="row">
       <div class="col-3">
@@ -21,7 +21,6 @@
             </div>
           </div>
         </div>
-
 
         <div class="form-group row">
           <tr>
@@ -61,7 +60,6 @@
           </div>
         </div>
 
-
         <div class="form-group row">
           <label class="col-sm-4 col-form-label">Prev ID</label>
           <div class="col-sm-8">
@@ -99,6 +97,7 @@
           <div class="col-sm-8">
             <input
               [formControlName]="'estimatedDuration'"
+              type="number"
               id="estimatedDuration" />
           </div>
         </div>
@@ -130,6 +129,7 @@
           <div class="col-sm-8">
             <input
               [formControlName]="'batchYield'"
+              type="number" step="0.1"
               id="batchYield"
               [ngClass]="{ 'is-invalid': submitted && f.batchYield.errors }" />
             <div *ngIf="submitted && f.batchYield.errors" class="invalid-feedback">
@@ -144,6 +144,7 @@
             <input
               [formControlName]="'targetEff'"
               id="targetEff"
+              type="number" step="0.1"
               [ngClass]="{ 'is-invalid': submitted && f.targetEff.errors }" />
             <div *ngIf="submitted && f.targetEff.errors" class="invalid-feedback">
               <div *ngIf="f.targetEff.errors.required">Target Efficiency is required</div>
@@ -155,7 +156,7 @@
 
         <!-- calculated fields -->
         <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Target OG</label>
+          <label class="col-sm-4 col-form-label pt-0">Target OG</label>
           <div class="col-sm-8">
             <output class="out-border ps-1"
               style="width:100px;">{{ calculateOriginalGravity() }}</output>
@@ -171,26 +172,26 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Target IBUs</label>
+          <label class="col-sm-4 col-form-label pt-0">Target IBUs</label>
           <div class="col-sm-8">
             <output class="out-border ps-1"
               style="width:100px;">{{ calculateOriginalGravity() }}</output>
           </div>
         </div>
 
+        <!-- submit button -->
         <div class="btn-toolbar p-4">
           <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>
           <button *ngIf="!isAddMode" type="submit" class="btn btn-primary">Update</button>
         </div>
       </div>
 
-
-      <div class="border border-secondary col-9 p-2" style="height: 630px; overflow-y: scroll;">
-        <!-- associated records -->
+      <!-- associated records -->
+      <div class="border border-secondary col-9 pb-2" style="height: 630px; overflow-y: scroll;">
         <!-- GRAINS -->
+
         <p>
         <div class="container border border-primary p-2">
-
           <p>
             <button type="button" class="btn btn-primary pb-0" (click)="isShowGrain = !isShowGrain"
               [attr.aria-expanded]="!isShowGrain" aria-controls="collapseExample">
@@ -206,8 +207,9 @@
               </div>
             </button>
           </p>
+
           <div id="collapseExample" [ngbCollapse]="!isShowGrain">
-            <div class="card">
+            <div class="card border border-0">
               <div class="card-body">
                 <recipe-grain [recipeGrains]="r.recipeGrains" [id]="r.id"></recipe-grain>
               </div>
@@ -235,7 +237,7 @@
             </button>
           </p>
           <div id="collapseExample" [ngbCollapse]="!isShowHop">
-            <div class="card">
+            <div class="card border border-0">
               <div class="card-body">
                 <recipe-hop [recipeHops]="r.recipeHops" [id]="r.id"></recipe-hop>
               </div>
@@ -263,7 +265,7 @@
             </button>
           </p>
           <div id="collapseExample" [ngbCollapse]="!isShowSalt">
-            <div class="card">
+            <div class="card border border-0">
               <div class="card-body">
                 <recipe-salt [recipeSalts]="r.recipeSalts" [id]="r.id"></recipe-salt>
               </div>
@@ -291,7 +293,7 @@
             </button>
           </p>
           <div id="collapseExample" [ngbCollapse]="!isShowAdjunct">
-            <div class="card">
+            <div class="card border border-0">
               <div class="card-body">
                 <recipe-adjunct [recipeAdjuncts]="r.recipeAdjuncts" [id]="r.id"></recipe-adjunct>
               </div>
@@ -320,7 +322,7 @@
             </button>
           </p>
           <div id="collapseExample" [ngbCollapse]="!isShowBrewer">
-            <div class="card">
+            <div class="card border border-0">
               <div class="card-body">
                 <recipe-brewer [recipeBrewers]="r.recipeBrewers" [id]="r.id"></recipe-brewer>
               </div>
@@ -377,7 +379,7 @@
             </button>
           </p>
           <div id="collapseExample" [ngbCollapse]="!isShowFermentationLog">
-            <div class="card">
+            <div class="card border border-0">
               <div class="card-body">
                 <fermentationlog [fermentationLogs]="r.fermentationLogs" [id]="r.id"></fermentationlog>
               </div>

@@ -37,6 +37,7 @@ import { BrewdayComponent } from './components/recipes/brewday/brewday.component
 import { FermentationlogComponent } from './components/recipes/fermentationlog/fermentationlog.component';
 import { RecipeSaltComponent } from './components/recipes/recipe-salt/recipe-salt.component';
 import { RecipeAdjunctComponent } from './components/recipes/recipe-adjunct/recipe-adjunct.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -81,7 +82,7 @@ import { RecipeAdjunctComponent } from './components/recipes/recipe-adjunct/reci
     NgbModule
  
   ],
-  providers: [HopService],
+  providers: [HopService, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

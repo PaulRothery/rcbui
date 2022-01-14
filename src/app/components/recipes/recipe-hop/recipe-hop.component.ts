@@ -62,12 +62,14 @@ export class RecipeHopComponent implements OnInit {
 
   calculateTotalHops()  {
 
+
     let totalHops = 0;
     for(let i=0;i<this.recipeHops.length ;i++){  
       totalHops = totalHops + this.recipeHops[i].quantity;
     }
       
-    return totalHops;
+    return Math.round(totalHops * 100) / 100;
+   
   }
 
   
@@ -76,7 +78,12 @@ export class RecipeHopComponent implements OnInit {
   // if there are rows ensure that they are listed in time descending order
   checkElements() {
 
-  if (this.recipeHops?.length === 0) {
+
+ 
+      console.log('empty hops ' + this.recipeHops)
+ 
+
+  if (!this.recipeHops || this.recipeHops?.length === 0) {
      this.addRow();
    } else {
     this.recipeHops.sort(function(a, b) { return b.time - a.time; })

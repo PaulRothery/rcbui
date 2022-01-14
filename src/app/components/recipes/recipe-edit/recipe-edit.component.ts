@@ -1,10 +1,17 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
+import { BrewDay } from 'src/app/classes/brewday';
+import { FermentationLog } from 'src/app/classes/fermentationlog';
 import { Recipe } from 'src/app/classes/recipe';
+import { RecipeAdjunct } from 'src/app/classes/recipe-adjunct';
+import { RecipeBrewer } from 'src/app/classes/recipe-brewer';
 import { RecipeGrain } from 'src/app/classes/recipe-grain';
+import { RecipeHop } from 'src/app/classes/recipe-hop';
+import { RecipeSalt } from 'src/app/classes/recipe-salt';
 import { RecipeStatusService } from 'src/app/services/enums/recipe-status.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 
@@ -15,6 +22,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class RecipeEditComponent implements OnInit {
 
+  
   recipeStatuses!: any[];
 
   form!: FormGroup;
@@ -43,12 +51,16 @@ export class RecipeEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private service: RecipeService,
-    private recipeStatusService: RecipeStatusService
+    private recipeStatusService: RecipeStatusService,
+    public datepipe: DatePipe
   ) {}
 
   ngOnInit(): void {
 
  
+
+    console.log('recipe edit oninit ' + this.isShowGrain);
+
     this.recipeStatusService.getAll().subscribe((recipeStatuses) => (this.recipeStatuses = recipeStatuses));
 
     this.id = this.route.snapshot.params['id'];
@@ -92,6 +104,8 @@ export class RecipeEditComponent implements OnInit {
             error => console.log('err ' + error),
           );
 
+    } else {
+      this.recipe = getEmptyRecipe();
     }
   }
 
@@ -125,7 +139,7 @@ export class RecipeEditComponent implements OnInit {
     } else {
         this.updateRecipe();
     }
-   
+
   }
   
   updateRecipe() {
@@ -143,8 +157,8 @@ export class RecipeEditComponent implements OnInit {
     .subscribe({
         next: () => {
      
-          console.log(this.route);
-          this.router.navigate(['/recipes']);
+          console.log('route = ' + this.route);
+          this.router.navigate(['/recipe-edit/' + this.recipe.id]);
         
         },
         error: error => {
@@ -163,7 +177,7 @@ export class RecipeEditComponent implements OnInit {
         next: () => {
 
    
-            this.router.navigate(['/recipes']);
+            this.router.navigate(['/recipe-edit']);
         },
         error: error => {
 
@@ -197,6 +211,11 @@ export class RecipeEditComponent implements OnInit {
   // of each grain in the recipe
   calculateColor(): number  {
    
+    console.log(' recipe grains value ' + this.f.recipeGrains.value.size  )
+    if(!this.f.recipeGrains.value  ) {
+      return 0
+    }
+
    // first sum the color and quantity of each grain
     const rgs: RecipeGrain[] = [];
     this.f.recipeGrains.value.forEach((val: RecipeGrain) => rgs.push(Object.assign({}, val)));
@@ -204,6 +223,7 @@ export class RecipeEditComponent implements OnInit {
     let totalColor: number = 0;
     rgs.forEach( (element) => {
       console.log('elem Quantity ' + element.quantity);
+      console.log('elem Color ' + element.color);
       let grainColor = element.quantity * element.color;
       totalColor += grainColor;
     });
@@ -234,4 +254,47 @@ function Output() {
 
 
 
+// if we are  adding a new recipe the form will be empty 
+// that is an issue because we use parst of the form to calculate other fields on the 
+// screen so if they are empty (i.e. undefined) exceptions will be thrown
+// therefore create just enough of a populated recipe to allow the caluclations
+function getEmptyRecipe(): Recipe {
+
+  let recipe = new Recipe;
+      
+  recipe.date =  new Date(Date.now());
+  recipe.estimatedDuration = 0;
+
+  let recipeGrains: RecipeGrain[] = [];
+  recipe.recipeGrains = recipeGrains;
+  let recipeGrain = new RecipeGrain;
+  recipeGrain.name = '';
+  recipeGrain.quantity = 0;
+  recipeGrain.color = 0;
+  recipe.recipeGrains.push(recipeGrain);
+ 
+  let recipeHops: RecipeHop[] = [];
+  recipe.recipeHops = recipeHops;
+ 
+  let recipeSalts: RecipeSalt[] = [];
+  recipe.recipeSalts = recipeSalts;
+
+  let recipeAdjuncts: RecipeAdjunct[] = [];
+  recipe.recipeAdjuncts = recipeAdjuncts;
+
+  let recipeBrewers: RecipeBrewer[] = [];
+  recipe.recipeBrewers = recipeBrewers;
+
+  let brewDays: BrewDay[] = [];
+  recipe.brewDays = brewDays;
+  let brewDay = new BrewDay;
+  brewDay.mashInTime = new Date(Date.now());
+  recipe.brewDays.push(brewDay);
+ 
+
+  let fermentationLogs: FermentationLog[] = [];
+  recipe.fermentationLogs = fermentationLogs
+
+  return recipe;
+}
 
