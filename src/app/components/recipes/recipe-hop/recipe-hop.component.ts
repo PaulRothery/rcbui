@@ -80,7 +80,7 @@ export class RecipeHopComponent implements OnInit {
 
 
  
-      console.log('empty hops ' + this.recipeHops)
+    //  console.log('empty hops ' + this.recipeHops)
  
 
   if (!this.recipeHops || this.recipeHops?.length === 0) {
@@ -94,14 +94,14 @@ export class RecipeHopComponent implements OnInit {
 
  updateSelectedDate(date: NgbDate, index: number): NgbDate {
 
-  console.log('selected date = ' + date)
-  console.log('occurence = ' + index)
+// console.log('selected date = ' + date)
+//  console.log('occurence = ' + index)
   this.newDate = new Date(
     date.year,
     date.month - 1,
     date.day);
   
-    console.log('new date = ' + this.newDate)
+  //  console.log('new date = ' + this.newDate)
  
   this.recipeHops[index].date = this.newDate;
 

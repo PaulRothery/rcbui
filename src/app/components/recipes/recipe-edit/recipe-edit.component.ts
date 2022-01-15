@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { BrewDay } from 'src/app/classes/brewday';
 import { FermentationLog } from 'src/app/classes/fermentationlog';
@@ -52,7 +52,8 @@ export class RecipeEditComponent implements OnInit {
     private router: Router,
     private service: RecipeService,
     private recipeStatusService: RecipeStatusService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    public calendar: NgbCalendar
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +61,8 @@ export class RecipeEditComponent implements OnInit {
  
 
     console.log('recipe edit oninit ' + this.isShowGrain);
+
+    this.enteredDate = this.calendar.getToday();
 
     this.recipeStatusService.getAll().subscribe((recipeStatuses) => (this.recipeStatuses = recipeStatuses));
 
@@ -151,7 +154,7 @@ export class RecipeEditComponent implements OnInit {
     }
   
 
-    console.log('fermentationlog date ' + this.form.controls['FermentationLogs.date'])
+   // console.log('fermentationlog date ' + this.form.controls['FermentationLogs.date'])
     this.service.update(this.recipe.id, this.form.value)
     .pipe(first())
     .subscribe({
@@ -193,10 +196,16 @@ export class RecipeEditComponent implements OnInit {
 
   calculateCompletionDate(): Date {
 
+    // get hte ngbDate used by the datepicker and convert it to the date on the recipe
+    console.log('calc entered date ' + this.enteredDate.year + '/' + this.enteredDate.month  + '/' +  this.enteredDate.day);
+    this.r.date =  new Date(this.enteredDate.year, this.enteredDate.month - 1, this.enteredDate.day);
+    console.log('calc recipe date ' + this.r.date);
+   
     let completionDate = new Date(this.r.date);
     completionDate.setDate(completionDate.getDate() + (this.r.estimatedDuration))
-  // console.log('month ' + this.r.date.getMonth);
-
+  
+    console.log('calc comp date ' + completionDate);
+  
     return completionDate
  
   } 
@@ -211,7 +220,7 @@ export class RecipeEditComponent implements OnInit {
   // of each grain in the recipe
   calculateColor(): number  {
    
-    console.log(' recipe grains value ' + this.f.recipeGrains.value.size  )
+//    console.log(' recipe grains value ' + this.f.recipeGrains.value.size  )
     if(!this.f.recipeGrains.value  ) {
       return 0
     }
@@ -222,24 +231,24 @@ export class RecipeEditComponent implements OnInit {
    
     let totalColor: number = 0;
     rgs.forEach( (element) => {
-      console.log('elem Quantity ' + element.quantity);
-      console.log('elem Color ' + element.color);
+  //    console.log('elem Quantity ' + element.quantity);
+   //   console.log('elem Color ' + element.color);
       let grainColor = element.quantity * element.color;
       totalColor += grainColor;
     });
 
-   console.log('totalColor after summing grains ' + totalColor);  
+   //console.log('totalColor after summing grains ' + totalColor);  
 
    // next adjust the color based on the quantity being brewed
    totalColor = totalColor / (this.f.batchYield.value * 31);
-   console.log('totalColor after yield adjustment ' + totalColor);  
+   //console.log('totalColor after yield adjustment ' + totalColor);  
 
    // and a couple of adjustments to finalze the color
    totalColor = totalColor * 1.4922;
-   console.log('totalColor after x1.4922 adjustment ' + totalColor);  
+   //console.log('totalColor after x1.4922 adjustment ' + totalColor);  
 
    totalColor = totalColor ** 0.6859;
-   console.log('totalColor after exponential adjustment ' + totalColor);  
+   //console.log('totalColor after exponential adjustment ' + totalColor);  
  
    return totalColor;  
   }

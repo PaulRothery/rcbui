@@ -46,7 +46,7 @@ export class RecipeGrainComponent implements OnInit {
     if (! this.recipeGrains) {
       return 0
     }
-    console.log('calculating total grist ' + this.recipeGrains)
+  //  console.log('calculating total grist ' + this.recipeGrains)
     let totalGrist = 0;
     for(let i=0;i<this.recipeGrains.length ;i++){  
       totalGrist = (totalGrist + this.recipeGrains[i].quantity);

@@ -77,9 +77,9 @@
           <label class="col-sm-4 col-form-label">Date</label>
           <div class="col-sm-8">
             <input
-              placeholder="{{ r.date | date: 'yyyy-MM-dd'}}"
               type="text"
               style="width:100px; color:black"
+              placeholder="{{ r.date | date: 'yyyy-MM-dd'}}"
               [(ngModel)]="enteredDate"
               [ngModelOptions]="{standalone: true}"
               ngbDatepicker #d="ngbDatepicker">
@@ -98,7 +98,8 @@
             <input
               [formControlName]="'estimatedDuration'"
               type="number"
-              id="estimatedDuration" />
+              id="estimatedDuration"
+              [(ngModel)]="r.estimatedDuration" />
           </div>
         </div>
 
