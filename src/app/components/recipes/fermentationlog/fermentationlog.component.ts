@@ -33,8 +33,7 @@ export class FermentationlogComponent implements OnInit {
   }
 
   addRow() {
-    console.log('adding fermentationlog for recipe id = ' + this.id);
-
+  
     if (!this.fermentationLogs) {
       this.fermentationLogs = [];
     }
@@ -55,7 +54,6 @@ export class FermentationlogComponent implements OnInit {
   } 
 
   nameChange(brewer: string) {
-    console.log('fermentationlog brewer change ' + brewer)
     this.fermentationLogs[this.fermentationLogs.length - 1].brewer = brewer;  
   } 
 
@@ -63,8 +61,7 @@ export class FermentationlogComponent implements OnInit {
   // so that one can be added
   checkElements() {
 
-    console.log('fermentation log check elements ' + this.fermentationLogs?.length )
-  if (this.fermentationLogs.length === 0) {
+   if (this.fermentationLogs.length === 0) {
      this.addRow();
    } 
    
