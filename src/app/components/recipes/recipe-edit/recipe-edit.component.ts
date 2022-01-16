@@ -34,9 +34,9 @@ export class RecipeEditComponent implements OnInit {
 
   enteredDate!: NgbDate;
   newDate!: Date;
-  rtmp!: string;
+  estimatedDuration: number = 0;
 
-  tog!: number;
+ // tog!: number;
 
   public isShowGrain:boolean = false;
   public isShowHop:boolean = false;
@@ -103,6 +103,8 @@ export class RecipeEditComponent implements OnInit {
               this.recipe = data[0];
               this.recipe.id = this.id;
               this.form.patchValue(this.recipe)
+              this.estimatedDuration = this.r.estimatedDuration
+              
             },
             error => console.log('err ' + error),
           );
@@ -194,10 +196,22 @@ export class RecipeEditComponent implements OnInit {
     this.form.reset();
   }
 
+  changeDuration() {
+
+    console.log('change duration ' + this.estimatedDuration)
+    this.r.estimatedDuration = this.estimatedDuration
+
+  }
+
   calculateCompletionDate(): Date {
 
-    // get hte ngbDate used by the datepicker and convert it to the date on the recipe
+    // get the ngbDate used by the datepicker and convert it to the date on the recipe
     console.log('calc entered date ' + this.enteredDate.year + '/' + this.enteredDate.month  + '/' +  this.enteredDate.day);
+    
+    if (!this.r) {
+      return new Date()
+    }
+    
     this.r.date =  new Date(this.enteredDate.year, this.enteredDate.month - 1, this.enteredDate.day);
     console.log('calc recipe date ' + this.r.date);
    
