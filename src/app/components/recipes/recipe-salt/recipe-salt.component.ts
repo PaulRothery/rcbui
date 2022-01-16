@@ -23,12 +23,7 @@ export class RecipeSaltComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    console.log('getting salts ' + this.id);
     this.saltService.getAll().subscribe((salts) => (this.salts = salts));
-   
-  
-
   }
 
 
@@ -84,7 +79,6 @@ export class RecipeSaltComponent implements OnInit {
     date.month - 1,
     date.day);
   
-    console.log('new date = ' + this.newDate)
  
   this.recipeSalts[index].date = this.newDate;
 

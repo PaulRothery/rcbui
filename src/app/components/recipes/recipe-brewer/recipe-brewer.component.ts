@@ -9,9 +9,7 @@ import { BrewerService } from 'src/app/services/brewer.service';
 })
 export class RecipeBrewerComponent implements OnInit {
 
-  
   brewers?: any[];
-
 
   @Input() recipeBrewers! : RecipeBrewer[];
   @Input() id!: string;
@@ -22,12 +20,10 @@ export class RecipeBrewerComponent implements OnInit {
 
   
   ngOnInit(): void {
-    console.log('getting brewers ' + this.id);
     this.brewerService.getAll().subscribe((brewers) => (this.brewers = brewers));
   }
 
   addRow() {
-  console.log('adding brewer for recipe id = ' + this.id);
     let recipeBrewer = new RecipeBrewer;
     recipeBrewer.name = '';
     recipeBrewer.recipeId = this.id;

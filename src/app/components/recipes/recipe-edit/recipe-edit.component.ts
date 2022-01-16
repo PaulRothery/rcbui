@@ -198,7 +198,6 @@ export class RecipeEditComponent implements OnInit {
 
   changeDuration() {
 
-    console.log('change duration ' + this.estimatedDuration)
     this.r.estimatedDuration = this.estimatedDuration
 
   }
@@ -206,19 +205,14 @@ export class RecipeEditComponent implements OnInit {
   calculateCompletionDate(): Date {
 
     // get the ngbDate used by the datepicker and convert it to the date on the recipe
-    console.log('calc entered date ' + this.enteredDate.year + '/' + this.enteredDate.month  + '/' +  this.enteredDate.day);
     
     if (!this.r) {
       return new Date()
     }
     
     this.r.date =  new Date(this.enteredDate.year, this.enteredDate.month - 1, this.enteredDate.day);
-    console.log('calc recipe date ' + this.r.date);
-   
     let completionDate = new Date(this.r.date);
     completionDate.setDate(completionDate.getDate() + (this.r.estimatedDuration))
-  
-    console.log('calc comp date ' + completionDate);
   
     return completionDate
  

@@ -24,11 +24,8 @@ export class RecipeGrainComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('recipe grains init ' + this.recipeGrains.length);
-    this.grainService.getAll().subscribe((grains) => (this.grains = grains));
+     this.grainService.getAll().subscribe((grains) => (this.grains = grains));
    
-  
-
   }
 
   calculatePercentage(quantity: number)  {
@@ -46,20 +43,19 @@ export class RecipeGrainComponent implements OnInit {
     if (! this.recipeGrains) {
       return 0
     }
-  //  console.log('calculating total grist ' + this.recipeGrains)
+ 
     let totalGrist = 0;
     for(let i=0;i<this.recipeGrains.length ;i++){  
       totalGrist = (totalGrist + this.recipeGrains[i].quantity);
     }
     
-    // requires toPrecision to counter the screwy way addition works
+   // requires toPrecision to counter the screwy way addition works
    // return parseFloat(totalGrist.toPrecision(3));
    return Math.round(totalGrist * 100) / 100;
 
   }
   
   addRow() {
-    console.log('adding row for recipe id = ' + this.id);
     let recipeGrain = new RecipeGrain;
     recipeGrain.name = '';
     recipeGrain.recipeId = this.id;
@@ -76,15 +72,13 @@ export class RecipeGrainComponent implements OnInit {
   }
 
   nameChange(name: string, color: number) {
-    console.log('adding new name, color = ' + color)
     this.recipeGrains[this.recipeGrains.length - 1].name = name; 
     this.recipeGrains[this.recipeGrains.length - 1].color = color; 
      
   }  
 
   quantityChange(newValue: number) {
-    console.log('grain qty change ' + newValue);
-    this.calculatePercentage(newValue);
+     this.calculatePercentage(newValue);
   }    
 
   nameIsEmpty(name: string): boolean {

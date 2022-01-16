@@ -28,7 +28,6 @@ export class RecipeHopComponent implements OnInit {
   }
 
   addRow() {
-    console.log('adding row for recipe id = ' + this.id);
     let recipeHop = new RecipeHop;
     recipeHop.name = '';
     recipeHop.recipeId = this.id;
@@ -46,8 +45,7 @@ export class RecipeHopComponent implements OnInit {
   }  
 
   quantityChange(newValue: number) {
-    console.log(newValue);
-
+  
   } 
 
   timeChange(newValue: number) {
@@ -78,11 +76,6 @@ export class RecipeHopComponent implements OnInit {
   // if there are rows ensure that they are listed in time descending order
   checkElements() {
 
-
- 
-    //  console.log('empty hops ' + this.recipeHops)
- 
-
   if (!this.recipeHops || this.recipeHops?.length === 0) {
      this.addRow();
    } else {
@@ -94,15 +87,11 @@ export class RecipeHopComponent implements OnInit {
 
  updateSelectedDate(date: NgbDate, index: number): NgbDate {
 
-// console.log('selected date = ' + date)
-//  console.log('occurence = ' + index)
   this.newDate = new Date(
     date.year,
     date.month - 1,
     date.day);
-  
-  //  console.log('new date = ' + this.newDate)
- 
+   
   this.recipeHops[index].date = this.newDate;
 
   return date;

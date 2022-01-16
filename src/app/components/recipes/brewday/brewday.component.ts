@@ -26,7 +26,6 @@ export class BrewdayComponent implements OnInit {
   }    
 
   mashInTimeChange(newValue: number) {
-    console.log(newValue);
   
   }
 

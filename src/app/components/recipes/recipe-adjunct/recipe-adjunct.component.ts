@@ -24,13 +24,11 @@ export class RecipeAdjunctComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('getting adjuncts ' + this.id);
     this.adjunctService.getAll().subscribe((adjuncts) => (this.adjuncts = adjuncts));
 
   }
 
   addRow() {
-    console.log('adding row for recipe id = ' + this.id);
     let recipeAdjunct = new RecipeAdjunct;
     recipeAdjunct.name = '';
     recipeAdjunct.recipeId = this.id;
