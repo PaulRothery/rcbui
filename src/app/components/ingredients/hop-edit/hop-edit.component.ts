@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Hop } from 'src/app/classes/hop';
@@ -30,11 +30,14 @@ export class HopEditComponent implements OnInit {
   loading = false;
   hop!: Hop;
 
+  enteredDate!: NgbDate;
+ 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private service: HopService
+    private service: HopService,
+    public calendar: NgbCalendar
   ) {}
 
   ngOnInit(): void {
@@ -131,6 +134,15 @@ export class HopEditComponent implements OnInit {
         }
     });
   }
+
+  setDate() {
+
+    if (this.enteredDate) {
+      this.hop.date = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
+      this.form.controls['date'].setValue(this.hop.date);
+    }
+  }
+
 
   onReset(): void {
     this.submitted = false;

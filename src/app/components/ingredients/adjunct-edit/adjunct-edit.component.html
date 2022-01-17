@@ -2,151 +2,176 @@
 <h1 *ngIf="isAddMode" class="p-4">Add Adjunct</h1>
 <h1 *ngIf="!isAddMode" class="p-4">Edit Adjunct</h1>
 
-<div class="p-4">
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label>Name</label>
-    <input 
-      [formControlName]="'name'" 
-      id="name"
-      class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
-      />
-    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-      <div *ngIf="f.name.errors.required">Name is required</div>
-    </div>
-  </div>
+<div class="container-fluid">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
 
-  <div class="form-group">
-    <label>Supplier</label>
-    <input 
-    type="text" 
-    formControlName="supplier" 
-    class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }"
-    />
-    <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
-      <div *ngIf="f.supplier.errors.required">Supplier is required</div>
-    </div>
-  </div>
+      <div class="border border-secondary col-sm-5 m-auto p-2">
 
-  <div class="form-group">
-    <label class="radio-inline control-label">Type</label>
-    <div class="btn-grp border">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" formControlName="type"  [ngClass]="{ 'is-invalid': submitted && f.type.errors }" id="inlineRadio1" value="FERMENTABLE">
-        <label class="form-check-label" for="inlineRadio1">Fermentable</label>
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Name</label>
+          <div class="col-sm-6">
+            <input
+              [formControlName]="'name'"
+              id="name"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Name is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Supplier</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="supplier"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }" />
+            <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
+              <div *ngIf="f.supplier.errors.required">Supplier is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Type</label>
+
+          <div class="btn-grp border ms-3 col-sm-6" style="width: 45%">
+            <div class="form-check form-check-inline col-sm-4 me-5">
+              <input class="form-check-input" type="radio" formControlName="type"
+                [ngClass]="{ 'is-invalid': submitted && f.type.errors }" id="inlineRadio1" value="FERMENTABLE">
+              <label class="form-check-label" for="inlineRadio1">Fermentable</label>
+            </div>
+            <div class="form-check form-check-inline col-sm-8">
+              <input class="form-check-input" type="radio" formControlName="type"
+                [ngClass]="{ 'is-invalid': submitted && f.type.errors }" id="inlineRadio2" value="NON_FERMENTABLE">
+              <label class="form-check-label" for="inlineRadio2">Non-Fermentable</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Category</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="category"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.category.errors }" />
+            <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+              <div *ngIf="f.category.errors.required">Category is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Extract</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="extract"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.extract.errors }" />
+            <div *ngIf="submitted && f.extract.errors" class="invalid-feedback">
+              <div *ngIf="f.extract.errors.required">Extract is required</div>
+              <div *ngIf="f.extract.errors.pattern">Extract must be a valid number</div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" formControlName="type"  [ngClass]="{ 'is-invalid': submitted && f.type.errors }" id="inlineRadio2" value="NON_FERMENTABLE">
-        <label class="form-check-label" for="inlineRadio2">Non-Fermentable</label>
+      <div class="border border-secondary col-sm-5 m-auto p-2">
+
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">PPG</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="ppg"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.ppg.errors }" />
+            <div *ngIf="submitted && f.ppg.errors" class="invalid-feedback">
+              <div *ngIf="f.ppg.errors.required">PPG is required</div>
+              <div *ngIf="f.ppg.errors.pattern">PPG must be a valid number</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Color LOV</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="colorLov"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.colorLov.errors }" />
+            <div *ngIf="submitted && f.colorLov.errors" class="invalid-feedback">
+              <div *ngIf="f.colorLov.errors.required">Color LOV is required</div>
+              <div *ngIf="f.colorLov.errors.pattern">Color LOV must be a valid number</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Price</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="price"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+            <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+              <div *ngIf="f.price.errors.required">Price is required</div>
+              <div *ngIf="f.price.errors.pattern">Price must be a valid price</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Initial Quantity</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="initialQuantity"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.initialQuantity.errors }" />
+            <div *ngIf="submitted && f.initialQuantity.errors" class="invalid-feedback">
+              <div *ngIf="f.initialQuantity.errors.pattern">Initial Quantity must be numeric</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Current Quantity</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="currentQuantity"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.currentQuantity.errors }" />
+            <div *ngIf="submitted && f.currentQuantity.errors" class="invalid-feedback">
+              <div *ngIf="f.currentQuantity.errors.pattern">Current Quantity must be numeric</div>
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
- </div>
 
-  <div class="form-group">
-    <label>Category</label>
-    <input 
-      type="text" 
-      formControlName="category" 
-      class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && f.category.errors }"
-      />
-    <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
-      <div *ngIf="f.category.errors.required">Category is required</div>
+    <p></p>
+    <div class="btn-toolbar p-4">
+      <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>
+      <button *ngIf="!isAddMode" type="submit" class="btn btn-primary">Update</button>
     </div>
-  </div>
- 
-  <div class="form-group">
-    <label>Extract</label>
-    <input 
-      type="text" 
-      formControlName="extract" 
-      class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && f.extract.errors }"
-      />
-    <div *ngIf="submitted && f.extract.errors" class="invalid-feedback">
-      <div *ngIf="f.extract.errors.required">Extract is required</div>
-      <div *ngIf="f.extract.errors.pattern">Extract must be a valid number</div>
-   </div>
-  </div>
 
-  <div class="form-group">
-    <label>PPG</label>
-    <input 
-      type="text" 
-      formControlName="ppg" 
-      class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && f.ppg.errors }"
-      />
-    <div *ngIf="submitted && f.ppg.errors" class="invalid-feedback">
-      <div *ngIf="f.ppg.errors.required">PPG is required</div>
-      <div *ngIf="f.ppg.errors.pattern">PPG must be a valid number</div>
-   </div>
-  </div>
-
- 
-  <div class="form-group">
-    <label>Color LOV</label>
-    <input 
-      type="text" 
-      formControlName="colorLov" 
-      class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && f.colorLov.errors }"
-      />
-    <div *ngIf="submitted && f.colorLov.errors" class="invalid-feedback">
-      <div *ngIf="f.colorLov.errors.required">Color LOV is required</div>
-      <div *ngIf="f.colorLov.errors.pattern">Color LOV must be a valid number</div>
-   </div>
-  </div>
-  
-  <div class="form-group">
-    <label>Price</label>
-    <input 
-      type="text" 
-      formControlName="price" 
-      class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
-      />
-    <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-      <div *ngIf="f.price.errors.required">Price is required</div>
-      <div *ngIf="f.price.errors.pattern">Price must be a valid price</div>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label>Initial Quantity</label>
-    <input 
-      type="text" 
-      formControlName="initialQuantity" 
-      class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && f.initialQuantity.errors }"
-      />
-      <div *ngIf="submitted && f.initialQuantity.errors" class="invalid-feedback">
-        <div *ngIf="f.initialQuantity.errors.pattern">Initial Quantity must be numeric</div>
-      </div>
-  </div>
-
-  <div class="form-group">
-    <label>Current Quantity</label>
-    <input 
-      type="text" 
-      formControlName="currentQuantity" 
-      class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && f.currentQuantity.errors }"
-      />
-      <div *ngIf="submitted && f.currentQuantity.errors" class="invalid-feedback">
-        <div *ngIf="f.currentQuantity.errors.pattern">Current Quantity must be numeric</div>
-      </div>
-  </div>
-
-
-  <div class="btn-toolbar">
-    <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>
-    <button *ngIf="!isAddMode" type="submit" class="btn btn-primary">Update</button>
-  </div>  
-
-</form>
+  </form>
 
 
 </div>

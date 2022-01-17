@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { Grain } from 'src/app/classes/grain';
 import { GrainService } from 'src/app/services/grain.service';
@@ -18,15 +19,22 @@ export class GrainEditComponent implements OnInit {
   submitted = false;
   loading = false;
   grain!: Grain;
+
+  enteredDate!: NgbDate;
+  newDate!: Date;
+
   
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private service: GrainService
+    private service: GrainService,
+    public calendar: NgbCalendar
   ) {}
 
   ngOnInit(): void {
+
+    this.enteredDate = this.calendar.getToday();
 
 
     this.id = this.route.snapshot.params['id'];
@@ -66,6 +74,8 @@ export class GrainEditComponent implements OnInit {
             error => console.log('err ' + error),
           );
       
+    } else {
+      this.grain = new Grain;
     }
 
   }
@@ -127,6 +137,26 @@ export class GrainEditComponent implements OnInit {
             this.loading = false;
         }
     });
+  }
+
+  updateSelectedDate(date: NgbDate): NgbDate {
+
+    this.newDate = new Date(
+      date.year,
+      date.month - 1,
+      date.day);
+     
+    this.grain.date = this.newDate;
+  
+    return date;
+  }
+  
+  setDate() {
+
+    if (this.enteredDate) {
+      this.grain.date = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
+      this.form.controls['date'].setValue(this.grain.date);
+    }
   }
 
   onReset(): void {

@@ -4,151 +4,193 @@
 
 <div class="p-4">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label>Strain</label>
-      <input
-        [formControlName]="'strain'"
-        id="strain"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.strain.errors }" />
-      <div *ngIf="submitted && f.strain.errors" class="invalid-feedback">
-        <div *ngIf="f.strain.errors.required">Strain is required</div>
+    <div class="row">
+
+      <div class="border border-secondary col-sm-5 m-auto p-2">
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Strain</label>
+          <div class="col-sm-6">
+            <input
+              [formControlName]="'strain'"
+              id="strain"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.strain.errors }" />
+            <div *ngIf="submitted && f.strain.errors" class="invalid-feedback">
+              <div *ngIf="f.strain.errors.required">Strain is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Date</label>
+          <div class="col-sm-6">
+
+            <input
+              type="text"
+              style="width:100px; color:black"
+              [(ngModel)]="enteredDate"
+              [ngModelOptions]="{standalone: true}"
+              ngbDatepicker #d="ngbDatepicker">
+            <button
+              class="btn btn-outline-secondary pt-0 pb-0 btn-xs calendar"
+              (click)="d.toggle();setDate()"
+              type="button"><i class="fa fa-calendar"></i></button>
+
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Supplier</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="supplier"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }" />
+            <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
+              <div *ngIf="f.supplier.errors.required">Supplier is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Lot Number</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="lotNumber"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.lotNumber.errors }" />
+            <div *ngIf="submitted && f.lotNumber.errors" class="invalid-feedback">
+              <div *ngIf="f.lotNumber.errors.required">Lot Number is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Brand</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="brand"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.brand.errors }" />
+            <div *ngIf="submitted && f.brand.errors" class="invalid-feedback">
+              <div *ngIf="f.brand.errors.required">Brand is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Previous Batch Id</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="previousBatchId"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.previousBatchId.errors }" />
+            <div *ngIf="submitted && f.previousBatchId.errors" class="invalid-feedback">
+              <div *ngIf="f.previousBatchId.errors.pattern">Previous Batch Id must be numeric</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border border-secondary col-sm-5 m-auto p-2">
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Previous Batch Brand</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              formControlName="previousBatchBrand"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.previousBatchBrand.errors }" />
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Generation</label>
+          <div class="col-sm-6">
+            <input
+              type="number" step="1"
+              formControlName="generation"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.generation.errors }" />
+            <div *ngIf="submitted && f.generation.errors" class="invalid-feedback">
+              <div *ngIf="f.generation.errors.required">Generation is required</div>
+              <div *ngIf="f.generation.errors.pattern">Generation must be numeric</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Cell Count</label>
+          <div class="col-sm-6">
+            <input
+              type="number" step="0.1"
+              formControlName="cellCount"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.cellCount.errors }" />
+            <div *ngIf="submitted && f.cellCount.errors" class="invalid-feedback">
+              <div *ngIf="f.cellCount.errors.required">Cell Count is required</div>
+              <div *ngIf="f.cellCount.errors.pattern">Cell Count must be numeric</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Viability</label>
+          <div class="col-sm-6">
+            <input
+              type="number" step="0.1"
+              formControlName="viability"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.viability.errors }" />
+            <div *ngIf="submitted && f.viability.errors" class="invalid-feedback">
+              <div *ngIf="f.viability.errors.required">Viability is required</div>
+              <div *ngIf="f.viability.errors.pattern">Viability must be numeric</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Initial Quantity</label>
+          <div class="col-sm-6">
+            <input
+              type="number" step="1"
+              formControlName="initialQuantity"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.initialQuantity.errors }" />
+            <div *ngIf="submitted && f.initialQuantity.errors" class="invalid-feedback">
+              <div *ngIf="f.initialQuantity.errors.pattern">Initial Quantity must be numeric</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row pb-1">
+          <label class="col-sm-6 col-form-label">Current Quantity</label>
+          <div class="col-sm-6">
+            <input
+              type="number" step="1"
+              formControlName="currentQuantity"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.currentQuantity.errors }" />
+            <div *ngIf="submitted && f.currentQuantity.errors" class="invalid-feedback">
+              <div *ngIf="f.currentQuantity.errors.pattern">Current Quantity must be numeric</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <label>Date</label>
-      <input
-        [formControlName]="'date'"
-        id="name"
-        class="form-control" />
-    </div>
+    <p></p>
 
-    <div class="form-group">
-      <label>Supplier</label>
-      <input
-        type="text"
-        formControlName="supplier"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }" />
-      <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
-        <div *ngIf="f.supplier.errors.required">Supplier is required</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Lot Number</label>
-      <input
-        type="text"
-        formControlName="lotNumber"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.lotNumber.errors }" />
-      <div *ngIf="submitted && f.lotNumber.errors" class="invalid-feedback">
-        <div *ngIf="f.lotNumber.errors.required">Lot Number is required</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Brand</label>
-      <input
-        type="text"
-        formControlName="brand"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.brand.errors }" />
-      <div *ngIf="submitted && f.brand.errors" class="invalid-feedback">
-        <div *ngIf="f.brand.errors.required">Brand is required</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Previous Batch Id</label>
-      <input
-        type="text"
-        formControlName="previousBatchId"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.previousBatchId.errors }" />
-      <div *ngIf="submitted && f.previousBatchId.errors" class="invalid-feedback">
-        <div *ngIf="f.previousBatchId.errors.pattern">Previous Batch Id must be numeric</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Previous Batch Brand</label>
-      <input
-        type="text"
-        formControlName="previousBatchBrand"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.previousBatchBrand.errors }" />
-    </div>
-
-    <div class="form-group">
-      <label>Generation</label>
-      <input
-        type="text"
-        formControlName="generation"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.generation.errors }" />
-      <div *ngIf="submitted && f.generation.errors" class="invalid-feedback">
-        <div *ngIf="f.generation.errors.required">Generation is required</div>
-        <div *ngIf="f.generation.errors.pattern">Generation must be numeric</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Cell Count</label>
-      <input
-        type="text"
-        formControlName="cellCount"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.cellCount.errors }" />
-      <div *ngIf="submitted && f.cellCount.errors" class="invalid-feedback">
-        <div *ngIf="f.cellCount.errors.required">Cell Count is required</div>
-        <div *ngIf="f.cellCount.errors.pattern">Cell Count must be numeric</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Viability</label>
-      <input
-        type="text"
-        formControlName="viability"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.viability.errors }" />
-      <div *ngIf="submitted && f.viability.errors" class="invalid-feedback">
-        <div *ngIf="f.viability.errors.required">Viability is required</div>
-        <div *ngIf="f.viability.errors.pattern">Viability must be numeric</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Initial Quantity</label>
-      <input
-        type="text"
-        formControlName="initialQuantity"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.initialQuantity.errors }" />
-      <div *ngIf="submitted && f.initialQuantity.errors" class="invalid-feedback">
-        <div *ngIf="f.initialQuantity.errors.pattern">Initial Quantity must be numeric</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Current Quantity</label>
-      <input
-        type="text"
-        formControlName="currentQuantity"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.currentQuantity.errors }" />
-      <div *ngIf="submitted && f.currentQuantity.errors" class="invalid-feedback">
-        <div *ngIf="f.currentQuantity.errors.pattern">Current Quantity must be numeric</div>
-      </div>
-    </div>
-
-
-    <div class="btn-toolbar">
+    <div class="btn-toolbar p-4">
       <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>
       <button *ngIf="!isAddMode" type="submit" class="btn btn-primary">Update</button>
     </div>
+
 
   </form>
 

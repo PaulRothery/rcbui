@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Yeast } from 'src/app/classes/yeast';
@@ -27,11 +28,14 @@ export class YeastEditComponent implements OnInit {
   loading = false;
   yeast!: Yeast;
 
+  enteredDate!: NgbDate;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private service: YeastService
+    private service: YeastService,
+    public calendar: NgbCalendar
   ) {}
 
   ngOnInit(): void {
@@ -133,6 +137,14 @@ export class YeastEditComponent implements OnInit {
             this.loading = false;
         }
     });
+  }
+
+  setDate() {
+
+    if (this.enteredDate) {
+      this.yeast.date = new Date('"' +  this.enteredDate.year + '-' + this.enteredDate.month + '-' + this.enteredDate.day + '"');
+      this.form.controls['date'].setValue(this.yeast.date);
+    }
   }
 
   onReset(): void {
