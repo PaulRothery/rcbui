@@ -21,7 +21,6 @@ import { RecipeService } from 'src/app/services/recipe.service';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit {
-
   
   recipeStatuses!: any[];
 
@@ -37,7 +36,6 @@ export class RecipeEditComponent implements OnInit {
   isEditMode: boolean = false;
   isCloneMode: boolean = false;
  
-
   enteredDate!: NgbDate;
   newDate!: Date;
   estimatedDuration: number = 0;
@@ -103,6 +101,7 @@ export class RecipeEditComponent implements OnInit {
       recipeGrains: [''],
       recipeHops: [''],
       recipeSalts: [''],
+      recipeAdjuncts: [''],
       recipeBrewers: [''],
       brewDays: [''],
       fermentationLogs: [''],
@@ -115,13 +114,8 @@ export class RecipeEditComponent implements OnInit {
      // are not set when adding a recipe we need to have empty object values instead of
      // just empty  
      this.recipe = getEmptyRecipe();
-     this.form.controls['recipeGrains'].setValue(this.r.recipeGrains);
-     this.form.controls['recipeHops'].setValue(this.r.recipeHops);
-     this.form.controls['recipeSalts'].setValue(this.r.recipeSalts);
-     this.form.controls['recipeBrewers'].setValue(this.r.recipeBrewers);
-     this.form.controls['brewDays'].setValue(this.r.brewDays);
-     this.form.controls['fermentationLogs'].setValue(this.r.fermentationLogs);
- 
+     this.form.patchValue(this.recipe)
+
     // select the required recipe for edit and clone mode 
     if (!this.isAddMode) {
       this.service.getById(this.id)
@@ -305,12 +299,13 @@ export class RecipeEditComponent implements OnInit {
     const rgs: RecipeGrain[] = [];
     this.f.recipeGrains.value.forEach((val: RecipeGrain) => rgs.push(Object.assign({}, val)));
    
+   
     let totalColor: number = 0;
     rgs.forEach( (element) => {
       let grainColor = element.quantity * element.color;
       totalColor += grainColor;
     });
-
+  
    // next adjust the color based on the quantity being brewed
    totalColor = totalColor / (this.f.batchYield.value * 31);
  
@@ -318,6 +313,7 @@ export class RecipeEditComponent implements OnInit {
    totalColor = totalColor * 1.4922;
    totalColor = totalColor ** 0.6859;
 
+  
    return totalColor;  
   }
 
@@ -339,14 +335,16 @@ function getEmptyRecipe(): Recipe {
       
   recipe.date =  new Date(Date.now());
   recipe.estimatedDuration = 0;
+  recipe.status = 'INITIAL';
+  recipe.batchYield = 7;    // default to 7
 
   let recipeGrains: RecipeGrain[] = [];
   recipe.recipeGrains = recipeGrains;
-  let recipeGrain = new RecipeGrain;
-  recipeGrain.name = '';
-  recipeGrain.quantity = 0;
-  recipeGrain.color = 0;
-  recipe.recipeGrains.push(recipeGrain);
+  // let recipeGrain = new RecipeGrain;
+  // recipeGrain.name = '';
+  // recipeGrain.quantity = 0;
+  // recipeGrain.color = 0;
+   //recipe.recipeGrains.push(recipeGrain);
  
   let recipeHops: RecipeHop[] = [];
   recipe.recipeHops = recipeHops;
@@ -363,10 +361,8 @@ function getEmptyRecipe(): Recipe {
   let brewDays: BrewDay[] = [];
   recipe.brewDays = brewDays;
   let brewDay = new BrewDay;
-  brewDay.mashInTime = new Date(Date.now());
   recipe.brewDays.push(brewDay);
  
-
   let fermentationLogs: FermentationLog[] = [];
   recipe.fermentationLogs = fermentationLogs
 
