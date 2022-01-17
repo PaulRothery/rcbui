@@ -27,10 +27,16 @@ export class RecipeEditComponent implements OnInit {
 
   form!: FormGroup;
   id!: string;
-  isAddMode!: boolean;
   submitted = false;
   loading = false;
   recipe!: Recipe;
+
+  // indicator to show whether were adding a new recipe,
+  // cloning or updating an exitng one
+  isAddMode: boolean = false;
+  isEditMode: boolean = false;
+  isCloneMode: boolean = false;
+ 
 
   enteredDate!: NgbDate;
   newDate!: Date;
@@ -58,16 +64,24 @@ export class RecipeEditComponent implements OnInit {
 
   ngOnInit(): void {
 
- 
-
-    console.log('recipe edit oninit ' + this.isShowGrain);
-
+   // this.recipe = getEmptyRecipe();
+    
     this.enteredDate = this.calendar.getToday();
 
+    // get the list of statuses from the server
     this.recipeStatusService.getAll().subscribe((recipeStatuses) => (this.recipeStatuses = recipeStatuses));
 
     this.id = this.route.snapshot.params['id'];
-    this.isAddMode = !this.id;
+    if(!this.id) {
+     this.isAddMode = true
+    } else if (this.route.snapshot.url[2]) {
+      this.isCloneMode= true
+    } else {
+      this.isEditMode = true;
+    }
+    console.log('add mode ' + this.isAddMode)
+    console.log('edit mode ' + this.isEditMode)
+    console.log('clone mode ' + this.isCloneMode)
 
     let numberPattern = /\-?\d*\.?\d{1,2}/;
 
@@ -79,7 +93,7 @@ export class RecipeEditComponent implements OnInit {
       previousBatchId: ['', Validators.required],
       subBatchId: [''],
       date: [''],
-      estimatedDuration: ['', Validators.required],
+      estimatedDuration: [''],
       type: ['', Validators.required],
       batchYield: ['', [Validators.pattern(numberPattern)]],
       targetEff: ['', [Validators.pattern(numberPattern)]],
@@ -94,6 +108,21 @@ export class RecipeEditComponent implements OnInit {
       fermentationLogs: [''],
      });
 
+     // initialize an empty recipe this is required when we are adding one from a blank page
+     // and also for updating one because the html will attempt to calculate fields
+     // before they are fetched from the server and will throw exceptions
+     //after initialization attach the empty child records to the form because if they
+     // are not set when adding a recipe we need to have empty object values instead of
+     // just empty  
+     this.recipe = getEmptyRecipe();
+     this.form.controls['recipeGrains'].setValue(this.r.recipeGrains);
+     this.form.controls['recipeHops'].setValue(this.r.recipeHops);
+     this.form.controls['recipeSalts'].setValue(this.r.recipeSalts);
+     this.form.controls['recipeBrewers'].setValue(this.r.recipeBrewers);
+     this.form.controls['brewDays'].setValue(this.r.brewDays);
+     this.form.controls['fermentationLogs'].setValue(this.r.fermentationLogs);
+ 
+    // select the required recipe for edit and clone mode 
     if (!this.isAddMode) {
       this.service.getById(this.id)
           .pipe(first())
@@ -104,7 +133,10 @@ export class RecipeEditComponent implements OnInit {
               this.recipe.id = this.id;
               this.form.patchValue(this.recipe)
               this.estimatedDuration = this.r.estimatedDuration
-              
+
+              if (this.isCloneMode) {
+                this.initializeForClone();
+              }
             },
             error => console.log('err ' + error),
           );
@@ -113,13 +145,53 @@ export class RecipeEditComponent implements OnInit {
       this.recipe = getEmptyRecipe();
     }
   }
-
    
-  toggleDisplayHop() {
-    this.isShowHop = !this.isShowHop;
+  // set recipe to be cloned
+  // associated records must have id and recipeid removed because they will 
+  // be created anew in he server
+  // brewers and fermentation logs will be reset because they will be different
+  // in the clone
+  private initializeForClone() {
 
+    this.r.id = "";
+    this.r.status = 'INITIAL';
+    this.r.previousBatchId = this.r.batchId;
+    this.r.batchId = "";
+    this.r.date = new Date(Date.now());
+
+    for (let i = 0; i < this.r.recipeGrains.length; i++) {
+      this.r.recipeGrains[i].id = "";
+      this.r.recipeGrains[i].recipeId = "";
+    }
+
+    for (let i = 0; i < this.r.recipeHops.length; i++) {
+      this.r.recipeHops[i].id = "";
+      this.r.recipeHops[i].recipeId = "";
+    }
+
+    for (let i = 0; i < this.r.recipeSalts.length; i++) {
+      this.r.recipeSalts[i].id = "";
+      this.r.recipeSalts[i].recipeId = "";
+    }
+
+    for (let i = 0; i < this.r.recipeAdjuncts.length; i++) {
+      this.r.recipeAdjuncts[i].id = "";
+      this.r.recipeAdjuncts[i].recipeId = "";
+    }
+
+    let recipeBrewers: RecipeBrewer[] = [];
+    this.r.recipeBrewers = recipeBrewers;
+
+    for (let i = 0; i < this.r.brewDays.length; i++) {
+      this.r.brewDays[i].id = "";
+      this.r.brewDays[i].recipeId = "";
+    }
+
+    let fermentationLogs: FermentationLog[] = [];
+    this.r.fermentationLogs = fermentationLogs;
+
+    this.form.patchValue(this.recipe);
   }
-
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
@@ -139,10 +211,12 @@ export class RecipeEditComponent implements OnInit {
     console.log(JSON.stringify(this.form.value, null, 2));
  
     this.loading = true;
-    if (this.isAddMode) {
-        this.createRecipe();
-    } else {
+
+    // a clone is effectively adding a new recipe
+    if (this.isEditMode) {
         this.updateRecipe();
+    } else {
+        this.createRecipe();
     }
 
   }
@@ -155,9 +229,7 @@ export class RecipeEditComponent implements OnInit {
       this.form.controls['date'].setValue(this.newDate);
     }
   
-
-   // console.log('fermentationlog date ' + this.form.controls['FermentationLogs.date'])
-    this.service.update(this.recipe.id, this.form.value)
+   this.service.update(this.recipe.id, this.form.value)
     .pipe(first())
     .subscribe({
         next: () => {
@@ -180,12 +252,9 @@ export class RecipeEditComponent implements OnInit {
     .pipe(first())
     .subscribe({
         next: () => {
-
-   
-            this.router.navigate(['/recipe-edit']);
+            this.router.navigate(['/recipes']);
         },
         error: error => {
-
             this.loading = false;
         }
     });
@@ -199,17 +268,19 @@ export class RecipeEditComponent implements OnInit {
   changeDuration() {
 
     this.r.estimatedDuration = this.estimatedDuration
-
+    console.log('changing duration ' + this.r.estimatedDuration)
+    this.f.estimatedDuration.setValue(this.r.estimatedDuration)
+   
   }
 
   calculateCompletionDate(): Date {
 
-    // get the ngbDate used by the datepicker and convert it to the date on the recipe
-    
+    // if the recipe date is not set just exit with a new date declaration
     if (!this.r) {
       return new Date()
     }
     
+    // get the ngbDate used by the datepicker and convert it to the date on the recipe
     this.r.date =  new Date(this.enteredDate.year, this.enteredDate.month - 1, this.enteredDate.day);
     let completionDate = new Date(this.r.date);
     completionDate.setDate(completionDate.getDate() + (this.r.estimatedDuration))
@@ -219,45 +290,34 @@ export class RecipeEditComponent implements OnInit {
   } 
 
   calculateOriginalGravity(): number  {
-       return this.f.targetEff.value * 2;
-    
-      
+       return this.f.targetEff.value * 2;    
   }
 
   // The overall color is determined by the color and quantity
   // of each grain in the recipe
   calculateColor(): number  {
    
-//    console.log(' recipe grains value ' + this.f.recipeGrains.value.size  )
     if(!this.f.recipeGrains.value  ) {
       return 0
     }
 
-   // first sum the color and quantity of each grain
+    // first sum the color and quantity of each grain
     const rgs: RecipeGrain[] = [];
     this.f.recipeGrains.value.forEach((val: RecipeGrain) => rgs.push(Object.assign({}, val)));
    
     let totalColor: number = 0;
     rgs.forEach( (element) => {
-  //    console.log('elem Quantity ' + element.quantity);
-   //   console.log('elem Color ' + element.color);
       let grainColor = element.quantity * element.color;
       totalColor += grainColor;
     });
 
-   //console.log('totalColor after summing grains ' + totalColor);  
-
    // next adjust the color based on the quantity being brewed
    totalColor = totalColor / (this.f.batchYield.value * 31);
-   //console.log('totalColor after yield adjustment ' + totalColor);  
-
+ 
    // and a couple of adjustments to finalze the color
    totalColor = totalColor * 1.4922;
-   //console.log('totalColor after x1.4922 adjustment ' + totalColor);  
-
    totalColor = totalColor ** 0.6859;
-   //console.log('totalColor after exponential adjustment ' + totalColor);  
- 
+
    return totalColor;  
   }
 
@@ -268,8 +328,6 @@ export class RecipeEditComponent implements OnInit {
 function Output() {
   throw new Error('Function not implemented.');
 }
-
-
 
 // if we are  adding a new recipe the form will be empty 
 // that is an issue because we use parst of the form to calculate other fields on the 

@@ -35,7 +35,6 @@ export class RecipeAdjunctComponent implements OnInit {
     recipeAdjunct.quantity = 0;
 
     this.recipeAdjuncts.push(recipeAdjunct);
-    console.log('existing adjuncts = ' + this.adjuncts?.length);
   
   }
 
@@ -45,22 +44,17 @@ export class RecipeAdjunctComponent implements OnInit {
   }
 
   nameChange(name: string) {
-
      this.recipeAdjuncts[this.recipeAdjuncts.length - 1].name = name;  
   }  
 
-  
   nameIsEmpty(name: string): boolean {
-
     if (name) return false;
     return true;
   }  
-
   
   // if there are no records to display add an empty row
   // so that one can be added
   checkElements() {
-
     if (this.recipeAdjuncts?.length === 0) {
      this.addRow();
    }
@@ -69,17 +63,14 @@ export class RecipeAdjunctComponent implements OnInit {
   
  updateSelectedDate(date: NgbDate, index: number): NgbDate {
 
-  console.log('selected date = ' + date)
-  console.log('occurence = ' + index)
   this.newDate = new Date(
     date.year,
     date.month - 1,
     date.day);
   
-    console.log('new date = ' + this.newDate)
- 
   this.recipeAdjuncts[index].date = this.newDate;
 
   return date;
-}
+  
+  }
 }

@@ -1,6 +1,6 @@
 <div class="spacer"></div>
 <div class="p-4">
-  <h2>recipe</h2>
+  <h2>Recipe</h2>
   <table class="table table-sm table-bordered table-condensed">
     <thead class="thead-dark bg-success th-left">
       <tr>
@@ -31,8 +31,7 @@
           [routerLink]="['/recipe-edit/' + recipe.id]">Edit</button>
 
         <button class="btn btn-sm btn-outline-primary table-button"
-          [routerLink]="['/recipe-edit/' + recipe.id]">Clone</button>
-
+          [routerLink]="['/recipe-edit/' + recipe.id + '/clone']">Clone</button>
       </tr>
 
     </tbody>
@@ -42,8 +41,6 @@
     <button class="btn btn-primary pull-left" [routerLink]="'/recipe-edit'">Add recipe</button>
 
   </div>
-
-
 </div>
 
 <div class="col-xs-12 col-sm-4">

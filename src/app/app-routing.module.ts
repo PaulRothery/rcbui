@@ -38,9 +38,10 @@ const routes: Routes = [
   { path: 'adjunct-edit', component: AdjunctEditComponent },
   
   { path: 'recipes', component: RecipeComponent },
-  { path: 'recipe-edit/:id', component: RecipeEditComponent },
   { path: 'recipe-edit', component: RecipeEditComponent },
-
+  { path: 'recipe-edit/:id', component: RecipeEditComponent },
+  { path: 'recipe-edit/:id/clone', component: RecipeEditComponent },
+ 
   { path: '**', component: NoPageFoundComponent },
 ];
 

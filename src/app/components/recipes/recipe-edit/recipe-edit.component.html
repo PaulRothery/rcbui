@@ -182,7 +182,8 @@
         <!-- submit button -->
         <div class="btn-toolbar p-4">
           <button *ngIf="isAddMode" type="submit" class="btn btn-primary">Add</button>
-          <button *ngIf="!isAddMode" type="submit" class="btn btn-primary">Update</button>
+          <button *ngIf="isEditMode" type="submit" class="btn btn-primary">Update</button>
+          <button *ngIf="isCloneMode" type="submit" class="btn btn-primary">Clone</button>
         </div>
       </div>
 
